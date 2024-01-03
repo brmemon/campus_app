@@ -1,0 +1,111 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.Main_sideNavbar {
+    display: flex;
+    height: 100vh;
+
+    .Side_Navbar {
+        width: 21%;
+        // padding-left: 25px;
+        align-items: center;
+        display: flex;
+        background-color: #A66CFF;
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .logo_heading {
+        // display: flex;
+        // align-items: center;
+        // justify-content: center;
+        // flex-direction: column;
+        padding: 25px 0;
+
+        .campus_heading {
+            font-size: 32px;
+            color: white;
+        }
+
+        .campus_logo {
+            font-size: 55px;
+            color: white;
+            // display: flex;
+            // width: 100%;
+        }
+
+    }
+
+    .avater_div {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        flex-direction: column;
+        color: white;
+        align-items: center;
+        margin-bottom: 15px;
+
+        .navbar_avater {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+            border-radius: 50px;
+        }
+
+        .user_name {
+            font-size: 15px;
+        }
+    }
+
+    .data_div {
+        // width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .main_mapmenu {
+            background-color: aliceblue;
+            color: #A66CFF;
+            border: 2px solid #A66CFF;
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 10px;
+            margin-bottom: 20px;
+            justify-content: flex-end;
+        }
+
+        .main_mapmenu:hover {
+            background-color: white;
+            color: #A66CFF;
+            border: 2px solid #A66CFF;
+            width: 100%;
+        }
+
+        .map_menu {
+            justify-content: flex-end;
+            background-color: #A66CFF;
+            color: white;
+            border: 2px solid #A66CFF;
+            display: flex;
+            flex-direction: row-reverse;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .map_menu:hover {
+            border: 2px solid #A66CFF;
+            background-color: white;
+            color: #A66CFF;
+            width: 100%;
+        }
+
+    }
+
+    .children {
+        width: 79%;
+        background-color: #A66CFF;
+    }
+}

@@ -1,0 +1,78 @@
+.all_path {
+    background-color: white;
+    height: 100vh;
+    width: 100%;
+    padding: 1px 60px;
+    border-bottom-left-radius: 70px;
+    border-top-left-radius: 70px;
+
+    .profile {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        .avater_and_name {
+            margin-bottom: 35px;
+            // margin-top: 25px;
+
+            .avater_pencilicon {
+                position: relative;
+            }
+
+            .avater {
+                // border-style: double;
+                width: 100px;
+                border-radius: 50px;
+                // color: #A66CFF !important;
+                // background-color: #A66CFF;
+                height: 100px;
+                font-size: 50px;
+            }
+
+            .pencil_icon {
+                font-size: 17px;
+                right: 17px;
+                cursor: pointer;
+                bottom: 0;
+                position: absolute;
+            }
+
+            .avater_name {
+                font-size: 17px;
+                text-decoration: underline;
+                text-decoration-color: #A66CFF;
+            }
+        }
+
+        .profile_input {
+            .input_profile {
+                width: 400px;
+                margin-bottom: 15px;
+            }
+        }
+
+        .gender_class {
+            font-size: 15px;
+            text-align:justify;
+            color: #A66CFF;
+        }
+
+        .profile_radio {
+            gap: 10px;
+            flex-direction: row;
+        }
+
+        .parent_profilebutton {
+            padding-top: 15px;
+            width: 75%;
+
+            .profile_button {
+                width: 300px;
+            }
+        }
+
+    }
+}
