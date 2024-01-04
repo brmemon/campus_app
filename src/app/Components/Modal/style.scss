@@ -1,0 +1,204 @@
+.modal_first {
+    display: none;
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    transition: 1s ease;
+
+
+    :hover {
+        transition: 1s ease;
+        width: 50%;
+    }
+
+
+    .modal_button {
+        padding: 22px 18px;
+        color: #A66CFF;
+        position: absolute;
+        font-size: 24px;
+    }
+
+    .Main_sideNavbar {
+        display: flex;
+        height: 100vh;
+
+
+        .modal_Side_Navbar {
+            position: relative;
+            width: 40%;
+            align-items: center;
+            display: flex;
+            background-color: #A66CFF;
+            z-index: 1000;
+            flex-direction: column;
+            text-align: center;
+            transition: 1s ease;
+
+
+
+        }
+
+
+        .logo_heading {
+            padding: 25px 0;
+
+            .campus_heading {
+                font-size: 32px;
+                color: white;
+            }
+
+            .campus_logo {
+                font-size: 55px;
+                color: white;
+            }
+        }
+
+        .avater_div {
+            display: flex;
+            width: 100%;
+            justify-content: center;
+            flex-direction: column;
+            color: white;
+            align-items: center;
+            margin-bottom: 15px;
+
+            .navbar_avater {
+                width: 100px;
+                height: 100px;
+                margin-bottom: 15px;
+                border-radius: 50px;
+            }
+
+            .user_name {
+                font-size: 15px;
+            }
+        }
+
+        .data_div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .main_mapmenu {
+                background-color: aliceblue;
+                color: #A66CFF;
+                border: 2px solid #A66CFF;
+                display: flex;
+                flex-direction: row-reverse;
+                gap: 10px;
+                margin-bottom: 20px;
+                justify-content: flex-end;
+            }
+
+            .main_mapmenu:hover {
+                background-color: white;
+                color: #A66CFF;
+                border: 2px solid #A66CFF;
+                width: 100%;
+            }
+
+            .map_menu {
+                justify-content: flex-end;
+                background-color: #A66CFF;
+                color: white;
+                border: 2px solid #A66CFF;
+                display: flex;
+                flex-direction: row-reverse;
+                gap: 10px;
+                margin-bottom: 20px;
+            }
+
+            .map_menu:hover {
+                border: 2px solid #A66CFF;
+                background-color: white;
+                color: #A66CFF;
+                width: 100%;
+            }
+
+        }
+
+    }
+
+    .children {
+        width: 75%;
+        background-color: #A66CFF;
+    }
+}
+
+@media only screen and (max-width: 750px) {
+    .Main_sideNavbar {
+        .logo_heading {
+            .campus_heading {
+                font-size: 28px;
+            }
+        }
+    }
+
+
+    @media only screen and (max-width: 699px) {
+        .modal_first {
+            display: block;
+        }
+
+        .Main_sideNavbar {
+
+            .children {
+                background-color: transparent;
+                width: 100%;
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    // .modal {
+    //     display: flex;
+    //     justify-content: center;
+    //     align-items: center;
+    //     position: fixed;
+    //     top: 0;
+    //     left: 0;
+    //     width: 100%;
+    //     height: 100%;
+    //     background-color: rgba(0, 0, 0, 0.5);
+    // }
+
+    // .modal-content {
+    //     background-color: #fff;
+    //     padding: 20px;
+    //     border-radius: 5px;
+    // }
+
+    // .close {
+    //     cursor: pointer;
+    //     position: absolute;
+    //     top: 10px;
+    //     right: 15px;
+    //     font-size: 18px;
+    // }
+
+
+}
+
+@media only screen and (max-width: 699px) {
+    .modal {
+        display: block;
+
+        // .modal_icon {
+        //     // display: block;
+        // }
+    }
+}
