@@ -6,7 +6,7 @@ import { AdminNavbarData, Table} from '../Helper/constant'
 import "../globals.css"
 import MyTable from '../Components/Table'
 import Logout from '../Components/LogoutButton/page'
-import CustomModal from '../Components/Modal/page'
+import CustomModal from '../Components/Modal'
 
 const Unverified = () => {
   const [pathname, setPathname] = useState()

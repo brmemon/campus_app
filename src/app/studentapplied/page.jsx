@@ -6,7 +6,7 @@ import { CompanyNavbarData, Table } from '../Helper/constant'
 import MyTable from '../Components/Table'
 import "../globals.css"
 import Logout from '../Components/LogoutButton/page'
-import CustomModal from '../Components/Modal/page'
+import CustomModal from '../Components/Modal'
 
 const StudentApplied = () => {
   const [pathname, setPathname] = useState()

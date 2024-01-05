@@ -10,7 +10,7 @@ import { AdminNavbarData } from '../Helper/constant';
 import Image from 'next/image';
 import avater from "../Components/Assets/avater3png.png"
 import Logout from '../Components/LogoutButton/page';
-import CustomModal from '../Components/Modal/page';
+import CustomModal from '../Components/Modal';
 
 const Profile = () => {
   const [pathname, setPathname] = useState()
