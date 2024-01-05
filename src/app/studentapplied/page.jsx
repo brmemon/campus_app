@@ -6,6 +6,7 @@ import { CompanyNavbarData, Table } from '../Helper/constant'
 import MyTable from '../Components/Table'
 import "../globals.css"
 import Logout from '../Components/LogoutButton/page'
+import CustomModal from '../Components/Modal/page'
 
 const StudentApplied = () => {
   const [pathname, setPathname] = useState()
@@ -20,6 +21,7 @@ const StudentApplied = () => {
       <CustomLayout SideNavbarData={CompanyNavbarData} pathname={pathname}>
         <div className='all_path'>
         <h1 className='top_heading'>Student Applied</h1>
+        <CustomModal SideNavbarData={CompanyNavbarData} />
         <Logout />
           <MyTable tableData={Table} />
         </div>

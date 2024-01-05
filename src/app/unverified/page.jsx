@@ -6,6 +6,7 @@ import { AdminNavbarData, Table} from '../Helper/constant'
 import "../globals.css"
 import MyTable from '../Components/Table'
 import Logout from '../Components/LogoutButton/page'
+import CustomModal from '../Components/Modal/page'
 
 const Unverified = () => {
   const [pathname, setPathname] = useState()
@@ -20,6 +21,7 @@ const Unverified = () => {
       <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname}>
         <div className='all_path'>
         <h1 className='top_heading'>UnVerified Users</h1>
+        <CustomModal SideNavbarData={AdminNavbarData} />
         <Logout />
           <MyTable tableData={Table}/>
         </div>

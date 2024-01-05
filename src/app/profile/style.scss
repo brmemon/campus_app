@@ -58,6 +58,11 @@
             }
         }
 
+        .gender_radio{
+            display: flex;
+            flex-direction: column;
+        }
+
         .gender_class {
             font-size: 15px;
             text-align: justify;
@@ -71,7 +76,7 @@
 
         .parent_profilebutton {
             padding-top: 15px;
-            width: 75%;
+            width: 100%;
 
             .profile_button {
                 width: 300px;
@@ -83,14 +88,20 @@
 // }
 
 @media only screen and (max-width: 699px) {
-
-    // .hiden{
-    //     display: none;
-    // }
     .all_path {
         position: relative;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         padding: 0;
+
+        .profile {
+            padding-top: 100px;
+
+            .profile_input {
+                .input_profile {
+                    width: 300px;
+                }
+            }
+        }
     }
 }

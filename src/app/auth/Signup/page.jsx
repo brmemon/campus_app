@@ -33,10 +33,8 @@ const Signup = () => {
                             <Input className={"input"} label="Email" />
                         </div>
                         <div className='login_input_display'>
-
                             <FormControlInput label={"Password"} />
                             <FormControlInput label={"Cunfirm Password"} />
-
                         </div>
                         <div className='input_select'>
                             <FormControl fullWidth>

@@ -2,25 +2,27 @@
 import React, { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
 import "./style.scss"
-import { AdminNavbarData, Table} from '../Helper/constant'
+import { AdminNavbarData, Table } from '../Helper/constant'
 import MyTable from '../Components/Table'
 import "../globals.css"
 import Logout from '../Components/LogoutButton/page'
+import CustomModal from '../Components/Modal/page'
 
 const Unverified = () => {
   const [pathname, setPathname] = useState()
 
   const temper = typeof window !== undefined
-    useEffect(() => {
-        setPathname(window.location.pathname)
-    }, [temper])
+  useEffect(() => {
+    setPathname(window.location.pathname)
+  }, [temper])
 
   return (
     <div>
       <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname}>
         <div className='all_path'>
-        <h1 className='top_heading'>Block</h1>
-        <Logout />
+          <h1 className='top_heading'>Block</h1>
+          <CustomModal SideNavbarData={AdminNavbarData} />
+          <Logout />
           <MyTable tableData={Table} />
         </div>
       </CustomLayout>

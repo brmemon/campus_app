@@ -6,11 +6,21 @@ import { BiAlignLeft } from "react-icons/bi";
 import MainButton from '../MainButton';
 import Image from 'next/image'
 import avater from "../Assets/avater3png.png"
+import { RxCross2 } from "react-icons/rx";
+import { useRouter } from 'next/navigation';
 
-const CustomModal = ({ SideNavbarData, children }) => {
+const CustomModal = ({ SideNavbarData}) => {
+  const router = useRouter()
   const [showModal, setShowModal] = useState(false);
 
   const [pathname, setPathname] = useState()
+
+  // useEffect(() => {
+  //   if (showModal)
+  //   document.body.style.overflow = 'hidden';
+  // else
+  //     document.body.style.overflow = 'unset';
+  // }, [showModal]);
 
   const temper = typeof window !== undefined
   useEffect(() => {
@@ -25,47 +35,34 @@ const CustomModal = ({ SideNavbarData, children }) => {
     setShowModal(false);
   };
   return (
-    <>
-      {/* <div className='modal'> */}
-      <div className='modal_first'>
-        <div className='modal_button' onClick={openModal}><BiAlignLeft /></div>
-        {showModal && (
-          <div className="">
-            <div className='Main_sideNavbar'>
-              <div className='modal_Side_Navbar'>
-            <div className="modal" onClick={closeModal}>x</div>
-                <div className='logo_heading'>
-                  <FaRegHandshake className="campus_logo" />
-                  <h1 className='campus_heading'>Campus App</h1>
-                  <div className='avater_div'>
-                    <Image src={avater} className='navbar_avater' alt='Avater' />
-                    <p className='user_name'>Bilal Raza</p>
-                  </div>
-                  <div className='data_div'>
-                    {SideNavbarData.map((item) =>
-                      <MainButton
-                        key={item.route}
-                        className={item?.path === pathname ? "main_mapmenu" : "map_menu"}
-                        onClick={() => router.push(item?.path)}
-                        icon={item?.icon}
-                        text={item?.route}
-                      />
-                    )}
-                  </div>
-                </div>
-              </div>
-              {/* <div className='children'>
-              {children}
-            </div> */}
+    <div className='modal_first'>
+      <div className='modal_button' onClick={openModal}><BiAlignLeft /></div>
+      <div className={`${showModal ? "modal_sideNavbar" : "modal_sideNavbar nonclass"}`}>
+        <div className='modal_Side_Navbar'>
+          <div className="cross_button" onClick={closeModal}><RxCross2 /></div>
+          <div className='logo_heading'>
+            <FaRegHandshake className="campus_logo" />
+            <h1 className='campus_heading'>Campus App</h1>
+            <div className='avater_div'>
+              <Image src={avater} className='navbar_avater' alt='Avater' />
+              <p className='user_name'>Bilal Raza</p>
             </div>
-            {/* <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname} /> */}
-            {/* <div className="modal-content"> */}
-            {/* </div> */}
+            <div className='data_div'>
+              {SideNavbarData.map((item) =>
+                <MainButton
+                  key={item.route}
+                  className={item?.path === pathname ? "main_mapmenu" : "map_menu"}
+                  onClick={() => router.push(item?.path)}
+                  icon={item?.icon}
+                  text={item?.route}
+                />
+              )}
+            </div>
           </div>
-        )}
+        </div>
       </div>
-      {/* </div> */}
-    </>
+      <div className={`${showModal ? "modal_second" : "modal_none modal_second"}`}> </div>
+    </div>
   );
 };
 

@@ -24,7 +24,7 @@ const Profile = () => {
       <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname} className={"hiden"}>
         <div className='modal_styles'>
           <div className='all_path'>
-          <CustomModal SideNavbarData={AdminNavbarData} />
+            <CustomModal SideNavbarData={AdminNavbarData} pathname={pathname}/>
             <div className='profile'>
               <div className='avater_and_name'>
                 <Logout />
@@ -40,11 +40,11 @@ const Profile = () => {
                 <Input label={"Name"} className='input_profile' />
                 <p className='gender_class'>Gender:</p>
               </div>
-              <RadioGroup className='profile_radio'>
-                <FormControlLabel value="male" control={<Radio />} label="Male" className='input_profile' />
-                <FormControlLabel value="female" control={<Radio />} label="Female" className='input_profile' />
-                <FormControlLabel value="other" control={<Radio />} label="Other" className='input_profile' />
-              </RadioGroup>
+                <RadioGroup className='profile_radio'>
+                  <FormControlLabel value="male" control={<Radio />} label="Male" className='input_profile' />
+                  <FormControlLabel value="female" control={<Radio />} label="Female" className='input_profile' />
+                  <FormControlLabel value="other" control={<Radio />} label="Other" className='input_profile' />
+                </RadioGroup>
               <div className='profile_input'>
                 <Input label={"Old Password"} className='input_profile' />
                 <Input label={"New Password"} className='input_profile' />

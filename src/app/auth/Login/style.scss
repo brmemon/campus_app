@@ -168,12 +168,6 @@
                     width: 300px;
                 }
 
-                .media_logo {
-                    display: block;
-                    font-size: 75px;
-                    width: 100%;
-                    color: #A66CFF;
-                }
 
             }
         }
@@ -191,8 +185,20 @@
             background-color: white;
 
             .sub_container_two {
-                border-top-right-radius: 70px;
-                border-bottom-right-radius: 70px;
+                border-top-right-radius: 0px;
+                border-bottom-right-radius: 0px;
+                border-bottom-left-radius: 0px;
+                border-bottom-left-radius: 0px;
+
+                .sinUp_text{
+                    margin-bottom: 15px;
+                }
+                .media_logo {
+                    display: block;
+                    font-size: 75px;
+                    width: 100%;
+                    color: #A66CFF;
+                }
             }
         }
     }

@@ -20,7 +20,7 @@ const Login = () => {
       <AuthContainer />
       <div className='main_container'>
         <div className="sub_container_two">
-        <FaRegHandshake className="media_logo" />
+          <FaRegHandshake className="media_logo" />
           <h1 className="login_logo">
             Login
           </h1>
@@ -39,7 +39,13 @@ const Login = () => {
             </Link>
           </span>
           <div className='MainButton_Parent'>
-            <MainButton text={"Login"} />
+            <Link
+              href="/profile"
+              className="forget_button"
+            >
+              <MainButton
+                text={"Login"} />
+            </Link>
           </div>
           <p className='sinUp_text'>
             Don't Have An Account ?

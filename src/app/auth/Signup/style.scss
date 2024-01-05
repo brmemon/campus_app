@@ -73,12 +73,26 @@
     }
 }
 
-@media only screen and (max-width: 410px){
-    .main_container{
-        .sub_container_two{
-            .Signup_input{
-                padding: 0 10px;
+@media only screen and (max-width: 699px) {
+    .container {
+        overflow: hidden;
+
+        .main_container {
+            overflow: hidden;
+
+            .sub_container_two {
+                // overflow: scroll;
+                // height: fit-content !important;
+
+                .Signup_input{
+                    width: 300px;
+                }
+
+                .login_input_display {
+                    flex-direction: column;
+                }
             }
         }
     }
+
 }
