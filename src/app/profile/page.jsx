@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
 import { Avatar, FormControlLabel, Radio, RadioGroup, } from '@mui/material'
 import { PiNotePencilLight } from "react-icons/pi";
-import "./style.scss"
+import "../../../styles/scss/Profile.scss"
 import Input from '../Components/Input';
 import MainButton from '../Components/MainButton';
 import { AdminNavbarData } from '../Helper/constant';

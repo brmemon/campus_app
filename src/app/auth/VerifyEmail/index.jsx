@@ -1,5 +1,5 @@
 import React from 'react'
-import "./style.scss"
+import "../../../../styles/scss/VerifyEmail.scss"
 import { FaRegHandshake } from 'react-icons/fa6'
 import Link from 'next/link'
 import MainButton from '@/app/Components/MainButton'

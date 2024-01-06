@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 import vector from '@/app/Components/Assets/Vector14.png';
-import '../Login/style.scss';
+import '../../../../styles/scss/LoginAndAuthContainer.scss';
 import { FaRegHandshake } from 'react-icons/fa6';
 
 const AuthContainer = () => {

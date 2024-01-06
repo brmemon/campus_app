@@ -1,6 +1,6 @@
 import React from 'react'
 import MainButton from '../MainButton'
-import "./style.scss"
+import "../../../../styles/scss/LogoutButton.scss"
 import Link from 'next/link'
 const Logout = () => {
   return (

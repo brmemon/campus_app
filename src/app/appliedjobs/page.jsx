@@ -5,8 +5,8 @@ import Logout from '../Components/LogoutButton/page'
 import CustomModal from '../Components/Modal'
 import MyTable from '../Components/Table'
 import { StudentNavbarData, Table } from '../Helper/constant'
-import "../globals.scss"
-import "./style.scss"
+import "../../../styles/scss/globals.scss"
+import "../../../styles/scss/AppliedJobs.scss"
 
 const AppliedJobs = () => {
   const [pathname, setPathname] = useState()

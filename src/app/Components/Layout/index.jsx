@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react'
-import "./style.scss"
+import "../../../../styles/scss/Layout.scss"
 import { useRouter } from 'next/navigation'
 import { FaRegHandshake } from 'react-icons/fa6'
 import MainButton from '../MainButton'

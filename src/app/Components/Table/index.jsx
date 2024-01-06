@@ -1,10 +1,9 @@
 "use client"
 import React from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
-import "./style.scss"
+import "../../../../styles/scss/Table.scss"
 
 const MyTable = ({ tableData }) => {
-    // console.log(tableData, "nice")
     return (
         <div>
             <TableContainer className='tablecontainer_class'>
@@ -13,7 +12,6 @@ const MyTable = ({ tableData }) => {
                     <TableHead>
                         <TableRow className='table_head_class'>
                             {tableData.map((item) => {
-                                // console.log(tableData, "Table Data")
                                 return (
                                     <TableCell key={item} >
                                         <p

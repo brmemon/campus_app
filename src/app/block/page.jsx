@@ -1,10 +1,10 @@
 "use client"
 import React, { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
-import "./style.scss"
+import "../../../styles/scss/Block.scss"
 import { AdminNavbarData, Table } from '../Helper/constant'
 import MyTable from '../Components/Table'
-import "../globals.scss"
+import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton/page'
 import CustomModal from '../Components/Modal'
 

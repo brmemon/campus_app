@@ -1,6 +1,6 @@
 "use client"
 import React from 'react'
-import "./style.scss"
+import "../../../../styles/scss/ForgetPassword.scss"
 import { Button } from '@mui/material'
 import Input from '@/app/Components/Input'
 import Link from 'next/link'

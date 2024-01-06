@@ -1,6 +1,3 @@
-// .modal_styles {
-//     position: relative;
-
 .all_path {
     background-color: white;
     height: 100vh;
@@ -20,18 +17,14 @@
 
         .avater_and_name {
             margin-bottom: 35px;
-            // margin-top: 25px;
 
             .avater_pencilicon {
                 position: relative;
             }
 
             .avater {
-                // border-style: double;
                 width: 100px;
                 border-radius: 50px;
-                // color: #A66CFF !important;
-                // background-color: #A66CFF;
                 height: 100px;
                 font-size: 50px;
             }
@@ -58,7 +51,7 @@
             }
         }
 
-        .gender_radio{
+        .gender_radio {
             display: flex;
             flex-direction: column;
         }
@@ -84,8 +77,6 @@
         }
     }
 }
-
-// }
 
 @media only screen and (max-width: 699px) {
     .all_path {

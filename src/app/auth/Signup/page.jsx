@@ -2,10 +2,9 @@
 import React, { useState } from 'react'
 import { Button, FormControl, FormControlLabel, IconButton, InputLabel, MenuItem, OutlinedInput, Select } from '@mui/material'
 import Input from '@/app/Components/Input'
-import { FaRegEyeSlash, FaRegHandshake } from "react-icons/fa6";
+import { FaRegHandshake } from "react-icons/fa6";
 import Link from 'next/link'
-import { IoEyeOutline } from 'react-icons/io5'
-import "./style.scss"
+import "../../../../styles/scss/signup.scss"
 import StudentRequirment from './StudentRequirment.jsx'
 import LSF_Container from '../SideContainers/AuthContainer.jsx'
 import MainButton from '@/app/Components/MainButton';

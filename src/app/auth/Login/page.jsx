@@ -1,6 +1,6 @@
 "use client"
 import React, { useState } from 'react';
-import './style.scss';
+import '../../../../styles/scss/LoginAndAuthContainer.scss';
 import Input from '@/app/Components/Input';
 import Link from 'next/link';
 import MainButton from '@/app/Components/MainButton';

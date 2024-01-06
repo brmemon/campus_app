@@ -177,6 +177,7 @@
             .modal_sideNavbar {
                 width: 50%;
             }
+
             .nonclass {
                 margin-left: -50% !important;
             }
@@ -184,67 +185,22 @@
 
     }
 
-    @media only screen and (max-width: 375px){
-        .modal_first{
-            .modal_sideNavbar{
+    @media only screen and (max-width: 375px) {
+        .modal_first {
+            .modal_sideNavbar {
                 width: 100%;
             }
 
-            .nonclass{
+            .nonclass {
                 margin-left: -100% !important;
             }
         }
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // .modal {
-    //     display: flex;
-    //     justify-content: center;
-    //     align-items: center;
-    //     position: fixed;
-    //     top: 0;
-    //     left: 0;
-    //     width: 100%;
-    //     height: 100%;
-    //     background-color: rgba(0, 0, 0, 0.5);
-    // }
-
-    // .modal-content {
-    //     background-color: #fff;
-    //     padding: 20px;
-    //     border-radius: 5px;
-    // }
-
-    // .close {
-    //     cursor: pointer;
-    //     position: absolute;
-    //     top: 10px;
-    //     right: 15px;
-    //     font-size: 18px;
-    // }
-
 
 }
 
 @media only screen and (max-width: 699px) {
     .modal {
         display: block;
-
-        // .modal_icon {
-        //     // display: block;
-        // }
     }
 }

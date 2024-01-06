@@ -1,6 +1,6 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import "./style.scss";
+import "../../../../styles/scss/Modal.scss";
 import { FaRegHandshake } from 'react-icons/fa6';
 import { BiAlignLeft } from "react-icons/bi";
 import MainButton from '../MainButton';
