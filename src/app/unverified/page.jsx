@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
 import "./style.scss"
 import { AdminNavbarData, Table} from '../Helper/constant'
-import "../globals.css"
+import "../globals.scss"
 import MyTable from '../Components/Table'
 import Logout from '../Components/LogoutButton/page'
 import CustomModal from '../Components/Modal'

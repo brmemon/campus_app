@@ -4,7 +4,7 @@ import CustomLayout from '../Components/Layout'
 import "./style.scss"
 import { CompanyNavbarData, Table } from '../Helper/constant'
 import MyTable from '../Components/Table'
-import "../globals.css"
+import "../globals.scss"
 import Logout from '../Components/LogoutButton/page'
 import CustomModal from '../Components/Modal'
 

@@ -1,12 +1,12 @@
 "use client"
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
-import "./style.scss"
-import { StudentNavbarData, Table } from '../Helper/constant'
-import MyTable from '../Components/Table'
-import "../globals.css"
 import Logout from '../Components/LogoutButton/page'
 import CustomModal from '../Components/Modal'
+import MyTable from '../Components/Table'
+import { StudentNavbarData, Table } from '../Helper/constant'
+import "../globals.scss"
+import "./style.scss"
 
 const AppliedJobs = () => {
   const [pathname, setPathname] = useState()
