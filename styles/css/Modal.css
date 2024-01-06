@@ -1,0 +1,167 @@
+.modal_first {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  transition: 1s ease;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+.modal_first .modal_button {
+  padding: 22px 18px;
+  color: #A66CFF;
+  position: absolute;
+  font-size: 24px;
+  cursor: pointer;
+}
+.modal_first .modal_sideNavbar {
+  transition: 0.5s ease;
+  display: flex;
+  width: 40%;
+  height: 100vh;
+}
+.modal_first .modal_sideNavbar .modal_Side_Navbar {
+  position: relative;
+  width: 100%;
+  align-items: center;
+  display: flex;
+  background-color: #A66CFF;
+  z-index: 1000;
+  flex-direction: column;
+  text-align: center;
+}
+.modal_first .modal_sideNavbar .cross_button {
+  font-size: 18px;
+  color: white;
+  position: absolute;
+  right: 9px;
+  top: 6px;
+  cursor: pointer;
+}
+.modal_first .modal_sideNavbar .logo_heading {
+  padding: 25px 0;
+}
+.modal_first .modal_sideNavbar .logo_heading .campus_heading {
+  font-size: 32px;
+  color: white;
+  margin-bottom: 17px;
+}
+.modal_first .modal_sideNavbar .logo_heading .campus_logo {
+  font-size: 55px;
+  color: white;
+}
+.modal_first .modal_sideNavbar .avater_div {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.modal_first .modal_sideNavbar .avater_div .navbar_avater {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+  border-radius: 50px;
+}
+.modal_first .modal_sideNavbar .avater_div .user_name {
+  font-size: 15px;
+}
+.modal_first .modal_sideNavbar .data_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modal_first .modal_sideNavbar .data_div .main_mapmenu {
+  background-color: aliceblue;
+  color: #A66CFF;
+  border: 2px solid #A66CFF;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+}
+.modal_first .modal_sideNavbar .data_div .main_mapmenu:hover {
+  background-color: white;
+  color: #A66CFF;
+  border: 2px solid #A66CFF;
+  width: 100%;
+}
+.modal_first .modal_sideNavbar .data_div .map_menu {
+  justify-content: flex-end;
+  background-color: #A66CFF;
+  color: white;
+  border: 2px solid #A66CFF;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.modal_first .modal_sideNavbar .data_div .map_menu:hover {
+  border: 2px solid #A66CFF;
+  background-color: white;
+  color: #A66CFF;
+  width: 100%;
+}
+.modal_first .modal_second {
+  background-color: rgba(0, 0, 0, 0.23);
+  width: 60%;
+  transition: 0.5s ease;
+  position: absolute;
+  display: flex;
+  top: 0;
+  right: 0;
+  height: 100vh;
+}
+.modal_first .nonclass {
+  margin-left: -40% !important;
+}
+.modal_first .modal_none {
+  margin-right: -60% !important;
+}
+.modal_first .children {
+  width: 75%;
+  background-color: #A66CFF;
+}
+
+@media only screen and (max-width: 750px) {
+  .modal_sideNavbar .logo_heading .campus_heading {
+    font-size: 28px;
+  }
+}
+@media only screen and (max-width: 750px) and (max-width: 699px) {
+  .modal_first {
+    display: flex;
+  }
+  .modal_sideNavbar .children {
+    background-color: transparent;
+    width: 100%;
+  }
+}
+@media only screen and (max-width: 750px) and (max-width: 499px) {
+  .modal_first .modal_sideNavbar {
+    width: 50%;
+  }
+  .modal_first .nonclass {
+    margin-left: -50% !important;
+  }
+}
+@media only screen and (max-width: 750px) and (max-width: 375px) {
+  .modal_first .modal_sideNavbar {
+    width: 100%;
+  }
+  .modal_first .nonclass {
+    margin-left: -100% !important;
+  }
+}
+@media only screen and (max-width: 699px) {
+  .modal {
+    display: block;
+  }
+}
+
+/*# sourceMappingURL=Modal.css.map */

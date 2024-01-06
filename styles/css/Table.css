@@ -1,0 +1,24 @@
+th {
+  color: white !important;
+  border-left: 1px solid #e7e4e4;
+}
+
+td {
+  border: 1px solid #e7e4e4;
+}
+
+.tablecontainer_class {
+  box-shadow: 1px 1px 10px #e7e4e4;
+  border-radius: 7px;
+  margin-top: 25px;
+}
+.tablecontainer_class .table_class {
+  min-width: 650px;
+  border-color: rgb(0, 140, 255);
+}
+.tablecontainer_class .table_class .table_head_class {
+  background-color: #A66CFF;
+  border-radius: 10px;
+}
+
+/*# sourceMappingURL=Table.css.map */

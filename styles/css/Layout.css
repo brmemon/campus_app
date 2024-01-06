@@ -1,0 +1,104 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+.Main_sideNavbar {
+  display: flex;
+  height: 100vh;
+}
+.Main_sideNavbar .Side_Navbar {
+  width: 25%;
+  align-items: center;
+  display: flex;
+  background-color: #A66CFF;
+  flex-direction: column;
+  text-align: center;
+}
+.Main_sideNavbar .logo_heading {
+  padding: 25px 0;
+}
+.Main_sideNavbar .logo_heading .campus_heading {
+  font-size: 32px;
+  color: white;
+}
+.Main_sideNavbar .logo_heading .campus_logo {
+  font-size: 55px;
+  color: white;
+}
+.Main_sideNavbar .avater_div {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  flex-direction: column;
+  color: white;
+  align-items: center;
+  margin-bottom: 15px;
+}
+.Main_sideNavbar .avater_div .navbar_avater {
+  width: 100px;
+  height: 100px;
+  margin-bottom: 15px;
+  border-radius: 50px;
+}
+.Main_sideNavbar .avater_div .user_name {
+  font-size: 15px;
+}
+.Main_sideNavbar .data_div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.Main_sideNavbar .data_div .main_mapmenu {
+  background-color: aliceblue;
+  color: #A66CFF;
+  border: 2px solid #A66CFF;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  margin-bottom: 20px;
+  justify-content: flex-end;
+}
+.Main_sideNavbar .data_div .main_mapmenu:hover {
+  background-color: white;
+  color: #A66CFF;
+  border: 2px solid #A66CFF;
+  width: 100%;
+}
+.Main_sideNavbar .data_div .map_menu {
+  justify-content: flex-end;
+  background-color: #A66CFF;
+  color: white;
+  border: 2px solid #A66CFF;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.Main_sideNavbar .data_div .map_menu:hover {
+  border: 2px solid #A66CFF;
+  background-color: white;
+  color: #A66CFF;
+  width: 100%;
+}
+.Main_sideNavbar .children {
+  width: 75%;
+  background-color: #A66CFF;
+}
+
+@media only screen and (max-width: 750px) {
+  .Main_sideNavbar .logo_heading .campus_heading {
+    font-size: 28px;
+  }
+}
+@media only screen and (max-width: 750px) and (max-width: 699px) {
+  .Main_sideNavbar .Side_Navbar {
+    display: none;
+  }
+  .Main_sideNavbar .children {
+    width: 100%;
+  }
+}
+
+/*# sourceMappingURL=Layout.css.map */
