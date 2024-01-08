@@ -1,13 +1,10 @@
 import Login from './auth/Login/page'
-import VerifyEmail from './auth/VerifyEmail'
-import { StyledEngineProvider } from '@mui/material/styles';
 
 export default function Home() {
+  console.log(Login , "page js")
   return (
     <>
-        <Login />
-
-      {/* <VerifyEmail /> */}
+      <Login />
     </>
   )
 }
