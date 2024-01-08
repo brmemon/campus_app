@@ -5,9 +5,8 @@ import { StyledEngineProvider } from '@mui/material/styles';
 export default function Home() {
   return (
     <>
-      <StyledEngineProvider injectFirst>
         <Login />
-      </StyledEngineProvider>
+
       {/* <VerifyEmail /> */}
     </>
   )
