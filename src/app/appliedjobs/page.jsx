@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
-import Logout from '../Components/LogoutButton/page'
+import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
 import MyTable from '../Components/Table'
 import { StudentNavbarData, Table } from '../Helper/constant'

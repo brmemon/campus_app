@@ -5,6 +5,7 @@ import "../../../styles/scss/MainButton.scss";
 const MainButton = ({ text, onClick, className, icon }) => {
   return (
     <Button
+      // text={text}
       onClick={onClick}
       className={`login_button ${className}`} >
       {icon}

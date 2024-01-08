@@ -5,7 +5,7 @@ import "../../../styles/scss/Block.scss"
 import { AdminNavbarData, Table } from '../Helper/constant'
 import MyTable from '../Components/Table'
 import "../../../styles/scss/globals.scss"
-import Logout from '../Components/LogoutButton/page'
+import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
 
 const Unverified = () => {
