@@ -50,7 +50,7 @@ const Profile = () => {
                 <Input label={"New Password"} className='input_profile' />
               </div>
               <div className='parent_profilebutton'>
-                <MainButton text={"Save Changes 123"} className={"profile_button"} />
+                <MainButton text={"Save Changes"} className={"profile_button"} />
               </div>
             </div>
           </div>
