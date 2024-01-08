@@ -6,9 +6,9 @@ const MainButton = ({ text, onClick, className, icon }) => {
   return (
     <Button
       onClick={onClick}
-      className={`login_button`} >
-      {text}
+      className={`login_button ${className}`} >
       {icon}
+      {text}
     </Button>
   );
 };

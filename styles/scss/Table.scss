@@ -11,6 +11,8 @@ td {
     box-shadow: 1px 1px 10px #e7e4e4;
     border-radius: 7px;
     margin-top: 25px;
+    z-index: 1200;
+    position: relative;
 
     .table_class {
         min-width: 650px;
