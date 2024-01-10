@@ -1,10 +1,13 @@
+import Basic from '@/example'
 import Login from './auth/Login/page'
+import VerifyEmail from './auth/VerifyEmail'
 
 export default function Home() {
-  console.log(Login , "page js")
   return (
     <>
-      <Login />
+    <Basic />
+      {/* <Login /> */}
+      {/* <VerifyEmail /> */}
     </>
   )
 }
