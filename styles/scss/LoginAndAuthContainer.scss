@@ -94,7 +94,7 @@
                 position: relative;
                 width: 100%;
                 padding: 0px 0px;
-                margin-bottom: 15px;
+                margin-bottom: 8px;
                 border-radius: 100px;
             }
 
@@ -132,7 +132,13 @@
             .MainButton_Parent {
                 width: 300px;
                 margin: 13px 0;
+
             }
+            // .MainButton_Parent:disabled {
+            //     cursor: not-allowed;
+            // }
+
+
 
             .sinUp_text {
                 gap: 5px;
@@ -190,9 +196,10 @@
                 border-bottom-left-radius: 0px;
                 border-bottom-left-radius: 0px;
 
-                .sinUp_text{
+                .sinUp_text {
                     margin-bottom: 15px;
                 }
+
                 .media_logo {
                     display: block;
                     font-size: 75px;

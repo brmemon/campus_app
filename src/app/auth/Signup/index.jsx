@@ -1,7 +1,7 @@
 import Input from '@/app/Components/Input';
 import React, { useState } from 'react'
 
-const StudentRequirment = ({ userType }) => {
+const Requirement = ({ userType }) => {
 
     const [education, setEducation] = useState('');
     const [experience, setExperience] = useState('');
@@ -33,4 +33,4 @@ const StudentRequirment = ({ userType }) => {
     );
 }
 
-export default StudentRequirment
+export default Requirement

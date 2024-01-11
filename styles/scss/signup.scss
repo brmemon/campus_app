@@ -2,7 +2,7 @@
     background-color: #A66CFF;
     width: 60%;
 
-    .signup_toast{
+    .signup_toast {
         background-color: #A66CFF !important;
         color: #A66CFF !important;
     }
@@ -23,8 +23,8 @@
             position: relative;
             width: 100%;
             padding: 0px 0px;
-            margin-bottom: 15px;
-            border-radius: 100px;
+            margin-bottom: 8px;
+            // border-radius: 100px;
         }
 
         .input_eye {
@@ -33,7 +33,7 @@
         }
 
         .select {
-            margin-bottom: 15px;
+            margin-bottom: 8px;
         }
 
         .password-input-container {
@@ -47,12 +47,17 @@
             gap: 4%;
         }
 
-        .input {
-            width: 100%;
-            padding: 0px 0px;
-            margin-bottom: 15px;
-            border-radius: 100px;
+        .error {
+            color: #A66CFF;
+            padding-bottom: 4px;
         }
+
+        // .input {
+            // width: 100%;
+            // padding: 0px 0px;
+            // margin-bottom: 8px;
+            // border-radius: 100px;
+        // }
 
         .css-1yk1gt9-MuiInputBase-root-MuiOutlinedInput-root-MuiSelect-root {
             width: 100%;
