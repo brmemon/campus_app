@@ -45,10 +45,15 @@
         .login_input_display {
             display: flex;
             gap: 4%;
+
+            .formik_input{
+                display: flex;
+                flex-direction: column;
+            }
         }
 
         .error {
-            color: #A66CFF;
+            color: red;
             padding-bottom: 4px;
         }
 

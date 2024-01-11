@@ -391,6 +391,7 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import Requirement from './index.jsx';
 import { useRouter } from 'next/navigation';
+import "../../../../styles/scss/signup.scss"
 
 const Signup = () => {
     const router = useRouter();
@@ -406,7 +407,7 @@ const Signup = () => {
             .matches(/[\W_]/, 'Password must contain at least one special character')
             .required('Password is required'),
         confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'Passwords must match').required('Confirm Password is required'),
-        userType: Yup.string().required('User Type is required'),
+        userType: Yup.string().required('Role is required'),
     });
 
     const formik = useFormik({
@@ -451,72 +452,77 @@ const Signup = () => {
                     <form onSubmit={handleSubmit}>
                         <div className="Signup_input">
                             <div className='login_input_display'>
-                                <Input
-                                    onChange={formik.handleChange}
-                                    value={values.name}
-                                    className={'input'}
-                                    label="Name"
-                                    name="name"
-                                    id="name"
-                                />
-                                {errors.name && touched.name && <div className="error">{errors.name}</div>}
-
-                                <Input
-                                    onChange={formik.handleChange}
-                                    value={values.email}
-                                    className={'input'}
-                                    type="email"
-                                    label="Email"
-                                    name="email"
-                                    id="email"
-                                />
-                                {errors.email && touched.email && <div className="error">{errors.email}</div>}
-
-                                <FormControlInput
-                                    onChange={formik.handleChange}
-                                    value={values.password}
-                                    type="password"
-                                    label="Password"
-                                    name="password"
-                                    id="password"
-                                />
-                                {errors.password && touched.password && <div className="error">{errors.password}</div>}
-
-                                <FormControlInput
-                                    onChange={formik.handleChange}
-                                    value={values.confirmPassword}
-                                    type="password"
-                                    label="Confirm Password"
-                                    name="confirmPassword"
-                                    id="confirmPassword"
-                                />
-                                {errors.confirmPassword && touched.confirmPassword && (
-                                    <div className="error">{errors.confirmPassword}</div>
-                                )}
-
-                                <FormControl fullWidth>
-                                    <InputLabel id="demo-simple-select-label">Select Role</InputLabel>
-                                    <Select
-                                        labelId="demo-simple-select-label"
-                                        id="demo-simple-select"
-                                        value={values.userType}
-                                        label="Select Role"
-                                        onChange={handleChange}
-                                        onBlur={formik.handleBlur}
-                                        error={touched.userType && Boolean(errors.userType)}
-                                        // helperText={touched.userType && errors.userType}
-                                        className={'select'}
-                                        name="userType"
-                                    >
-                                        <MenuItem value="">Select Role</MenuItem>
-                                        <MenuItem value={'student'}>Student</MenuItem>
-                                        <MenuItem value={'Company'}>Company</MenuItem>
-                                        <MenuItem value={'admin'}>Admin</MenuItem>
-                                    </Select>
-                                </FormControl>
-
-                                {values.userType === 'student' ? <Requirement userType={values.userType} /> : null}
+                                <div className='formik_input'>
+                                    <Input
+                                        onChange={formik.handleChange}
+                                        value={values.name}
+                                        className={'input'}
+                                        label="Name"
+                                        name="name"
+                                        id="name"
+                                    />
+                                    {errors.name && touched.name && <div className="error">{errors.name}</div>}
+                                </div>
+                                <div className='formik_input'>
+                                    <Input
+                                        onChange={formik.handleChange}
+                                        value={values.email}
+                                        className={'input'}
+                                        type="email"
+                                        label="Email"
+                                        name="email"
+                                        id="email"
+                                    />
+                                    {errors.email && touched.email && <div className="error">{errors.email}</div>}
+                                </div>
                             </div>
+                            <div className='login_input_display'>
+                                <div className='formik_input'>
+                                    <FormControlInput
+                                        onChange={formik.handleChange}
+                                        value={values.password}
+                                        type="password"
+                                        label="Password"
+                                        name="password"
+                                        id="password"
+                                    />
+                                    {errors.password && touched.password && <div className="error">{errors.password}</div>}
+                                </div>
+                                <div className='formik_input'>
+                                    <FormControlInput
+                                        onChange={formik.handleChange}
+                                        value={values.confirmPassword}
+                                        type="password"
+                                        label="Confirm Password"
+                                        name="confirmPassword"
+                                        id="confirmPassword"
+                                    />
+                                    {errors.confirmPassword && touched.confirmPassword && (
+                                        <div className="error">{errors.confirmPassword}</div>
+                                    )}
+                                </div>
+                            </div>
+
+                            <FormControl fullWidth>
+                                <InputLabel id="demo-simple-select-label">Select Role</InputLabel>
+                                <Select
+                                    labelId="demo-simple-select-label"
+                                    id="demo-simple-select"
+                                    label="Select Role"
+                                    value={values.userType}
+                                    onChange={formik.handleChange}
+                                    error={touched.userType && (errors.userType)}
+                                    className={'select'}
+                                    name="userType"
+                                >
+                                    <MenuItem value={'student'}>Student</MenuItem>
+                                    <MenuItem value={'Company'}>Company</MenuItem>
+                                    <MenuItem value={'admin'}>Admin</MenuItem>
+                                </Select>
+                            </FormControl>
+                            {errors.userType && touched.userType && <div className="error">{errors.userType}</div>}
+
+                            {values.userType === 'student' ? <Requirement userType={values.userType} /> : null}
                         </div>
 
                         <div className="MainButton_Parent">
