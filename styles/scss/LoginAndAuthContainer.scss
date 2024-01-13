@@ -100,7 +100,7 @@
 
             .input_eye {
                 width: 100%;
-                margin-bottom: 15px;
+                margin-bottom: 8px;
             }
 
             .eye-icon {
@@ -122,6 +122,8 @@
             .forget {
                 display: flex;
                 margin: 5px 0;
+                width: 100%;
+                justify-content: center;
             }
 
             .forget_button {
@@ -130,10 +132,17 @@
             }
 
             .MainButton_Parent {
-                width: 300px;
+                display: flex;
+                width: 100%;
+                justify-content: center;
                 margin: 13px 0;
 
+                .button_width {
+                    width: 300px;
+                }
+
             }
+
             // .MainButton_Parent:disabled {
             //     cursor: not-allowed;
             // }
@@ -170,9 +179,9 @@
                     width: 300px;
                 }
 
-                .MainButton_Parent {
-                    width: 300px;
-                }
+                // .MainButton_Parent {
+                //     width: 300px;
+                // }
 
 
             }

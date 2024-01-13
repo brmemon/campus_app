@@ -9,10 +9,9 @@ import avater from "../Assets/avater3png.png"
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from 'next/navigation';
 
-const CustomModal = ({ SideNavbarData}) => {
+const CustomModal = ({ SideNavbarData }) => {
   const router = useRouter()
   const [showModal, setShowModal] = useState(false);
-
   const [pathname, setPathname] = useState()
 
   // useEffect(() => {

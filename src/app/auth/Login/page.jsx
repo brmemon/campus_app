@@ -16,6 +16,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import { loginUser } from '@/app/Helper/helper';
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -28,7 +29,7 @@ const Login = () => {
       .required('Email is required'),
     password: Yup.string()
       .min(8, 'Password must be at least 8 characters')
-      .matches(/[\W_]/, 'Password must contain at least one special character')
+      .matches(/[\W@_]/, 'Password must contain at least one special character')
       .required('Password is required'),
   });
 
@@ -41,11 +42,12 @@ const Login = () => {
     onSubmit: async (values) => {
       const { password } = values;
 
-      const { success, message } = await signinUser(values.email, values.password);
+      const { success, message } = await loginUser(values.email, values.password);
+      console.log(success, message, "nothing")
 
       if (success) {
         toast.success(message);
-        router.push('/Profile');
+        router.push('/profile');
       } else {
         toast.error(message);
       }
@@ -138,11 +140,6 @@ const Login = () => {
           <form onSubmit={handleSubmit}>
             <div className="login_input">
               <Input
-                // onChange={(e) => setEmail(e.target.value)}
-                // className="input"
-                // value={email}
-                // type="email"
-                // label="Email"
                 label="Email"
                 type={"email"}
                 onChange={formik.handleChange}
@@ -154,9 +151,6 @@ const Login = () => {
               {errors.email && touched.email && <div className="error">{errors.email}</div>}
 
               <FormControlInput
-                // onChange={(e) => setPassword(e.target.value)}
-                // value={password}
-                // label="Password"
                 label={"Password"}
                 onChange={formik.handleChange}
                 value={values.password}
@@ -176,7 +170,9 @@ const Login = () => {
             </span>
 
             <div className='MainButton_Parent'>
-              <MainButton type="submit" text="Log In" disabled={!formik.isValid} />
+              <div className='button_width'>
+                <MainButton type="submit" text="Log In" disabled={!formik.isValid} />
+              </div>
             </div>
           </form>
 

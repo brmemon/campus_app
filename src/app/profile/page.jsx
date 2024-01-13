@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
 import { FormControl, InputLabel, MenuItem, Select, } from '@mui/material'
-import { PiNotePencilLight } from "react-icons/pi";
 import "../../../styles/scss/Profile.scss"
 import Input from '../Components/Input';
 import MainButton from '../Components/MainButton';
@@ -12,6 +11,7 @@ import avater from "../Components/Assets/avater3png.png"
 import Logout from '../Components/LogoutButton';
 import CustomModal from '../Components/Modal';
 import { BsCamera } from "react-icons/bs";
+import MuiModal from '../Components/LogoutModal';
 
 const Profile = () => {
   const [pathname, setPathname] = useState()
@@ -28,10 +28,11 @@ const Profile = () => {
             <CustomModal SideNavbarData={AdminNavbarData} pathname={pathname} />
             <div className='profile'>
               <div className='avater_and_name'>
+                <MuiModal />
                 <Logout />
                 <span className='avater_pencilicon'>
                   <Image src={avater} className='avater' alt='Avater' />
-                  <BsCamera  className='pencil_icon' />
+                  <BsCamera className='pencil_icon' />
                 </span>
                 <p className='avater_name'>Raza</p>
               </div>
