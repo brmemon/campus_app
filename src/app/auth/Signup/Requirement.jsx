@@ -6,7 +6,7 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const Requirement = ({ formik }) => {
     const { values, errors, touched, handleChange } = formik;
-
+    // console.log(values)
     return (
         <>
             <FormControl fullWidth>
