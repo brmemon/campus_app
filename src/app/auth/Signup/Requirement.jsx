@@ -1,69 +1,88 @@
+// import Input from '@/app/Components/Input';
+// import React from 'react'
+
+// const Requirement = () => {
+
+//     return (
+//         <>
+//             <Input
+//                 className={'input'}
+//                 label="Education"
+//             />
+
+//             <Input
+//                 className={'input'}
+//                 label="Experience"
+//             />
+//         </>
+
+//     );
+// }
+
+// export default Requirement
+
+
+
+/////////////////////////////////////////////////////////
+// Requirement.jsx
+import React from 'react';
 import Input from '@/app/Components/Input';
-import React, { useState } from 'react'
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const Requirement = ({ formik }) => {
-
-    // const [education, setEducation] = useState('');
-    // const [experience, setExperience] = useState('');
-
-    // const handleEducationChange = (event) => {
-    //     setEducation(event.target.value);
-    // };
-
-    // const handleExperienceChange = (event) => {
-    //     setExperience(event.target.value);
-    // };
+    const { values, errors, touched, handleChange } = formik;
 
     return (
         <>
-            <Input
-                className={'input'}
-                label="Education"
-                value={formik.values.education}
-                onChange={formik.handleChange}
-                error={formik.touched.education && Boolean(formik.errors.education)}
-                name="education"
-                id="education"
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Education</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select-education"
+                    label="Education"
+                    value={values.education}
+                    onChange={handleChange}
+                    error={touched.education && Boolean(errors.education)}
+                    className={'select'}
+                    name="education"
+                >
+                    <MenuItem value={'enter'}>Enter</MenuItem>
+                    <MenuItem value={'graduation'}>Graduation</MenuItem>
+                    <MenuItem value={'master'}>Master</MenuItem>
 
-            />
-            <Input
-                className={'input'}
-                label="Experience"
-                value={formik.values.experience}
-                onChange={formik.handleChange}
-                error={formik.touched.experience && Boolean(formik.errors.experience)}
-                name="experience"
-                id="experience"
-            />
+                </Select>
+            </FormControl>
+            {errors.education && touched.education && <div className="error">{errors.education}</div>}
+
+            <FormControl fullWidth>
+                <InputLabel id="demo-simple-select-label">Experience</InputLabel>
+                <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select-experience"
+                    label="Experience"
+                    value={values.experience}
+                    onChange={handleChange}
+                    error={touched.experience && Boolean(errors.experience)}
+                    className={'select'}
+                    name="experience"
+                >
+                    <MenuItem value={'6 months'}>6 months</MenuItem>
+                    <MenuItem value={'1 year'}>1 year</MenuItem>
+                    <MenuItem value={'2 years'}>2 years</MenuItem>
+                    <MenuItem value={'2+ years'}>2+ years</MenuItem>
+
+                </Select>
+            </FormControl>
+            {errors.experience && touched.experience && <div className="error">{errors.experience}</div>}
         </>
-
     );
-}
+};
 
-export default Requirement
-
-
+export default Requirement;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+///////////////////////////////////////////////////////////////////
 
 // import React from 'react';
 // import Input from '@/app/Components/Input';
