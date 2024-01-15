@@ -33,12 +33,17 @@ const Signup = () => {
             experience: '',
         },
         validationSchema: Yup.object().shape({
-            name: Yup.string().min(3, 'Name must be at least 3 characters').required('Name is required'),
+            name: Yup.string()
+                .min(3, 'Name must be at least 3 characters')
+                .trim('The contact name cannot include leading and trailing spaces')
+                .required('Name is required'),
             email: Yup.string()
                 .email('Invalid email address')
+                .trim('The contact name cannot include leading and trailing spaces')
                 .test('is-com', 'Email must end with .com', (value) => value.endsWith('.com'))
                 .required('Email is required'),
             password: Yup.string()
+                .trim('The contact name cannot include leading and trailing spaces')
                 .min(8, 'Password must be at least 8 characters')
                 .matches(/[\W@_]/, 'Password must contain at least one special character')
                 .required('Password is required'),
@@ -54,7 +59,7 @@ const Signup = () => {
 
             if (success) {
                 toast.success(message);
-                router.push('/');
+                router.push('/auth/VerifyEmail');
             } else {
                 toast.error(message);
             }

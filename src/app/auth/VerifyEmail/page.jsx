@@ -5,7 +5,7 @@ import { FaRegHandshake } from 'react-icons/fa6'
 import MainButton from '@/app/Components/MainButton'
 import { useRouter } from 'next/navigation'
 
-const VerifyEmail = () => {
+const VerificationEmail = () => {
 
     const router = useRouter();
 
@@ -23,7 +23,7 @@ const VerifyEmail = () => {
                 <FaRegHandshake className="campus_logos" />
                 <h1 className="text">Campus App</h1>
                 <p className='email_text'>You are logged in as: bmemon123@gmail.com</p>
-                <p className='email_text'>You are not verified yet! wait until you get verified by your Admin</p>
+                <p className='email_text'>Email Verification link has been sent to your registered email,Kindly check your email in spam / junk.</p>
                 <div className='Button_Parent'>
                     <MainButton text={"Log Out"} onClick={handleLogout} />
                 </div>
@@ -33,4 +33,4 @@ const VerifyEmail = () => {
     )
 }
 
-export default VerifyEmail
+export default VerificationEmail

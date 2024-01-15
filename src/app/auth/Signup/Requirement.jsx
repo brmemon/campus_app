@@ -1,32 +1,7 @@
-// import Input from '@/app/Components/Input';
-// import React from 'react'
-
-// const Requirement = () => {
-
-//     return (
-//         <>
-//             <Input
-//                 className={'input'}
-//                 label="Education"
-//             />
-
-//             <Input
-//                 className={'input'}
-//                 label="Experience"
-//             />
-//         </>
-
-//     );
-// }
-
-// export default Requirement
-
-
+///////////////////////    this is perfect code  /////////////////////////
 
 /////////////////////////////////////////////////////////
-// Requirement.jsx
 import React from 'react';
-import Input from '@/app/Components/Input';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const Requirement = ({ formik }) => {
@@ -79,10 +54,49 @@ const Requirement = ({ formik }) => {
 };
 
 export default Requirement;
-
-
-
 ///////////////////////////////////////////////////////////////////
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// import Input from '@/app/Components/Input';
+// import React from 'react'
+
+// const Requirement = () => {
+
+//     return (
+//         <>
+//             <Input
+//                 className={'input'}
+//                 label="Education"
+//             />
+
+//             <Input
+//                 className={'input'}
+//                 label="Experience"
+//             />
+//         </>
+
+//     );
+// }
+
+// export default Requirement
+
+
 
 // import React from 'react';
 // import Input from '@/app/Components/Input';

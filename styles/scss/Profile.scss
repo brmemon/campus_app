@@ -30,12 +30,16 @@
             }
 
             .pencil_icon {
-                font-size: 20px;
-                right: 19px;
+                background-color: whitesmoke;
+                border-radius: 9px;
+                width: 30px;
+                padding: 3px;
+                font-size: 24px;
+                right: 5px;
                 cursor: pointer;
                 bottom: 0;
                 position: absolute;
-                color: black;
+                color: #A66CFF;
             }
 
             .avater_name {
@@ -50,6 +54,11 @@
                 width: 400px;
                 margin-bottom: 15px;
             }
+        }
+
+        .error {
+            color: red;
+            padding-bottom: 4px;
         }
 
         .gender_radio {
