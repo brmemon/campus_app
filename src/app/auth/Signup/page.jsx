@@ -38,8 +38,8 @@ const Signup = () => {
         },
     });
     
-    
     const { values, errors, touched, handleSubmit } = formik;
+    
     return (
         <div className="container">
             <ToastContainer className={'signup_toast'} />

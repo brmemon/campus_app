@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react';
+import React from 'react';
 import '../../../../styles/scss/LoginAndAuthContainer.scss';
 import Input from '@/app/Components/Input';
 import Link from 'next/link';
@@ -7,43 +7,23 @@ import MainButton from '@/app/Components/MainButton';
 import FormControlInput from '@/app/Components/formControlInput';
 import AuthContainer from '../SideContainers/AuthContainer';
 import { FaRegHandshake } from 'react-icons/fa6';
-// import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
-// import { app, auth } from "../../firebase"
-// import Signup from '../Signup/page';
-// import { loginUser } from '@/app/Helper/helper';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
 import { loginUser } from '@/app/Helper/helper';
+import { loginInitialValues, loginSchema } from '@/app/Helper/schema';
 
 const Login = () => {
-  const [showPassword, setShowPassword] = useState(false);
   const router = useRouter();
 
-  const validationSchema = Yup.object().shape({
-    email: Yup.string()
-      .email('Invalid email address')
-      .test('is-com', 'Email must end with .com', (value) => value.endsWith('.com'))
-      .required('Email is required'),
-    password: Yup.string()
-      .min(8, 'Password must be at least 8 characters')
-      .matches(/[\W@_]/, 'Password must contain at least one special character')
-      .required('Password is required'),
-  });
-
   const formik = useFormik({
-    initialValues: {
-      email: '',
-      password: '',
-    },
-    validationSchema: validationSchema,
+    initialValues: loginInitialValues,
+    validationSchema: () => loginSchema(values),
+
     onSubmit: async (values) => {
-      const { password } = values;
 
       const { success, message } = await loginUser(values.email, values.password);
-      console.log(success, message, "nothing")
 
       if (success) {
         toast.success(message);
@@ -54,82 +34,10 @@ const Login = () => {
     },
   });
 
-  const handleChange = (event) => {
-    formik.handleChange(event);
-  };
-
   const { values, errors, touched, handleSubmit } = formik;
-  // const [email, setEmail] = useState("")
-  // const [password, setPassword] = useState("")
-  // const [user, setUser] = useState(null)
 
-  // const signinSuccess = (Message) => toast.success(Message);
-  // const signinUNsuccess = (Message) => toast.error(Message);
-
-  // const signinUser = async () => {
-  //   const { success, message } = await loginUser(email, password)
-  //   success ? toast.success(message) : toast.error(message);
-  // }
-  // console.log(value.success, "hellow123")
-  //   if (value.success === true) {
-  //     toast.success(value.message)
-  //   } else {
-  //     toast.error(value.message)
-  //   }
-
-
-  //   try {
-  //     const value = await registerUser(email, password);
-  //     console.log(value.success, "hello123");
-  //     if (value.success === true) {
-  //       toast.success("Login Successfully");
-  //     } else {
-  //       toast.error("Invalid Email/Password");
-  //     }
-  //   } catch (error) {
-  //     console.error( error.message);
-  //     toast.error("hello");
-  //   }
-  // }
-
-  // const signinUser = async () => {
-  //   try {
-  //     const value = await registerUser(email, password);
-  //     console.log(value)
-  //   } catch (error) {
-  //     console.log("Error", error);
-  //   }
-  // }
-  // signInWithEmailAndPassword(
-  // auth,
-  // email,
-  // password)
-  // .then((value => toast.success("Login Successfully")))
-  // .catch((err => toast.error("Invalid Email/Password")))
-
-  // useEffect(() => {
-  //   onAuthStateChanged(auth, user => {
-  //     if (user) {
-  //       setUser(user)
-  //     }
-  //     else {
-  //       setUser(null)
-  //     }
-  //   })
-  // }, [])
-
-  // if (user === null) {
-  //   return (
-  //     <Signup />
-  //   )
-  // }
-
-  const PasswordVisibility = () => {
-    setShowPassword(!showPassword);
-  };
   return (
     <div className="container">
-
       <AuthContainer />
       <ToastContainer />
       <div className='main_container'>

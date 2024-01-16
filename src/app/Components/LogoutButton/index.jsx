@@ -28,7 +28,7 @@ const Logout = () => {
       </div>
       <Modal className='logout_modal' open={open} onClose={handleClose}>
         <Box className="logout_box">
-          <Image src={question} className='question_mark' />
+          <Image src={question} className='question_mark' alt='Question Mark' />
           <p className='logout_modal_para'>
             The action you are perform is irreversible please confirm! Are you sure you want to Log Out ?
           </p>
