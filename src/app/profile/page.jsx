@@ -203,17 +203,15 @@ const Profile = () => {
                 </div>
                 <div className="profile_input">
                   <FormControl fullWidth>
-                    <InputLabel id="demo-simple-select-label">Select Gender</InputLabel>
+                    <InputLabel>Select Gender</InputLabel>
                     <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
                       label="Select Gender"
-                      name="gender"
+                      // name="gender"
                       className="input_profile"
                     >
-                      <MenuItem value="Male">Male</MenuItem>
-                      <MenuItem value="Female">Female</MenuItem>
-                      <MenuItem value="Other">Other</MenuItem>
+                      <MenuItem >Male</MenuItem>
+                      <MenuItem >Female</MenuItem>
+                      <MenuItem >Other</MenuItem>
                     </Select>
                   </FormControl>
                 </div>

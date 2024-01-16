@@ -22,7 +22,7 @@ const CustomLayout = ({ children, SideNavbarData, className }) => {
                     <FaRegHandshake className="campus_logo" />
                     <h1 className='campus_heading'>Campus App</h1>
                     <div className='avater_div'>
-                        <Image src={avater} className='navbar_avater' alt='Avater' />
+                        <Image priority={true} src={avater} className='navbar_avater' alt='Avater' />
                         <p className='user_name'>Bilal Raza</p>
                     </div>
                     <div className='data_div'>
