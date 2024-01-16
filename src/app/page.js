@@ -5,9 +5,9 @@ import Signup from './auth/Signup/page'
 export default function Home() {
   return (
     <>
-      {/* <Login /> */}
+      <Login />
       {/* <VerifyEmail /> */}
-      <Signup />
+      {/* <Signup /> */}
     </>
   )
 }
