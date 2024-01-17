@@ -146,8 +146,12 @@
             // .MainButton_Parent:disabled {
             //     cursor: not-allowed;
             // }
-
-
+            .error {
+                // width: 200px;
+                font-size: small;
+                color: red;
+                padding-bottom: 4px;
+            }
 
             .sinUp_text {
                 gap: 5px;

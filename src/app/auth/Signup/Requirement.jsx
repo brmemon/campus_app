@@ -6,7 +6,6 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 
 const Requirement = ({ formik }) => {
     const { values, errors, touched, handleChange } = formik;
-    // console.log(values)
     return (
         <>
             <FormControl fullWidth>
@@ -35,16 +34,16 @@ const Requirement = ({ formik }) => {
                     labelId="demo-simple-select-label"
                     id="demo-simple-select-experience"
                     label="Experience"
+                    name="experience"
                     value={values.experience}
                     onChange={handleChange}
                     error={touched.experience && Boolean(errors.experience)}
                     className={'select'}
-                    name="experience"
                 >
-                    <MenuItem value={'6 months'}>6 months</MenuItem>
-                    <MenuItem value={'1 year'}>1 year</MenuItem>
-                    <MenuItem value={'2 years'}>2 years</MenuItem>
-                    <MenuItem value={'2+ years'}>2+ years</MenuItem>
+                    <MenuItem value={'0 Months To 6 Months'}>0 Months To 6 Months</MenuItem>
+                    <MenuItem value={'7 Months To 1 Year'}>7 Months To 1 Year</MenuItem>
+                    <MenuItem value={'1 Year To 2 Years'}>1 Year To 2 Years</MenuItem>
+                    <MenuItem value={'2+ Years'}>2+ Years</MenuItem>
 
                 </Select>
             </FormControl>

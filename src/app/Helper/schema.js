@@ -57,3 +57,30 @@ export const loginInitialValues = {
     email: '',
     password: '',
 }
+
+
+export const profileSchema = (values) => {
+    return (
+        Yup.object().shape({
+            name: Yup.string().min(3, 'Name must be at least 3 characters')
+                .trim('The contact name cannot include leading and trailing spaces'),
+            oldPassword: Yup.string().when('newPassword', (newPassword, schema) =>
+                newPassword && newPassword.length > 0
+                    ? schema.required('Old Password is required when updating New Password')
+                    : schema
+            ),
+            newPassword: Yup.string()
+                .trim('The contact name cannot include leading and trailing spaces')
+                .min(8, 'Password must be at least 8 characters')
+                .matches(/[\W@_]/, 'Password must contain at least one special character')
+        })
+    )
+}
+
+export const profileInitialValues = {
+    email: 'user@example.com',
+    name: '',
+    gender: '',
+    oldPassword: '',
+    newPassword: '',
+}

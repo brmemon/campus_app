@@ -21,14 +21,14 @@ import { signupInitialValues, signupSchema } from '@/app/Helper/schema';
 
 const Signup = () => {
     const router = useRouter();
-    
+
     const formik = useFormik({
         initialValues: signupInitialValues,
-        validationSchema: ()=>signupSchema(values),
-        
+        validationSchema: () => signupSchema(values),
+
         onSubmit: async (values) => {
             const { success, message } = await registerUser(values.email, values.password);
-            
+
             if (success) {
                 toast.success(message);
                 router.push('/auth/VerifyEmail');
@@ -37,9 +37,9 @@ const Signup = () => {
             }
         },
     });
-    
+
     const { values, errors, touched, handleSubmit } = formik;
-    
+
     return (
         <div className="container">
             <ToastContainer className={'signup_toast'} />
@@ -127,7 +127,9 @@ const Signup = () => {
                         </div>
 
                         <div className="MainButton_Parent">
-                            <MainButton type="submit" text="Sign Up" disabled={!formik.isValid} />
+                            <MainButton type="submit" text="Sign Up"
+                            //  disabled={!formik.isValid}
+                            />
                         </div>
                     </form>
 

@@ -53,10 +53,20 @@
             .input_profile {
                 width: 400px;
                 margin-bottom: 15px;
+                text-align: start;
             }
         }
 
         .error {
+            width: 200px;
+            font-size: small;
+            color: red;
+            padding-bottom: 4px;
+        }
+
+        .error_oldPassword{
+            width: 100%;
+            font-size: small;
             color: red;
             padding-bottom: 4px;
         }
@@ -79,11 +89,31 @@
 
         .parent_profilebutton {
             padding-top: 15px;
-            width: 300px;
+            width: 100%;
 
             .profile_button {
                 width: 300px;
+                // cursor: not-allowed;
             }
+
+            // .error {
+            //     // width: 200px;
+            //     font-size: small;
+            //     color: red;
+            //     padding-bottom: 4px;
+            // }
+
+            // .disable_profile_button {
+            //     cursor: not-allowed;
+            //     background-color: rgb(125 123 123 / 23%);
+            //     color: black;
+            //     border-style: hidden;
+
+            //     &:hover {
+            //         background-color: rgb(125 123 123 / 23%);
+            //         color: black;
+            //     }
+            // }
         }
     }
 }
