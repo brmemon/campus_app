@@ -6,7 +6,6 @@
     border-bottom-left-radius: 70px;
     border-top-left-radius: 70px;
 
-
     .profile {
         height: 100%;
         display: flex;
@@ -64,7 +63,7 @@
             padding-bottom: 4px;
         }
 
-        .error_oldPassword{
+        .error_oldPassword {
             width: 100%;
             font-size: small;
             color: red;
@@ -93,27 +92,7 @@
 
             .profile_button {
                 width: 300px;
-                // cursor: not-allowed;
             }
-
-            // .error {
-            //     // width: 200px;
-            //     font-size: small;
-            //     color: red;
-            //     padding-bottom: 4px;
-            // }
-
-            // .disable_profile_button {
-            //     cursor: not-allowed;
-            //     background-color: rgb(125 123 123 / 23%);
-            //     color: black;
-            //     border-style: hidden;
-
-            //     &:hover {
-            //         background-color: rgb(125 123 123 / 23%);
-            //         color: black;
-            //     }
-            // }
         }
     }
 }

@@ -1,27 +1,49 @@
 "use client"
-import React from 'react'
 import "../../../../styles/scss/ForgetPassword.scss"
 import { Button } from '@mui/material'
 import Input from '@/app/Components/Input'
 import Link from 'next/link'
-import MainButton from '@/app/Components/MainButton'
 import AuthContainer from '../SideContainers/AuthContainer'
 import { FaRegHandshake } from 'react-icons/fa6'
+import { auth } from '@/app/firebase'
+import React, { useEffect } from 'react';
+import MainButton from "@/app/Components/MainButton"
 
-const Forgetpassword = () => {
+const ForgetPassword = () => {
+  useEffect(() => {
+    const emailInput = document.getElementById('email');
+    if (emailInput) {
+    }
+  }, []);
+
+  const handleForgotPassword = async () => {
+    try {
+      const emailInput = document.getElementById('email');
+      const email = emailInput ? emailInput.value : '';
+
+      if (email) {
+        await auth.sendPasswordResetEmail(email);
+        console.log('Password reset email sent successfully');
+      } else {
+        console.error('Email input empty');
+      }
+    } catch (error) {
+      console.error('Error sending password reset email:', error);
+    }
+  };
   return (
     <div className='container'>
-      <AuthContainer/>
+      <AuthContainer />
       <div className='main_container'>
         <div className='sub_container_two'>
-        <FaRegHandshake className="media_logo" />
+          <FaRegHandshake className="media_logo" />
           <h1 className='login_logo'>Forgot Password</h1>
           <h2 className='login_welcome'>Get Back Your Acount Quickly And Easily</h2>
           <div className='forget_input' >
-            <Input className={"input"} label="Email" />
+            <Input id="email" className={"input"} label="Email" />
           </div>
           <div className='MainButton_Parent'>
-            <MainButton text={"Forgot Password"} />
+            <MainButton onClick={handleForgotPassword} text={"Forgot Password"}></MainButton >
           </div>
           <Button>
             <Link
@@ -32,8 +54,8 @@ const Forgetpassword = () => {
           </Button>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 
-export default Forgetpassword
+export default ForgetPassword

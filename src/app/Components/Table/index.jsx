@@ -20,9 +20,7 @@ const MyTable = ({ tableData }) => {
                                         </p>
                                     </TableCell>
                                 )
-                            }
-                            )
-                            }
+                            })}
                         </TableRow>
                     </TableHead>
                     <TableBody>

@@ -21,7 +21,6 @@ const FormControlInput = ({ label, onChange, value, name, id }) => {
                     type={showPassword ? 'text' : 'password'}
                     label={label}
                     id={id}
-
                 />
                 <div className="eye-icon" onClick={PasswordVisibility}>
                     {showPassword ? <IoEyeOutline /> : <FaRegEyeSlash />}

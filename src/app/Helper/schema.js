@@ -1,4 +1,7 @@
 import * as Yup from 'yup';
+
+///////////////////////////////////      Sign Up        ///////////////////////////////////
+
 export const signupSchema = (values) => {
     return (
         Yup.object().shape({
@@ -37,6 +40,7 @@ export const signupInitialValues = {
     experience: ''
 }
 
+///////////////////////////////////      Login        ///////////////////////////////////
 
 export const loginSchema = (values) => {
     return (
@@ -58,6 +62,7 @@ export const loginInitialValues = {
     password: '',
 }
 
+///////////////////////////////////      Profile        ///////////////////////////////////
 
 export const profileSchema = (values) => {
     return (
@@ -65,7 +70,7 @@ export const profileSchema = (values) => {
             name: Yup.string().min(3, 'Name must be at least 3 characters')
                 .trim('The contact name cannot include leading and trailing spaces'),
             oldPassword: Yup.string().when('newPassword', (newPassword, schema) =>
-                newPassword && newPassword.length > 0
+                newPassword && newPassword.length > 2
                     ? schema.required('Old Password is required when updating New Password')
                     : schema
             ),

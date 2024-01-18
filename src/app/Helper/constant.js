@@ -5,6 +5,8 @@ import { AiOutlineSecurityScan } from "react-icons/ai";
 import { MdBlockFlipped } from "react-icons/md";
 import { CiChat2 } from "react-icons/ci";
 
+///////////////////////////////////      Admin        ///////////////////////////////////
+
 export const AdminNavbarData = [
     {
         route: "Profile"
@@ -28,6 +30,7 @@ export const AdminNavbarData = [
     }
 ]
 
+///////////////////////////////////      Company        ///////////////////////////////////
 
 export const CompanyNavbarData = [
     {
@@ -52,6 +55,7 @@ export const CompanyNavbarData = [
     }
 ]
 
+///////////////////////////////////      Student        ///////////////////////////////////
 
 export const StudentNavbarData = [
     {
@@ -70,6 +74,8 @@ export const StudentNavbarData = [
         , icon: <AiOutlineSecurityScan size={"22px"} />
     },
 ]
+
+///////////////////////////////////      Table        ///////////////////////////////////
 
 export const Table = [
     "Name", "Role", "Email", "Detail", "Status"

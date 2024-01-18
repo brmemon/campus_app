@@ -143,11 +143,7 @@
 
             }
 
-            // .MainButton_Parent:disabled {
-            //     cursor: not-allowed;
-            // }
             .error {
-                // width: 200px;
                 font-size: small;
                 color: red;
                 padding-bottom: 4px;
@@ -160,8 +156,6 @@
         }
     }
 }
-
-
 
 @media only screen and (max-width: 899px) {
     .container {
@@ -182,12 +176,6 @@
                 .login_input {
                     width: 300px;
                 }
-
-                // .MainButton_Parent {
-                //     width: 300px;
-                // }
-
-
             }
         }
     }

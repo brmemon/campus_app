@@ -8,7 +8,7 @@ import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
 
-const Unverified = () => {
+const Block = () => {
   const [pathname, setPathname] = useState()
 
   const temper = typeof window !== undefined
@@ -30,4 +30,4 @@ const Unverified = () => {
   )
 }
 
-export default Unverified
+export default Block
