@@ -50,8 +50,7 @@ export const loginSchema = (values) => {
                 .test('is-com', 'Email must end with .com', (value) => value.endsWith('.com'))
                 .required('Email is required'),
             password: Yup.string()
-                .min(8, 'Password must be at least 8 characters')
-                .matches(/[\W@_]/, 'Password must contain at least one special character')
+                .min(6, 'Password must be at least 6 characters')
                 .required('Password is required'),
         })
     );
@@ -76,8 +75,7 @@ export const profileSchema = (values) => {
             ),
             newPassword: Yup.string()
                 .trim('The contact name cannot include leading and trailing spaces')
-                .min(8, 'Password must be at least 8 characters')
-                .matches(/[\W@_]/, 'Password must contain at least one special character')
+                .min(6, 'Password must be at least 6 characters')
         })
     )
 }

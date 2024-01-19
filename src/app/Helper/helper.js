@@ -1,5 +1,6 @@
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase";
+
 
 ///////////////////////////////////      Login        ///////////////////////////////////\
 
@@ -9,7 +10,6 @@ export const loginUser = (email, password) => {
             auth,
             email,
             password).then(() => {
-
                 return { success: true, message: "Login SuccessFully" };
             }).catch(() => {
                 return { success: false, message: "Invalid Email/password" };
@@ -20,16 +20,6 @@ export const loginUser = (email, password) => {
     }
 }
 
-///////////////////////////////////      Verification Email Sign Up         ///////////////////////////////////
-
-const sendVerificationEmail = async (user) => {
-    try {
-        await sendEmailVerification(user);
-        return { success: true, message: "Check Your Email And Verify " };
-    } catch (error) {
-        return { success: false, message: error.message };
-    }
-};
 
 ///////////////////////////////////      Sign Up        ///////////////////////////////////
 
@@ -48,3 +38,35 @@ export const registerUser = async (email, password) => {
         };
     }
 };
+
+
+///////////////////////////////////      Verification Email Sign Up         ///////////////////////////////////
+
+const sendVerificationEmail = async (user) => {
+    try {
+        await sendEmailVerification(user);
+        return { success: true, message: "Check Your Email And Verify " };
+    } catch (error) {
+        return { success: false, message: error.message };
+    }
+};
+
+
+///////////////////////////////////      Forgot Password         ///////////////////////////////////
+
+export const forgotPassword = (email) => {
+    try {
+        return sendPasswordResetEmail(
+            auth,
+            email,).then(() => {
+                return {
+                    success: true, message: "Forgot Password SuccessFully",
+                }
+            }).catch(() => {
+                return { success: false, message: "Invalid Email" };
+            })
+
+    } catch (error) {
+        return { success: false, message: error.message };
+    }
+}

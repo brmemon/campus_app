@@ -123,9 +123,7 @@ const Signup = () => {
                         </div>
 
                         <div className="MainButton_Parent">
-                            <MainButton type="submit" text="Sign Up"
-                            //  disabled={!formik.isValid}
-                            />
+                            <MainButton type="submit" text="Sign Up" />
                         </div>
                     </form>
 
