@@ -7,7 +7,7 @@ import MainButton from '../MainButton'
 import Image from 'next/image'
 import avater from "../Assets/avater3png.png"
 
-const CustomLayout = ({ children, SideNavbarData, className }) => {
+const CustomLayout = ({ children, SideNavbarData, className, profilePic }) => {
     const router = useRouter()
     const [pathname, setPathname] = useState()
 
@@ -22,7 +22,11 @@ const CustomLayout = ({ children, SideNavbarData, className }) => {
                     <FaRegHandshake className="campus_logo" />
                     <h1 className='campus_heading'>Campus App</h1>
                     <div className='avater_div'>
-                        <Image priority={true} src={avater} className='navbar_avater' alt='Avater' />
+                        {profilePic ? (
+                            <img src={profilePic} className='navbar_avater' alt='Avater' />
+                        ) : (
+                            <Image priority={true} src={avater} className='navbar_avater' alt='Avater' />
+                        )}
                         <p className='user_name'>Bilal Raza</p>
                     </div>
                     <div className='data_div'>
