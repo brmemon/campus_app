@@ -2,8 +2,12 @@
 import React from 'react'
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material'
 import "../../../../styles/scss/Table.scss"
+import { selectCampusData } from '@/app/Redux/CampusSlice'
+import { useSelector } from 'react-redux'
 
 const MyTable = ({ tableData }) => {
+    const campusData = useSelector(selectCampusData);
+    console.log(campusData , "hellow 12345");
     return (
         <div>
             <TableContainer className='tablecontainer_class'>
@@ -24,20 +28,20 @@ const MyTable = ({ tableData }) => {
                         </TableRow>
                     </TableHead>
                     <TableBody>
-                        <TableRow>
+                        {campusData.map((user, index) => (
+                            <TableRow key={index}>
+                                <TableCell>{user?.name}</TableCell>
+                                <TableCell>{user?.email}</TableCell>
+                                <TableCell>{user?.role}</TableCell>
+                            </TableRow>
+                        ))}
+                        {/* <TableRow>
                             <TableCell>Raza</TableCell>
                             <TableCell>Company</TableCell>
                             <TableCell>Raza123@gmail.com</TableCell>
                             <TableCell>Alpha</TableCell>
                             <TableCell>Block</TableCell>
-                        </TableRow>
-                        <TableRow>
-                            <TableCell>Raza</TableCell>
-                            <TableCell>Company</TableCell>
-                            <TableCell>Raza123@gmail.com</TableCell>
-                            <TableCell>Alpha</TableCell>
-                            <TableCell>Block</TableCell>
-                        </TableRow>
+                        </TableRow> */}
                     </TableBody>
                 </Table>
             </TableContainer>
@@ -46,5 +50,3 @@ const MyTable = ({ tableData }) => {
 }
 
 export default MyTable
-
-

@@ -17,21 +17,13 @@ import { profileInitialValues, profileSchema } from '../Helper/schema';
 import { app, auth } from '../firebase';
 
 const Profile = () => {
-  const [pathname, setPathname] = useState(window.location.pathname);
+  const [pathname, setPathname] = useState();
   const [profilePic, setProfilePic] = useState(null);
 
-  // useEffect(() => {
-  //   setPathname(window.location.pathname);
-
-  //   const storageRef = ref(storage, `profilePictures/${auth.currentUser.uid}`);
-  //   getDownloadURL(storageRef)
-  //     .then((downloadURL) => {
-  //       setProfilePic(downloadURL);
-  //     })
-  //     .catch((error) => {
-  //       console.error('Error profile picture:', error.message);
-  //     });
-  // }, []);
+  const temper = typeof window !== undefined;
+  useEffect(() => {
+    setPathname(window.location.pathname);
+  }, [temper]);
 
   const formik = useFormik({
     initialValues: { ...profileInitialValues, profilePic: profilePic || null },
@@ -68,7 +60,6 @@ const Profile = () => {
     );
   };
 
-
   return (
     <div>
       <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname} className={'hiden'} profilePic={profilePic}>
@@ -80,7 +71,7 @@ const Profile = () => {
                 <Logout />
                 <label htmlFor="profilePicInput" className="avater_pencilicon">
                   {profilePic ? (
-                    <img src={profilePic} className="avater" alt="Avatar" />
+                    <Image src={profilePic} className="avater" alt="Avatar" width={100} height={100} /> 
                   ) : (
                     <Image priority={true} src={avater} className="avater" alt="Avatar" />
                   )}

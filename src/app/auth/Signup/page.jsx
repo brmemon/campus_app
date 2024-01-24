@@ -15,8 +15,11 @@ import Requirement from './Requirement';
 import { useRouter } from 'next/navigation';
 import "../../../../styles/scss/signup.scss"
 import { signupInitialValues, signupSchema } from '@/app/Helper/schema';
+import { useDispatch } from 'react-redux';
+import { addData } from '@/app/Redux/CampusSlice';
 
 const Signup = () => {
+    const dispatch = useDispatch();
     const router = useRouter();
 
     const formik = useFormik({
@@ -25,6 +28,7 @@ const Signup = () => {
 
         onSubmit: async (values) => {
             const { success, message } = await registerUser(values.email, values.password);
+            dispatch(addData({ name: values.name, email: values.email, role: values.userType }));
             if (success) {
                 toast.success(message);
                 router.push('/auth/VerifyEmail');

@@ -9,7 +9,7 @@ import avater from "../Assets/avater3png.png"
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from 'next/navigation';
 
-const CustomModal = ({ SideNavbarData }) => {
+const CustomModal = ({ SideNavbarData, profilePic }) => {
   const router = useRouter()
   const [showModal, setShowModal] = useState(false);
   const [pathname, setPathname] = useState()
@@ -43,7 +43,11 @@ const CustomModal = ({ SideNavbarData }) => {
             <FaRegHandshake className="campus_logo" />
             <h1 className='campus_heading'>Campus App</h1>
             <div className='avater_div'>
-              <Image priority={true} src={avater} className='navbar_avater' alt='Avater' />
+              {profilePic ? (
+                <Image src={profilePic} className="navbar_avater" alt="Avatar" width={"100"} height={"100"} />
+              ) : (
+                <Image priority={true} src={avater} className='navbar_avater' alt='Avater' />
+              )}
               <p className='user_name'>Bilal Raza</p>
             </div>
             <div className='data_div'>

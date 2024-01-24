@@ -23,7 +23,7 @@ const CustomLayout = ({ children, SideNavbarData, className, profilePic }) => {
                     <h1 className='campus_heading'>Campus App</h1>
                     <div className='avater_div'>
                         {profilePic ? (
-                            <img src={profilePic} className='navbar_avater' alt='Avater' />
+                            <Image src={profilePic} className="navbar_avater" alt="Avatar" width={"100"} height={"100"} />
                         ) : (
                             <Image priority={true} src={avater} className='navbar_avater' alt='Avater' />
                         )}
