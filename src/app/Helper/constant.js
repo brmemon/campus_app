@@ -78,5 +78,5 @@ export const StudentNavbarData = [
 ///////////////////////////////////      Table        ///////////////////////////////////
 
 export const Table = [
-    "Name", "Role", "Email", "Detail", "Status"
+    "Name", "Email", "Role", "Verify", "Block"
 ]

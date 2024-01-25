@@ -27,7 +27,7 @@ const Signup = () => {
         validationSchema: () => signupSchema(values),
 
         onSubmit: async (values) => {
-            const { success, message } = await registerUser(values.email, values.password);
+            const { success, message } = await registerUser(values.email, values.password, values.name);
             dispatch(addData({ name: values.name, email: values.email, role: values.userType }));
             if (success) {
                 toast.success(message);

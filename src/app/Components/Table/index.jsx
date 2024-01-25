@@ -4,10 +4,11 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import "../../../../styles/scss/Table.scss"
 import { selectCampusData } from '@/app/Redux/CampusSlice'
 import { useSelector } from 'react-redux'
+import MainButton from '../MainButton'
 
 const MyTable = ({ tableData }) => {
     const campusData = useSelector(selectCampusData);
-    console.log(campusData , "hellow 12345");
+    console.log(campusData);
     return (
         <div>
             <TableContainer className='tablecontainer_class'>
@@ -33,15 +34,10 @@ const MyTable = ({ tableData }) => {
                                 <TableCell>{user?.name}</TableCell>
                                 <TableCell>{user?.email}</TableCell>
                                 <TableCell>{user?.role}</TableCell>
+                                {/* <TableCell><MainButton text={"Verify"} /></TableCell>
+                                <TableCell><MainButton text={"Block"} /></TableCell> */}
                             </TableRow>
                         ))}
-                        {/* <TableRow>
-                            <TableCell>Raza</TableCell>
-                            <TableCell>Company</TableCell>
-                            <TableCell>Raza123@gmail.com</TableCell>
-                            <TableCell>Alpha</TableCell>
-                            <TableCell>Block</TableCell>
-                        </TableRow> */}
                     </TableBody>
                 </Table>
             </TableContainer>

@@ -1,6 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase";
-
+import { getDatabase, ref, set } from "firebase/database";
 
 ///////////////////////////////////      Login        ///////////////////////////////////\
 
@@ -23,9 +23,38 @@ export const loginUser = (email, password) => {
 
 ///////////////////////////////////      Sign Up        ///////////////////////////////////
 
-export const registerUser = async (email, password) => {
+// export const registerUser = async (email, password) => {
+//     try {
+//         const newAccount = await createUserWithEmailAndPassword(auth, email, password);
+//         const emailSend = await sendVerificationEmail(newAccount.user);
+
+//         return {
+//             success: true, message: "Signed Successfully. " + emailSend.message
+//         };
+//     } catch (error) {
+//         return {
+//             success: false,
+//             message: error.code === "auth/email-already-in-use" ? "Email Already In Use" : error.message
+//         };
+//     }
+// };
+
+
+
+const database = getDatabase();
+
+export const registerUser = async (email, password, name) => {
     try {
         const newAccount = await createUserWithEmailAndPassword(auth, email, password);
+
+        const userRef = ref(database, `users/${newAccount.user.uid}`);
+        await set(userRef, {
+            email: email,
+            name: name,
+            password: password,
+
+        });
+
         const emailSend = await sendVerificationEmail(newAccount.user);
 
         return {
@@ -40,6 +69,7 @@ export const registerUser = async (email, password) => {
 };
 
 
+
 ///////////////////////////////////      Verification Email Sign Up         ///////////////////////////////////
 
 const sendVerificationEmail = async (user) => {
@@ -51,6 +81,11 @@ const sendVerificationEmail = async (user) => {
     }
 };
 
+
+// const submitData = async (event) => {
+//     event.preventDefault()
+//     const res = fetch("https://campus-app-d7eb4-default-rtdb.firebaseio.com/userDataRecords.json")
+// }
 
 ///////////////////////////////////      Forgot Password         ///////////////////////////////////
 
