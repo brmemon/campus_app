@@ -7,7 +7,7 @@ import MainButton from '../MainButton'
 import Image from 'next/image'
 import avater from "../Assets/avater3png.png"
 
-const CustomLayout = ({ children, SideNavbarData, className, profilePic }) => {
+const CustomLayout = ({ children, SideNavbarData, profilePic }) => {
     const router = useRouter()
     const [pathname, setPathname] = useState()
 

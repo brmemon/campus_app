@@ -1,6 +1,9 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase";
 import { getDatabase, ref, set } from "firebase/database";
+import { setUserData } from "../Redux/userSlice";
+import store from "../Redux/Store";
+const database = getDatabase();
 
 ///////////////////////////////////      Login        ///////////////////////////////////\
 
@@ -41,7 +44,7 @@ export const loginUser = (email, password) => {
 
 
 
-const database = getDatabase();
+// Your existing import statements
 
 export const registerUser = async (email, password, name) => {
     try {
@@ -52,23 +55,60 @@ export const registerUser = async (email, password, name) => {
             email: email,
             name: name,
             password: password,
-
         });
 
+        store.dispatch(setUserData({
+            email: email,
+            name: name,
+            password: password,
+        }));
+
+        console.log('User data dispatched to Redux:', {
+            email: email,
+            name: name,
+            password: password,
+        });
         const emailSend = await sendVerificationEmail(newAccount.user);
 
         return {
-            success: true, message: "Signed Successfully. " + emailSend.message
+            success: true,
+            message: "Signed Successfully. " + emailSend.message,
         };
     } catch (error) {
         return {
             success: false,
-            message: error.code === "auth/email-already-in-use" ? "Email Already In Use" : error.message
+            message: error.code === "auth/email-already-in-use" ? "Email Already In Use" : error.message,
         };
     }
 };
 
 
+
+
+
+// export const registerUser = async (email, password, name) => {
+//     try {
+//         const newAccount = await createUserWithEmailAndPassword(auth, email, password);
+
+//         const userRef = ref(database, `users/${newAccount.user.uid}`);
+//         await set(userRef, {
+//             email: email,
+//             name: name,
+//             password: password,
+//         });
+//         const emailSend = await sendVerificationEmail(newAccount.user);
+
+//         return {
+//             success: true, message: "Signed Successfully. " + emailSend.message
+//         };
+//     } catch (error) {
+
+//         return {
+//             success: false,
+//             message: error.code === "auth/email-already-in-use" ? "Email Already In Use" : error.message
+//         };
+//     }
+// };
 
 ///////////////////////////////////      Verification Email Sign Up         ///////////////////////////////////
 

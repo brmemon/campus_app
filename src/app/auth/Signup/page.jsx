@@ -13,25 +13,21 @@ import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import 'react-toastify/dist/ReactToastify.css';
 import Requirement from './Requirement';
 import { useRouter } from 'next/navigation';
-import "../../../../styles/scss/signup.scss"
+import '../../../../styles/scss/signup.scss';
 import { signupInitialValues, signupSchema } from '@/app/Helper/schema';
-import { useDispatch } from 'react-redux';
-import { addData } from '@/app/Redux/CampusSlice';
 
 const Signup = () => {
-    const dispatch = useDispatch();
     const router = useRouter();
-
+ 
     const formik = useFormik({
         initialValues: signupInitialValues,
         validationSchema: () => signupSchema(values),
 
         onSubmit: async (values) => {
             const { success, message } = await registerUser(values.email, values.password, values.name);
-            dispatch(addData({ name: values.name, email: values.email, role: values.userType }));
             if (success) {
                 toast.success(message);
-                router.push('/auth/VerifyEmail');
+                router.push('/profile');
             } else {
                 toast.error(message);
             }
