@@ -1,9 +1,9 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
 import { auth } from "../firebase";
-import { getDatabase, ref, set } from "firebase/database";
-import { setUserData } from "../Redux/userSlice";
-import store from "../Redux/Store";
-const database = getDatabase();
+import { ref, set } from "firebase/database";
+// import { setUserData } from "../Redux/userSlice";
+// import store from "../Redux/Store";
+// const database = getDatabase();
 
 ///////////////////////////////////      Login        ///////////////////////////////////\
 
@@ -57,11 +57,11 @@ export const registerUser = async (email, password, name) => {
             password: password,
         });
 
-        store.dispatch(setUserData({
-            email: email,
-            name: name,
-            password: password,
-        }));
+        // store.dispatch(setUserData({
+        //     email: email,
+        //     name: name,
+        //     password: password,
+        // }));
 
         console.log('User data dispatched to Redux:', {
             email: email,
