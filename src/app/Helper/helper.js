@@ -1,5 +1,5 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import { ref, set } from "firebase/database";
 // import { setUserData } from "../Redux/userSlice";
 // import store from "../Redux/Store";
@@ -50,7 +50,7 @@ export const registerUser = async (email, password, name) => {
     try {
         const newAccount = await createUserWithEmailAndPassword(auth, email, password);
 
-        const userRef = ref(database, `users/${newAccount.user.uid}`);
+        const userRef = ref(db, `users/${newAccount.user.uid}`);
         await set(userRef, {
             email: email,
             name: name,

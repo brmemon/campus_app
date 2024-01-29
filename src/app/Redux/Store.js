@@ -1,20 +1,19 @@
-import { configureStore } from "@reduxjs/toolkit"
+// import { configureStore } from "@reduxjs/toolkit"
 
-export const store = configureStore({
-    reducer: userReducer,
+import { configureStore } from "@reduxjs/toolkit";
+import { campusSlice } from "./userSlice";
+
+// export const store = configureStore({
+//     reducer: userReducer,
+// })
+
+
+
+const store = configureStore({
+    reducer:{
+        campus : campusSlice,
+    }
 })
 
 
-
-// redux/store.js
-// import { configureStore } from '@reduxjs/toolkit';
-// import userReducer from './userSlice';
-
-// const store = configureStore({
-//   reducer: {
-//     user: userReducer,
-//   },
-// });
-
-// export default store;
-
+export default store;

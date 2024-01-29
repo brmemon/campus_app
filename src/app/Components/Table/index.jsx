@@ -54,7 +54,7 @@ import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from
 import "../../../../styles/scss/Table.scss";
 import { useSelector } from "react-redux";
 
-const MyTable = ({ tableData }) => {
+const MyTable = ({ tableData, value }) => {
     // const campusSlice = useSelector((state) => state.userData);
     // console.log("campusSlice:", campusSlice);
 
@@ -77,14 +77,13 @@ const MyTable = ({ tableData }) => {
                     </TableHead>
                     <TableBody>
                         <TableRow>
-                            {/* {campusSlice.map((value) => 
-                                // <TableCell >
-                                //     <p
-                                        // className='tablecell_class'>
-                                        // {value?.name}
-                                //     </p>
-                                // </TableCell>
-                            )} */}
+                            {value.map((items) =>
+                                <TableCell
+                                    className='tablecell_class'
+                                >
+                                    {items?.name}
+                                </TableCell>
+                            )}
                         </TableRow>
                     </TableBody>
                 </Table>

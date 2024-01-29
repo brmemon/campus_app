@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  campusData: [],
+  userData: [],
 };
 
 export const campusSlice = createSlice({
@@ -9,7 +9,8 @@ export const campusSlice = createSlice({
   initialState,
   reducers: {
     addData: (state, action) => {
-      state.campusData = action.payload;
+      state.userData = action.payload;
+      let user = Object.values(state.data)
     }
   }
 });
