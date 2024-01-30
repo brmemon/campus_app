@@ -24,7 +24,7 @@ const Signup = () => {
         validationSchema: () => signupSchema(values),
 
         onSubmit: async (values) => {
-            const { success, message } = await registerUser(values.email, values.password, values.name);
+            const { success, message } = await registerUser(values.email, values.password, values.name, values.userType);
             if (success) {
                 toast.success(message);
                 router.push('/profile');

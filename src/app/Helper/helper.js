@@ -46,15 +46,16 @@ export const loginUser = (email, password) => {
 
 // Your existing import statements
 
-export const registerUser = async (email, password, name) => {
+export const registerUser = async (email, password, name, userType) => {
     try {
-        const newAccount = await createUserWithEmailAndPassword(auth, email, password);
+        const newAccount = await createUserWithEmailAndPassword(auth, email, password, userType);
 
         const userRef = ref(db, `users/${newAccount.user.uid}`);
         await set(userRef, {
             email: email,
             name: name,
             password: password,
+            userType: userType
         });
 
         // store.dispatch(setUserData({
@@ -63,11 +64,12 @@ export const registerUser = async (email, password, name) => {
         //     password: password,
         // }));
 
-        console.log('User data dispatched to Redux:', {
-            email: email,
-            name: name,
-            password: password,
-        });
+        // console.log('User data dispatched to Redux:', {
+        //     email: email,
+        //     name: name,
+        //     password: password,
+        //     userType: userType
+        // });
         const emailSend = await sendVerificationEmail(newAccount.user);
 
         return {

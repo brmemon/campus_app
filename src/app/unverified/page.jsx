@@ -12,9 +12,9 @@ import { useSelector } from 'react-redux'
 const Unverified = () => {
   const [pathname, setPathname] = useState()
 
-  const selectorData = useSelector((state) => state);
+  const selectorData = useSelector((state) => state.campus.userData);
   let Data = Object.values(selectorData);
-  console.log(selectorData);
+  // console.log(Data, "hellow world");
 
   const temper = typeof window !== undefined
   useEffect(() => {
@@ -28,7 +28,7 @@ const Unverified = () => {
           <h1 className='top_heading'>UnVerified Users</h1>
           <CustomModal SideNavbarData={AdminNavbarData} />
           <Logout />
-          <MyTable tableData={Table} value={Data} />
+          <MyTable tableData={Table} values={Data} />
         </div>
       </CustomLayout>
     </div>

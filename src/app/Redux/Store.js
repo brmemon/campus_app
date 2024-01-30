@@ -1,17 +1,9 @@
-// import { configureStore } from "@reduxjs/toolkit"
-
 import { configureStore } from "@reduxjs/toolkit";
-import { campusSlice } from "./userSlice";
-
-// export const store = configureStore({
-//     reducer: userReducer,
-// })
-
-
+import campusSlice from "./userSlice";
 
 const store = configureStore({
-    reducer:{
-        campus : campusSlice,
+    reducer: {
+        campus: campusSlice,
     }
 })
 

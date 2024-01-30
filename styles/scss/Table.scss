@@ -5,6 +5,7 @@ th {
 
 td {
     border: 1px solid #e7e4e4;
+    line-height: 1;
 }
 
 .tablecontainer_class {
@@ -23,6 +24,10 @@ td {
         .table_head_class {
             background-color: #A66CFF;
             border-radius: 10px;
+        }
+        .table_button{
+            color: #A66CFF;
+            padding: 0;
         }
     }
 }

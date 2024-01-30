@@ -4,13 +4,13 @@ const initialState = {
   userData: [],
 };
 
-export const campusSlice = createSlice({
-  name: "Campus",
+const campusSlice = createSlice({
+  name: "campus",
   initialState,
   reducers: {
     addData: (state, action) => {
       state.userData = action.payload;
-      let user = Object.values(state.data)
+      const temp = Object.values(state.userData)
     }
   }
 });
