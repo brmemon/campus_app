@@ -12,9 +12,8 @@ import { useSelector } from 'react-redux'
 const Unverified = () => {
   const [pathname, setPathname] = useState()
 
-  const selectorData = useSelector((state) => state.campus.userData);
+  const selectorData = useSelector((state) => state.campus.nonVerified);
   let Data = Object.values(selectorData);
-  // console.log(Data, "hellow world");
 
   const temper = typeof window !== undefined
   useEffect(() => {

@@ -14,14 +14,14 @@ export const AdminNavbarData = [
         , icon: <CgProfile size={"22px"} />
     },
     {
-        route: "Verified"
-        , path: '/verified'
-        , icon: <MdOutlineVerifiedUser size={"22px"} />
-    },
-    {
         route: "UnVerified"
         , path: '/unverified'
         , icon: <AiOutlineSecurityScan size={"22px"} />
+    },
+    {
+        route: "Verified"
+        , path: '/verified'
+        , icon: <MdOutlineVerifiedUser size={"22px"} />
     },
     {
         route: "Block"

@@ -7,9 +7,13 @@ import MyTable from '../Components/Table'
 import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
+import { useSelector } from 'react-redux'
 
 const Block = () => {
   const [pathname, setPathname] = useState()
+
+  const selectorData = useSelector((state) => state.campus.blocked);
+  let Data = Object.values(selectorData);
 
   const temper = typeof window !== undefined
   useEffect(() => {
@@ -23,7 +27,7 @@ const Block = () => {
           <h1 className='top_heading'>Block</h1>
           <CustomModal SideNavbarData={AdminNavbarData} />
           <Logout />
-          <MyTable tableData={Table} />
+          <MyTable tableData={Table} values={Data} />
         </div>
       </CustomLayout>
     </div>

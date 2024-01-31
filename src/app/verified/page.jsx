@@ -7,9 +7,13 @@ import MyTable from '../Components/Table'
 import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
+import { useSelector } from 'react-redux'
 
 const Verified = () => {
   const [pathname, setPathname] = useState()
+
+  const selectorData = useSelector((state) => state.campus.verified);
+  let Data = Object.values(selectorData);
 
   const temper = typeof window !== undefined
   useEffect(() => {
@@ -23,7 +27,7 @@ const Verified = () => {
           <h1 className='top_heading'>Verified Users</h1>
           <CustomModal SideNavbarData={AdminNavbarData} pathname={pathname} />
           <Logout />
-          <MyTable tableData={Table} />
+          <MyTable tableData={Table} values={Data} />
         </div>
       </CustomLayout>
     </div>

@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { useEffect } from 'react';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import Input from '@/app/Components/Input';
@@ -15,16 +15,22 @@ import Requirement from './Requirement';
 import { useRouter } from 'next/navigation';
 import '../../../../styles/scss/signup.scss';
 import { signupInitialValues, signupSchema } from '@/app/Helper/schema';
+import { onValue, ref } from 'firebase/database';
+import { db } from '@/app/firebase';
 
 const Signup = () => {
+    let emailVerified, statusVerified, statusBlocked, userEmail;
     const router = useRouter();
- 
+
     const formik = useFormik({
         initialValues: signupInitialValues,
         validationSchema: () => signupSchema(values),
 
         onSubmit: async (values) => {
-            const { success, message } = await registerUser(values.email, values.password, values.name, values.userType);
+            const { success, message } = await registerUser
+                (values.email, values.password, values.name, values.userType,
+                 values.isEmailVerified, values.isAdminVerified, values.isAdminBlocked, values.uid
+                 );
             if (success) {
                 toast.success(message);
                 router.push('/profile');
@@ -35,6 +41,22 @@ const Signup = () => {
     });
 
     const { values, errors, touched, handleSubmit } = formik;
+
+    useEffect(() => {
+        onValue(ref(db, "/users"), async (data) => {
+            if (data.val()) {
+                let myVal = Object?.values(data.val());
+                let ind = myVal.findIndex((item) => item.email === email)
+
+                console.log(myVal[ind]?.isVerified);
+                console.log(myVal[ind]?.isBlocked);
+                statusVerified = myVal[ind]?.isAdminVerified;
+                statusBlocked = myVal[ind]?.isAdminBlocked;
+                emailVerified = myVal[ind]?.isEmailVerified;
+                userEmail = myVal[ind]?.email;
+            }
+        })
+    })
 
     return (
         <div className="container">

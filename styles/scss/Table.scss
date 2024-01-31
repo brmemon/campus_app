@@ -1,16 +1,16 @@
 th {
     color: white !important;
     border-left: 1px solid #e7e4e4;
+    text-align: center !important;
 }
 
 td {
     border: 1px solid #e7e4e4;
-    line-height: 1;
+    text-align: center !important;
 }
 
 .tablecontainer_class {
     height: 85vh;
-    // overflow-y: scroll;
     box-shadow: 1px 1px 10px #e7e4e4;
     border-radius: 7px;
     margin-top: 25px;
@@ -25,9 +25,10 @@ td {
             background-color: #A66CFF;
             border-radius: 10px;
         }
-        .table_button{
-            color: #A66CFF;
-            padding: 0;
+        .tablecell_btn{
+            width: 100px;
+            height: 30px;
+            margin: 0;
         }
     }
 }

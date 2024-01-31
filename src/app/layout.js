@@ -5,7 +5,6 @@ import Providers from "./Providers"
 import { Provider } from "react-redux"
 import store from "./Redux/Store"
 export default function RootLayout({ children }) {
-  // console.log("layoout.js");
   return (
     <html lang="en">
       <body>
