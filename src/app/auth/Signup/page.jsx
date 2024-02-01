@@ -29,7 +29,7 @@ const Signup = () => {
         onSubmit: async (values) => {
             const { success, message } = await registerUser
                 (values.email, values.password, values.name, values.userType,
-                 values.isEmailVerified, values.isAdminVerified, values.isAdminBlocked, values.uid
+                 values.emailVerifiedUser, values.adminVerifiedUser, values.adminBlockedUser, values.uid
                  );
             if (success) {
                 toast.success(message);
@@ -50,9 +50,9 @@ const Signup = () => {
 
                 console.log(myVal[ind]?.isVerified);
                 console.log(myVal[ind]?.isBlocked);
-                statusVerified = myVal[ind]?.isAdminVerified;
-                statusBlocked = myVal[ind]?.isAdminBlocked;
-                emailVerified = myVal[ind]?.isEmailVerified;
+                statusVerified = myVal[ind]?.adminVerifiedUser;
+                statusBlocked = myVal[ind]?.adminBlockedUser;
+                emailVerified = myVal[ind]?.emailVerifiedUser;
                 userEmail = myVal[ind]?.email;
             }
         })

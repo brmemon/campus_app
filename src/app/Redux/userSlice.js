@@ -2,7 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   userData: [],
-  nonVerified: [],
+  unVerified: [],
   verified: [],
   blocked: []
 };
@@ -13,22 +13,18 @@ const campusSlice = createSlice({
   reducers: {
     addData: (state, action) => {
       state.userData = action.payload;
-      // Un Verified
       const temp = Object.values(state.userData)
 
-      state.nonVerified = temp.filter(user => user.name !== 'admin' && !user.isAdminVerified && !user.isAdminBlocked);
+      // Un Verified
+      state.unVerified = temp.filter(user => user.name !== 'admin' && !user.adminVerifiedUser && !user.adminBlockedUser);
       // Verified   
-      state.verified = temp.filter(user => user.name !== 'admin' && user.isAdminVerified && !user.isAdminBlocked);
-
+      state.verified = temp.filter(user => user.name !== 'admin' && user.adminVerifiedUser && !user.adminBlockedUser);
       // Blocked   
-      state.blocked = temp.filter(user => user.name !== 'admin' && user.isAdminBlocked);
+      state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
 
     },
-    updateVerify: (state, action) => {
-      console.log("non verified user: ", state.nonVerified)
-    }
   }
 });
 
-export const { addData, updateVerify } = campusSlice.actions;
+export const { addData } = campusSlice.actions;
 export default campusSlice.reducer;

@@ -1,56 +1,28 @@
 import React from "react";
-import { Button, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
+import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material";
 import "../../../../styles/scss/Table.scss";
 import { db } from "@/app/firebase";
 import { ref, update } from "firebase/database";
 import MainButton from "../MainButton";
-import { toast } from "react-toastify";
 
 const MyTable = ({ tableData, values }) => {
     let userInfo = values;
-    let updatedValue, updValue;
+    let updatedValue, valueUpdated;
 
-    const updateVerify = (val) => {
-        let temp = userInfo.filter((elem, ind) => ind === val)
-        temp[0].isAdminVerified ? updatedValue = false : updatedValue = true;
-        let uid = temp[0].uid;
+    const verifyUsers = (data) => {
+        let temper = userInfo.filter((not, index) => index === data)
+        temper[0].adminVerifiedUser ? updatedValue = false : updatedValue = true;
+        let uid = temper[0].uid;
 
-        update(ref(db, `/users/${uid}`), { isAdminVerified: updatedValue })
-            .then(() => {
-                toast.success('User Verified Successfully', {
-                    // position: "top-right",
-                })
-            })
-            .catch((error) => {
-                toast.error('Error in updating the user status', {
-                    // position: "top-right",
-                })
-            });
+        update(ref(db, `/users/${uid}`), { adminVerifiedUser: updatedValue })
     }
 
-    const updateBlock = (val) => {
-        let temp = userInfo.filter((elem, ind) => ind === val)
-        temp[0].isAdminBlocked ? updValue = false : updValue = true;
-        let uid = temp[0].uid;
+    const blockUsers = (data) => {
+        let temper = userInfo.filter((not, index) => index === data)
+        temper[0].adminBlockedUser ? valueUpdated = false : valueUpdated = true;
+        let uid = temper[0].uid;
 
-        update(ref(db, `/users/${uid}`), { isAdminBlocked: updValue })
-            .then(() => {
-                if (updValue) {
-                    toast.success('User Blocked Successfully', {
-                        // position: "top-right",
-                    })
-                }
-                else {
-                    toast.success('User UnBlocked Successfully', {
-                        // position: "top-right",
-                    })
-                }
-            })
-            .catch((error) => {
-                toast.error('Error in updating the user status', {
-                    // position: "top-right",
-                })
-            });
+        update(ref(db, `/users/${uid}`), { adminBlockedUser: valueUpdated })
     }
 
     return (
@@ -78,16 +50,16 @@ const MyTable = ({ tableData, values }) => {
                                     <TableCell className='tablecell_btn'>
                                         <MainButton
                                             className="tablecell_btn"
-                                            text={items.isAdminVerified ? "Verified" : "Verify"}
-                                            onClick={() => updateVerify(index)}
-                                            disabled={items.isAdminVerified || items.isAdminBlocked ? true : false}
+                                            text={items.adminVerifiedUser ? "Verified" : "Verify"}
+                                            onClick={() => verifyUsers(index)}
+                                            disabled={items.adminVerifiedUser || items.adminBlockedUser ? true : false}
                                         />
                                     </TableCell>
                                     <TableCell className='tablecell_btn'>
                                         <MainButton
                                             className="tablecell_btn"
-                                            text={items.isAdminBlocked ? "UnBlock" : "Block"}
-                                            onClick={() => updateBlock(index)}
+                                            text={items.adminBlockedUser ? "UnBlock" : "Block"}
+                                            onClick={() => blockUsers(index)}
                                         />
                                     </TableCell>
                                 </TableRow>
