@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation'
 import { FaRegHandshake } from 'react-icons/fa6'
 import MainButton from '../MainButton'
 import Image from 'next/image'
-import avater from "../Assets/avater3png.png"
+import avater from "../Assets/avater.png"
 
 const CustomLayout = ({ children, SideNavbarData, profilePic }) => {
     const router = useRouter()

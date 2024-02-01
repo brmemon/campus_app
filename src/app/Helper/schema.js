@@ -87,3 +87,48 @@ export const profileInitialValues = {
     oldPassword: '',
     newPassword: '',
 }
+
+///////////////////////////////////      Job Post        ///////////////////////////////////
+
+export const jobPostSchema = (values) => {
+    return (
+        Yup.object().shape({
+            tittle: Yup.string()
+                .min(3, 'Tittle must be at least 3 characters')
+                .trim('The contact name cannot include leading and trailing spaces')
+                .required('Tittle is required'),
+            id: Yup.string()
+                .trim('The contact name cannot include leading and trailing spaces')
+                .required('Id is required'),
+            minimumQualification: Yup.string()
+                .min(3, 'Tittle must be at least 3 characters')
+                .trim('The contact name cannot include leading and trailing spaces')
+                .required('Minimum Qualification is required'),
+            category: Yup.string()
+                .min(3, 'Tittle must be at least 3 characters')
+                .trim('The contact name cannot include leading and trailing spaces')
+                .required('Category is required'),
+            skills: Yup.string()
+                .trim('The contact name cannot include leading and trailing spaces')
+                .required('Skills is required'),
+            salary: Yup.string()
+                .trim('The contact name cannot include leading and trailing spaces')
+                .required('Salary is required'),
+            discription: Yup.string()
+                .min(3, 'Tittle must be at least 3 characters')
+                .max(50, 'Tittle max 50 characters')
+                .trim('The contact name cannot include leading and trailing spaces')
+                .required('Discription is required'),
+        })
+    )
+}
+
+export const jobPostInitialValues = {
+    tittle: '',
+    id: '',
+    minimumQualification: '',
+    category: '',
+    skills: '',
+    salary: '',
+    discription: ''
+}

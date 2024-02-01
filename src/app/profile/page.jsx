@@ -5,7 +5,7 @@ import Input from '../Components/Input';
 import MainButton from '../Components/MainButton';
 import { AdminNavbarData } from '../Helper/constant';
 import Image from 'next/image';
-import avater from '../Components/Assets/avater3png.png';
+import avater from '../Components/Assets/avater.png';
 import Logout from '../Components/LogoutButton';
 import CustomModal from '../Components/Modal';
 import { MdOutlinePhotoCameraFront } from 'react-icons/md';

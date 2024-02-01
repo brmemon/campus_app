@@ -29,11 +29,10 @@ const Signup = () => {
         onSubmit: async (values) => {
             const { success, message } = await registerUser
                 (values.email, values.password, values.name, values.userType,
-                 values.emailVerifiedUser, values.adminVerifiedUser, values.adminBlockedUser, values.uid
-                 );
+                    values.emailVerifiedUser, values.adminVerifiedUser, values.adminBlockedUser, values.uid);
             if (success) {
                 toast.success(message);
-                router.push('/profile');
+                router.push('/auth/VerifyEmail');
             } else {
                 toast.error(message);
             }
@@ -48,8 +47,6 @@ const Signup = () => {
                 let myVal = Object?.values(data.val());
                 let ind = myVal.findIndex((item) => item.email === email)
 
-                console.log(myVal[ind]?.isVerified);
-                console.log(myVal[ind]?.isBlocked);
                 statusVerified = myVal[ind]?.adminVerifiedUser;
                 statusBlocked = myVal[ind]?.adminBlockedUser;
                 emailVerified = myVal[ind]?.emailVerifiedUser;

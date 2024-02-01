@@ -23,7 +23,7 @@ const PostedJobs = () => {
           <h1 className='top_heading'>Posted Jobs</h1>
           <CustomModal SideNavbarData={CompanyNavbarData} />
           <Logout />
-          <MyTable tableData={Table} />
+          {/* <MyTable tableData={Table} /> */}
         </div>
       </CustomLayout>
     </div>

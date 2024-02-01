@@ -7,6 +7,19 @@
     border-top-left-radius: 70px;
 }
 
+.error {
+    font-size: small;
+    color: red;
+    padding-bottom: 4px;
+}
+
+.formik_input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+
 @media only screen and (max-width: 699px) {
     .all_path {
         position: relative;

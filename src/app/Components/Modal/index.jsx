@@ -5,7 +5,7 @@ import { FaRegHandshake } from 'react-icons/fa6';
 import { BiAlignLeft } from "react-icons/bi";
 import MainButton from '../MainButton';
 import Image from 'next/image'
-import avater from "../Assets/avater3png.png"
+import avater from "../Assets/avater.png"
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from 'next/navigation';
 

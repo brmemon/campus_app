@@ -10,7 +10,7 @@
 
     .modal_button {
         padding: 22px 18px;
-        color: #A66CFF;
+        color: #42d3c3;
         position: absolute;
         font-size: 24px;
         cursor: pointer;
@@ -28,7 +28,7 @@
             width: 100%;
             align-items: center;
             display: flex;
-            background-color: #A66CFF;
+            background-color: #42d3c3;
             flex-direction: column;
             text-align: center;
         }
@@ -88,8 +88,8 @@
 
             .main_mapmenu {
                 background-color: aliceblue;
-                color: #A66CFF;
-                border: 2px solid #A66CFF;
+                color: #42d3c3;
+                border: 2px solid #42d3c3;
                 display: flex;
                 gap: 10px;
                 margin-bottom: 20px;
@@ -98,25 +98,25 @@
 
             .main_mapmenu:hover {
                 background-color: white;
-                color: #A66CFF;
-                border: 2px solid #A66CFF;
+                color: #42d3c3;
+                border: 2px solid #42d3c3;
                 width: 100%;
             }
 
             .map_menu {
                 justify-content: flex-start;
-                background-color: #A66CFF;
+                background-color: #42d3c3;
                 color: white;
-                border: 2px solid #A66CFF;
+                border: 2px solid #42d3c3;
                 display: flex;
                 gap: 10px;
                 margin-bottom: 20px;
             }
 
             .map_menu:hover {
-                border: 2px solid #A66CFF;
+                border: 2px solid #42d3c3;
                 background-color: white;
-                color: #A66CFF;
+                color: #42d3c3;
                 width: 100%;
             }
 
@@ -146,7 +146,7 @@
 
     .children {
         width: 75%;
-        background-color: #A66CFF;
+        background-color: #42d3c3;
     }
 }
 
