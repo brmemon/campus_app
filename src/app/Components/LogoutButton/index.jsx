@@ -5,7 +5,7 @@ import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import Image from 'next/image'
-import question from "../Assets/question.png"
+import question from "../Assets/questionmark.png"
 import { useRouter } from 'next/navigation';
 const Logout = () => {
   const router = useRouter();
