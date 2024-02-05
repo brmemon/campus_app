@@ -7,15 +7,19 @@ import MyTable from '../Components/Table'
 import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
+import { useSelector } from 'react-redux'
 
 const PostedJobs = () => {
   const [pathname, setPathname] = useState()
+
+  const jobPosts = useSelector((state) => state.campus.jobPosts);
 
   const temper = typeof window !== undefined
   useEffect(() => {
     setPathname(window.location.pathname)
   }, [temper])
 
+  console.log('Job posts from Redux:', jobPosts);
   return (
     <div>
       <CustomLayout SideNavbarData={CompanyNavbarData} pathname={pathname}>
@@ -23,9 +27,16 @@ const PostedJobs = () => {
           <h1 className='top_heading'>Posted Jobs</h1>
           <CustomModal SideNavbarData={CompanyNavbarData} />
           <Logout />
-          {/* <MyTable tableData={Table} /> */}
         </div>
       </CustomLayout>
+      {jobPosts.map((item, index) => {
+        console.log(item.title, "hellow");
+        return (
+          <p>
+            {item.title}
+          </p>
+        )
+      })}
     </div>
   )
 }

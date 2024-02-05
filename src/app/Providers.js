@@ -1,6 +1,6 @@
 "use client"
 import { useDispatch } from 'react-redux';
-import { addData } from './Redux/userSlice';
+import { addData, addJobPost } from './Redux/userSlice';
 import { onValue, ref } from 'firebase/database';
 import { db } from './firebase';
 import { useEffect } from 'react';

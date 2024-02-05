@@ -9,25 +9,42 @@ import CustomModal from '../Components/Modal'
 import StyleInput from '../Components/styleInput'
 import MainButton from '../Components/MainButton'
 import { useFormik } from 'formik'
-import { jobPostInitialValues, jobPostSchema, signupSchema } from '../Helper/schema'
-import { jobsPost } from '../Helper/helper'
-import { toast } from 'react-toastify'
-
+import { jobPostInitialValues, jobPostSchema } from '../Helper/schema'
+import { ToastContainer, toast } from 'react-toastify'
+import { push, ref, set } from 'firebase/database'
+import { db } from '../firebase'
+import { useDispatch } from 'react-redux'
+import { addJobPost } from '../Redux/userSlice'
 const JobsPost = () => {
-    const [pathname, setPathname] = useState()
+    const [pathname, setPathname] = useState();
+    const dispatch = useDispatch();
 
     const formik = useFormik({
+
         initialValues: jobPostInitialValues,
         validationSchema: () => jobPostSchema(values),
-
         onSubmit: async (values) => {
-            const { success, message } = await jobsPost
-                (values.tittle, values.id, values.minimumQualification, values.category,
-                    values.skills, values.salary, values.discription);
-            if (success) {
-                toast.success(message);
-            } else {
-                toast.error(message);
+            try {
+                const jobsRef = ref(db, 'jobs');
+                const newJobRef = push(jobsRef);
+                const jobData = {
+                    title: values.tittle,
+                    id: values.id,
+                    minimumQualification: values.minimumQualification,
+                    category: values.category,
+                    skills: values.skills,
+                    salary: values.salary,
+                    description: values.discription,
+                };
+
+                await set(newJobRef, jobData);
+
+                dispatch(addJobPost(jobData));
+                console.log('Job data sent to Redux:', jobData);
+                toast.success('Job posted successfully!');
+            } catch (error) {
+                console.error('Error posting job:', error);
+                toast.error('Error posting job. Please try again.');
             }
         },
     });
@@ -41,6 +58,7 @@ const JobsPost = () => {
 
     return (
         <div>
+            {/* <ToastContainer className={'signup_toast'} /> */}
             <CustomLayout SideNavbarData={CompanyNavbarData} pathname={pathname}>
                 <div className='all_path'>
                     <h1 className='top_heading'>Jobs Post</h1>

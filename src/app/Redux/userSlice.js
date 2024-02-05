@@ -4,7 +4,9 @@ const initialState = {
   userData: [],
   unVerified: [],
   verified: [],
-  blocked: []
+  blocked: [],
+  jobPosts: [],
+
 };
 
 const campusSlice = createSlice({
@@ -21,10 +23,15 @@ const campusSlice = createSlice({
       state.verified = temp.filter(user => user.name !== 'admin' && user.adminVerifiedUser && !user.adminBlockedUser);
       // Blocked   
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
-
     },
+
+    addJobPost: (state, action) => {
+      state.jobPosts.push(action.payload);
+      console.log('Job data received in Redux state:', action.payload); 
+    },
+
   }
 });
 
-export const { addData } = campusSlice.actions;
+export const { addData, addJobPost } = campusSlice.actions;
 export default campusSlice.reducer;

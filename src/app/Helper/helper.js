@@ -95,40 +95,50 @@ export const forgotPassword = (email) => {
 
 ///////////////////////////////////      Job Post         ///////////////////////////////////
 
-export const jobsPost = async (tittle, id, minimumQualification, category, skills, salary, discription) => {
-    try {
-        const newAccount = await update
-            (tittle, id, minimumQualification, category, skills, salary, discription);
+// export const jobsPost = async (tittle, id, minimumQualification, category, skills, salary, discription) => {
+//     try {
+//         const newAccount = await update
+//             (tittle, id, minimumQualification, category, skills, salary, discription);
 
-        const userRef = ref(db, `users/${newAccount.user.uid}`);
-        await set(userRef, {
-            tittle: tittle,
-            id: id,
-            minimumQualification: minimumQualification,
-            category: category,
-            skills: skills,
-            salary: salary,
-            discription: discription,
-        });
+//         const userRef = ref(db, `users/${newAccount.user.uid}`);
+//         await set(userRef, {
+//             tittle: tittle,
+//             id: id,
+//             minimumQualification: minimumQualification,
+//             category: category,
+//             skills: skills,
+//             salary: salary,
+//             discription: discription,
+//         });
 
-        console.log('User data dispatched to Redux:', {
-            tittle: tittle,
-            id: id,
-            minimumQualification: minimumQualification,
-            category: category,
-            skills: skills,
-            salary: salary,
-            discription: discription,
-        });
+//         console.log('User data dispatched to Redux:', {
+//             tittle: tittle,
+//             id: id,
+//             minimumQualification: minimumQualification,
+//             category: category,
+//             skills: skills,
+//             salary: salary,
+//             discription: discription,
+//         });
 
-        return {
-            success: true,
-            message: "Signed Successfully. " + emailSend.message,
-        };
-    } catch (error) {
-        return {
-            success: false,
-            message: error.code === "auth/email-already-in-use" ? "Email Already In Use" : error.message,
-        };
-    }
-};
+//         return {
+//             success: true,
+//             message: "Signed Successfully. " + emailSend.message,
+//         };
+//     } catch (error) {
+//         return {
+//             success: false,
+//             message: error.code === "auth/email-already-in-use" ? "Email Already In Use" : error.message,
+//         };
+//     }
+// };
+
+
+
+
+
+
+
+
+
+
