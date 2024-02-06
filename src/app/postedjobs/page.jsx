@@ -38,13 +38,14 @@ const PostedJobs = () => {
                   className='job_post_second'
                 >
                   <div className='job_post_third'>
-                    <div className='job_post_item'> <h4 className='job_post_para'>Id:</h4>            <p className='tittle'>{item?.id}</p></div>
-                    <div className='job_post_item'> <h4 className='job_post_para'>Tittle:</h4>        <p className='tittle'>{item?.title}</p></div>
-                    <div className='job_post_item'> <h4 className='job_post_para'>Qualification:</h4> <p className='tittle'>{item?.minimumQualification}</p></div>
-                    <div className='job_post_item'> <h4 className='job_post_para'>Category:</h4>      <p className='tittle'>{item?.category}</p></div>
-                    <div className='job_post_item'> <h4 className='job_post_para'>Skills:</h4>        <p className='tittle'>{item?.skills}</p></div>
-                    <div className='job_post_item'> <h4 className='job_post_para'>Salary:</h4>        <p className='tittle'>{item?.salary}</p></div>
-                    <div className='job_post_item'> <h4 className='job_post_para'>Discription:</h4>   <p className='tittle'>{item?.description}</p></div>
+                    <div className='job_post_ite'>
+                      <p className='tittle'>{item?.title}</p></div>
+                    <div className='job_post_item'> <p className='job_post_para'>Id:</p>            <p className='tittle'>{item?.id}</p></div>
+                    <div className='job_post_item'> <p className='job_post_para'>Qualification:</p> <p className='tittle'>{item?.minimumQualification}</p></div>
+                    <div className='job_post_item'> <p className='job_post_para'>Category:</p>      <p className='tittle'>{item?.category}</p></div>
+                    <div className='job_post_item'> <p className='job_post_para'>Skills:</p>        <p className='tittle'>{item?.skills}</p></div>
+                    <div className='job_post_item'> <p className='job_post_para'>Salary:</p>        <p className='tittle'>{item?.salary}</p></div>
+                    <div className='job_post_item'> <p className='job_post_para'>Discription:</p>   <p className='tittle'>{item?.description}</p></div>
                   </div>
                 </div>
               )

@@ -28,8 +28,7 @@ const Signup = () => {
 
         onSubmit: async (values) => {
             const { success, message } = await registerUser
-                (values.email, values.password, values.name, values.userType,
-                    values.emailVerifiedUser, values.adminVerifiedUser, values.adminBlockedUser, values.uid);
+                (values);
             if (success) {
                 toast.success(message);
                 router.push('/auth/VerifyEmail');

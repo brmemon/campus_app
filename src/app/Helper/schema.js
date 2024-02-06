@@ -96,29 +96,34 @@ export const jobPostSchema = (values) => {
             tittle: Yup.string()
                 .min(3, 'Tittle must be at least 3 characters')
                 .trim('The contact name cannot include leading and trailing spaces')
-                .required('Tittle is required'),
+                .required('Tittle is required')
+                .max(20, 'Minimum qualification max 20 characters'),
             id: Yup.string()
                 .trim('The contact name cannot include leading and trailing spaces')
                 .required('Id is required'),
             minimumQualification: Yup.string()
-                .min(3, 'Tittle must be at least 3 characters')
+                .min(3, 'Minimum qualification must be at least 3 characters')
                 .trim('The contact name cannot include leading and trailing spaces')
-                .required('Minimum Qualification is required'),
+                .required('Minimum Qualification is required')
+                .max(10, 'Minimum qualification max 10 characters'),
             category: Yup.string()
-                .min(3, 'Tittle must be at least 3 characters')
+                .min(3, 'Category must be at least 3 characters')
                 .trim('The contact name cannot include leading and trailing spaces')
-                .required('Category is required'),
+                .required('Category is required')
+                .max(20, 'category max 20 characters'),
             skills: Yup.string()
                 .trim('The contact name cannot include leading and trailing spaces')
-                .required('Skills is required'),
+                .required('Skill is required')
+                .max(40, 'skill max 40 characters'),
             salary: Yup.string()
                 .trim('The contact name cannot include leading and trailing spaces')
-                .required('Salary is required'),
+                .required('Salary is required')
+                .max(10, 'Salary max 10 characters'),
             discription: Yup.string()
                 .min(3, 'Tittle must be at least 3 characters')
-                .max(50, 'Tittle max 50 characters')
+                .max(40, 'description max 40 characters')
                 .trim('The contact name cannot include leading and trailing spaces')
-                .required('Discription is required'),
+                .required('Description is required'),
         })
     )
 }

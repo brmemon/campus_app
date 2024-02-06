@@ -15,6 +15,7 @@ import { push, ref, set } from 'firebase/database'
 import { db } from '../firebase'
 import { useDispatch } from 'react-redux'
 import { addJobPost } from '../Redux/userSlice'
+
 const JobsPost = () => {
     const [pathname, setPathname] = useState();
     const dispatch = useDispatch();
@@ -38,12 +39,9 @@ const JobsPost = () => {
                 };
 
                 await set(newJobRef, jobData);
-
                 dispatch(addJobPost(jobData));
-                console.log('Job data sent to Redux:', jobData);
                 toast.success('Job posted successfully!');
             } catch (error) {
-                console.error('Error posting job:', error);
                 toast.error('Error posting job. Please try again.');
             }
         },
@@ -58,42 +56,30 @@ const JobsPost = () => {
 
     return (
         <div>
-            {/* <ToastContainer className={'signup_toast'} /> */}
             <CustomLayout SideNavbarData={CompanyNavbarData} pathname={pathname}>
+                <ToastContainer />
                 <div className='all_path'>
                     <h1 className='top_heading'>Jobs Post</h1>
                     <CustomModal SideNavbarData={CompanyNavbarData} />
                     <Logout />
                     <form onSubmit={handleSubmit}>
                         <div className='style_iput_main_div'>
+
+                            <div className='formik_input'>
+                                <StyleInput
+                                    label={"Tittle"}
+                                    className={"style_Input_class"}
+                                    onChange={formik.handleChange}
+                                    value={values.tittle}
+                                    type="tittle"
+                                    name="tittle"
+                                    id="tittle" />
+                                {errors.tittle && touched.tittle && <div className="error">{errors.tittle}</div>}
+                            </div>
+
                             <div
                                 style={{ display: "flex", width: "100%" }}
                             >
-
-                                <div className='formik_input'>
-                                    <StyleInput
-                                        label={"Tittle"}
-                                        className={"style_Input_class"}
-                                        onChange={formik.handleChange}
-                                        value={values.tittle}
-                                        type="tittle"
-                                        name="tittle"
-                                        id="tittle" />
-                                    {errors.tittle && touched.tittle && <div className="error">{errors.tittle}</div>}
-                                </div>
-
-                                <div className='formik_input'>
-                                    <StyleInput
-                                        className={"style_Input_class"}
-                                        label={"Id"}
-                                        onChange={formik.handleChange}
-                                        value={values.id}
-                                        type="id"
-                                        name="id"
-                                        id="id" />
-                                    {errors.id && touched.id && <div className="error">{errors.id}</div>}
-                                </div>
-
                                 <div className='formik_input'>
                                     <StyleInput
                                         className={"style_Input_class"}
@@ -105,13 +91,7 @@ const JobsPost = () => {
                                         id="minimumQualification" />
                                     {errors.minimumQualification && touched.minimumQualification && <div className="error">{errors.minimumQualification}</div>}
                                 </div>
-
-                            </div>
-                            <div
-                                style={{ display: "flex", width: "100%" }}
-                            >
                                 <div className='formik_input'>
-
                                     <StyleInput
                                         className={"style_Input_class"}
                                         label={"Category"}
@@ -122,19 +102,34 @@ const JobsPost = () => {
                                         id="category" />
                                     {errors.category && touched.category && <div className="error">{errors.category}</div>}
                                 </div>
+                            </div>
 
+                            <div className='formik_input'>
+                                <StyleInput
+                                    className={"style_Input_class"}
+                                    label={"Skills"}
+                                    onChange={formik.handleChange}
+                                    value={values.skills}
+                                    type="skills"
+                                    name="skills"
+                                    id="skills" />
+                                {errors.skills && touched.skills && <div className="error">{errors.skills}</div>}
+                            </div>
+
+                            <div
+                                style={{ display: "flex", width: "100%" }}
+                            >
                                 <div className='formik_input'>
                                     <StyleInput
                                         className={"style_Input_class"}
-                                        label={"Skills"}
+                                        label={"Id"}
                                         onChange={formik.handleChange}
-                                        value={values.skills}
-                                        type="skills"
-                                        name="skills"
-                                        id="skills" />
-                                    {errors.skills && touched.skills && <div className="error">{errors.skills}</div>}
+                                        value={values.id}
+                                        type="id"
+                                        name="id"
+                                        id="id" />
+                                    {errors.id && touched.id && <div className="error">{errors.id}</div>}
                                 </div>
-
                                 <div className='formik_input'>
                                     <StyleInput
                                         className={"style_Input_class"}

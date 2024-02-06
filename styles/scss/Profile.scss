@@ -2,7 +2,7 @@
     background-color: white;
     height: 100vh;
     width: 100%;
-    padding: 1px 60px;
+    // padding: 1px 60px;
     border-bottom-left-radius: 70px;
     border-top-left-radius: 70px;
     overflow: hidden;
@@ -100,12 +100,13 @@
     }
 }
 
-@media only screen and (max-width: 699px) {
+@media only screen and (max-width: 749px) {
     .all_path {
         position: relative;
         border-top-left-radius: 0;
         border-bottom-left-radius: 0;
         padding: 0;
+        overflow: auto;
 
         .profile {
             padding-top: 100px;

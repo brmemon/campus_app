@@ -22,33 +22,23 @@ export const loginUser = (email, password) => {
 
 ///////////////////////////////////      Sign Up        ///////////////////////////////////
 
-export const registerUser = async (email, password, name, userType, emailVerifiedUser, adminVerifiedUser, adminBlockedUser, uid) => {
+export const registerUser = async (data) => {
     try {
+
+        const { email, password } = data
         const newAccount = await createUserWithEmailAndPassword
-            (auth, email, password, userType, emailVerifiedUser, adminVerifiedUser, adminBlockedUser, uid);
+            (auth, email, password);
+
+        let tempData = data;
+        delete tempData.password
+        delete tempData.confirmPassword
 
         const userRef = ref(db, `users/${newAccount.user.uid}`);
         await set(userRef, {
-            email: email,
-            name: name,
-            password: password,
-            userType: userType,
-            emailVerifiedUser: false,
-            adminVerifiedUser: false,
-            adminBlockedUser: false,
+            ...tempData,
             uid: newAccount.user.uid
         });
 
-        console.log('User data dispatched to Redux:', {
-            email: email,
-            name: name,
-            password: password,
-            userType: userType,
-            emailVerifiedUser: false,
-            adminVerifiedUser: false,
-            adminBlockedUser: false,
-            uid: newAccount.user.uid
-        });
         const emailSend = await sendVerificationEmail(newAccount.user);
 
         return {

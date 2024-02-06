@@ -14,12 +14,12 @@ const CustomModal = ({ SideNavbarData, profilePic }) => {
   const [showModal, setShowModal] = useState(false);
   const [pathname, setPathname] = useState()
 
-  // useEffect(() => {
-  //   if (showModal)
-  //   document.body.style.overflow = 'hidden';
-  // else
-  //     document.body.style.overflow = 'unset';
-  // }, [showModal]);
+  useEffect(() => {
+    if (showModal)
+    document.body.style.overflow = 'hidden';
+  else
+      document.body.style.overflow = 'unset';
+  }, [showModal]);
 
   const temper = typeof window !== undefined
   useEffect(() => {

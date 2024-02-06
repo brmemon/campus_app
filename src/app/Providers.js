@@ -16,7 +16,7 @@ const Providers = ({ children }) => {
       }
     })
     return () => unVerified()
-  }, [])
+  }, [dispatch])
 
   useEffect(() => {
     const jobPosts = onValue(ref(db, "/jobs"), async (jobData) => {
@@ -27,7 +27,7 @@ const Providers = ({ children }) => {
     })
 
     return () => jobPosts()
-  }, [])
+  }, [dispatch])
 
   return (
     <>
