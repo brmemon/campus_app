@@ -11,7 +11,6 @@ const FormControlInput = ({ label, onChange, value, name, id }) => {
     };
 
     return (
-        <div>
             <div className="password-input-container">
                 <Input
                     value={value}
@@ -26,7 +25,6 @@ const FormControlInput = ({ label, onChange, value, name, id }) => {
                     {showPassword ? <IoEyeOutline /> : <FaRegEyeSlash />}
                 </div>
             </div>
-        </div>
     )
 }
 

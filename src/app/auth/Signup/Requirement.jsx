@@ -1,5 +1,6 @@
 import React from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
+import { StudentEducation, StudentExperience } from '@/app/Helper/constant';
 
 const Requirement = ({ formik }) => {
     const { values, errors, touched, handleChange } = formik;
@@ -17,10 +18,13 @@ const Requirement = ({ formik }) => {
                     className={'select'}
                     name="education"
                 >
-                    <MenuItem value={'enter'}>Enter</MenuItem>
-                    <MenuItem value={'graduation'}>Graduation</MenuItem>
-                    <MenuItem value={'master'}>Master</MenuItem>
-
+                    {StudentEducation.map((item, index) =>
+                        <MenuItem
+                            key={index}
+                            value={item?.value}>
+                            {item?.name}
+                        </MenuItem>
+                    )}
                 </Select>
             </FormControl>
             {errors.education && touched.education && <div className="error">{errors.education}</div>}
@@ -37,11 +41,13 @@ const Requirement = ({ formik }) => {
                     error={touched.experience && Boolean(errors.experience)}
                     className={'select'}
                 >
-                    <MenuItem value={'0 Months To 6 Months'}>0 Months To 6 Months</MenuItem>
-                    <MenuItem value={'7 Months To 1 Year'}>7 Months To 1 Year</MenuItem>
-                    <MenuItem value={'1 Year To 2 Years'}>1 Year To 2 Years</MenuItem>
-                    <MenuItem value={'2+ Years'}>2+ Years</MenuItem>
-
+                    {StudentExperience.map((item, index) =>
+                        <MenuItem
+                            key={index}
+                            value={item?.value}>
+                            {item?.name}
+                        </MenuItem>
+                    )}
                 </Select>
             </FormControl>
             {errors.experience && touched.experience && <div className="error">{errors.experience}</div>}

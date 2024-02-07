@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import Input from '../Components/Input';
 import MainButton from '../Components/MainButton';
-import { AdminNavbarData } from '../Helper/constant';
+import { AdminNavbarData, Gender } from '../Helper/constant';
 import Image from 'next/image';
 import avater from '../Components/Assets/avater.png';
 import Logout from '../Components/LogoutButton';
@@ -71,7 +71,7 @@ const Profile = () => {
                 <Logout />
                 <label htmlFor="profilePicInput" className="avater_pencilicon">
                   {profilePic ? (
-                    <Image src={profilePic} className="avater" alt="Avatar" width={100} height={100} /> 
+                    <Image src={profilePic} className="avater" alt="Avatar" width={100} height={100} />
                   ) : (
                     <Image priority={true} src={avater} className="avater" alt="Avatar" />
                   )}
@@ -119,9 +119,13 @@ const Profile = () => {
                     value={formik.values.gender}
                     error={formik.touched.gender && Boolean(formik.errors.gender)}
                   >
-                    <MenuItem value={"male"}>Male</MenuItem>
-                    <MenuItem value={"female"}>Female</MenuItem>
-                    <MenuItem value={"other"}>Other</MenuItem>
+                    {Gender.map((item, index) =>
+                      <MenuItem
+                        key={index}
+                        value={item?.value}>
+                        {item?.name}
+                      </MenuItem>
+                    )}
                   </Select>
                   {formik.touched.gender && formik.errors.gender && (
                     <div className="error">{formik.errors.gender}</div>

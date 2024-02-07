@@ -98,9 +98,9 @@ export const jobPostSchema = (values) => {
                 .trim('The contact name cannot include leading and trailing spaces')
                 .required('Tittle is required')
                 .max(20, 'Minimum qualification max 20 characters'),
-            id: Yup.string()
-                .trim('The contact name cannot include leading and trailing spaces')
-                .required('Id is required'),
+            // id: Yup.string()
+            //     .trim('The contact name cannot include leading and trailing spaces')
+            //     .required('Id is required'),
             minimumQualification: Yup.string()
                 .min(3, 'Minimum qualification must be at least 3 characters')
                 .trim('The contact name cannot include leading and trailing spaces')
@@ -130,7 +130,7 @@ export const jobPostSchema = (values) => {
 
 export const jobPostInitialValues = {
     tittle: '',
-    id: '',
+    // id: '',
     minimumQualification: '',
     category: '',
     skills: '',

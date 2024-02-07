@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
-import MyTable from '../Components/Table'
-import { StudentNavbarData, Table } from '../Helper/constant'
+import { StudentNavbarData } from '../Helper/constant'
 import "../../../styles/scss/globals.scss"
 import "../../../styles/scss/AppliedJobs.scss"
 
@@ -22,7 +21,6 @@ const AppliedJobs = () => {
           <h1 className='top_heading'>Applied Jobs</h1>
           <CustomModal SideNavbarData={StudentNavbarData} />
           <Logout />
-          <MyTable tableData={Table} />
         </div>
       </CustomLayout>
     </div>

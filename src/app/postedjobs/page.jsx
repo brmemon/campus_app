@@ -6,20 +6,16 @@ import { CompanyNavbarData, Table } from '../Helper/constant'
 import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
-import { useSelector } from 'react-redux'
+import MapData from '../Components/MapData'
 
 const PostedJobs = () => {
   const [pathname, setPathname] = useState()
-
-  const selectorJobData = useSelector((state) => state.campus.jobData);
-  const dataJobs = Object.values(selectorJobData);
 
   const temper = typeof window !== undefined
   useEffect(() => {
     setPathname(window.location.pathname)
   }, [temper])
 
-  console.log('Job posts from Redux:', selectorJobData);
   return (
     <div>
       <CustomLayout SideNavbarData={CompanyNavbarData} pathname={pathname}>
@@ -27,31 +23,7 @@ const PostedJobs = () => {
           <h1 className='top_heading'>Posted Jobs</h1>
           <CustomModal SideNavbarData={CompanyNavbarData} />
           <Logout />
-          <div
-            className='job_post_first'
-          >
-            {dataJobs.map((item, index) => {
-              console.log(item, "hellow");
-              return (
-                <div
-                  key={index}
-                  className='job_post_second'
-                >
-                  <div className='job_post_third'>
-                    <div className='job_post_ite'>
-                      <p className='tittle'>{item?.title}</p></div>
-                    <div className='job_post_item'> <p className='job_post_para'>Id:</p>            <p className='tittle'>{item?.id}</p></div>
-                    <div className='job_post_item'> <p className='job_post_para'>Qualification:</p> <p className='tittle'>{item?.minimumQualification}</p></div>
-                    <div className='job_post_item'> <p className='job_post_para'>Category:</p>      <p className='tittle'>{item?.category}</p></div>
-                    <div className='job_post_item'> <p className='job_post_para'>Skills:</p>        <p className='tittle'>{item?.skills}</p></div>
-                    <div className='job_post_item'> <p className='job_post_para'>Salary:</p>        <p className='tittle'>{item?.salary}</p></div>
-                    <div className='job_post_item'> <p className='job_post_para'>Discription:</p>   <p className='tittle'>{item?.description}</p></div>
-                  </div>
-                </div>
-              )
-            }
-            )}
-          </div>
+          <MapData />
         </div>
       </CustomLayout>
     </div>

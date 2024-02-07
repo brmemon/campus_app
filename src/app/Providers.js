@@ -12,7 +12,6 @@ const Providers = ({ children }) => {
     const unVerified = onValue(ref(db, "/users"), async (userData) => {
       if (userData.exists) {
         dispatch(addData(await userData.val()))
-        console.log(unVerified, "Unverified");
       }
     })
     return () => unVerified()
@@ -22,7 +21,6 @@ const Providers = ({ children }) => {
     const jobPosts = onValue(ref(db, "/jobs"), async (jobData) => {
       if (jobData.exists) {
         dispatch(addJobPost(await jobData.val()))
-        console.log(jobData, "provider");
       }
     })
 

@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react'
 import CustomLayout from '../Components/Layout'
 import "../../../styles/scss/Jobs.scss"
 import { StudentNavbarData, Table } from '../Helper/constant'
-import MyTable from '../Components/Table'
 import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
+import MapData from '../Components/MapData'
 
 const Jobs = () => {
   const [pathname, setPathname] = useState()
@@ -23,7 +23,7 @@ const Jobs = () => {
           <h1 className='top_heading'>Jobs</h1>
           <CustomModal SideNavbarData={StudentNavbarData} />
           <Logout />
-          <MyTable tableData={Table} />
+          <MapData />
         </div>
       </CustomLayout>
     </div>

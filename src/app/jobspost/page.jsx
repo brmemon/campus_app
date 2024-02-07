@@ -30,7 +30,6 @@ const JobsPost = () => {
                 const newJobRef = push(jobsRef);
                 const jobData = {
                     title: values.tittle,
-                    id: values.id,
                     minimumQualification: values.minimumQualification,
                     category: values.category,
                     skills: values.skills,
@@ -57,7 +56,6 @@ const JobsPost = () => {
     return (
         <div>
             <CustomLayout SideNavbarData={CompanyNavbarData} pathname={pathname}>
-                <ToastContainer />
                 <div className='all_path'>
                     <h1 className='top_heading'>Jobs Post</h1>
                     <CustomModal SideNavbarData={CompanyNavbarData} />
@@ -75,6 +73,17 @@ const JobsPost = () => {
                                     name="tittle"
                                     id="tittle" />
                                 {errors.tittle && touched.tittle && <div className="error">{errors.tittle}</div>}
+                            </div>
+                            <div className='formik_input'>
+                                <StyleInput
+                                    className={"style_Input_class"}
+                                    label={"Category"}
+                                    onChange={formik.handleChange}
+                                    value={values.category}
+                                    type="category"
+                                    name="category"
+                                    id="category" />
+                                {errors.category && touched.category && <div className="error">{errors.category}</div>}
                             </div>
 
                             <div
@@ -94,13 +103,13 @@ const JobsPost = () => {
                                 <div className='formik_input'>
                                     <StyleInput
                                         className={"style_Input_class"}
-                                        label={"Category"}
+                                        label={"Salary"}
                                         onChange={formik.handleChange}
-                                        value={values.category}
-                                        type="category"
-                                        name="category"
-                                        id="category" />
-                                    {errors.category && touched.category && <div className="error">{errors.category}</div>}
+                                        value={values.salary}
+                                        type="salary"
+                                        name="salary"
+                                        id="salary" />
+                                    {errors.salary && touched.salary && <div className="error">{errors.salary}</div>}
                                 </div>
                             </div>
 
@@ -115,34 +124,6 @@ const JobsPost = () => {
                                     id="skills" />
                                 {errors.skills && touched.skills && <div className="error">{errors.skills}</div>}
                             </div>
-
-                            <div
-                                style={{ display: "flex", width: "100%" }}
-                            >
-                                <div className='formik_input'>
-                                    <StyleInput
-                                        className={"style_Input_class"}
-                                        label={"Id"}
-                                        onChange={formik.handleChange}
-                                        value={values.id}
-                                        type="id"
-                                        name="id"
-                                        id="id" />
-                                    {errors.id && touched.id && <div className="error">{errors.id}</div>}
-                                </div>
-                                <div className='formik_input'>
-                                    <StyleInput
-                                        className={"style_Input_class"}
-                                        label={"Salary"}
-                                        onChange={formik.handleChange}
-                                        value={values.salary}
-                                        type="salary"
-                                        name="salary"
-                                        id="salary" />
-                                    {errors.salary && touched.salary && <div className="error">{errors.salary}</div>}
-                                </div>
-                            </div>
-
                             <div className='formik_input'>
                                 <StyleInput
                                     className={"style_Input_class_change"}
@@ -155,6 +136,7 @@ const JobsPost = () => {
                                 {errors.discription && touched.discription && <div className="error">{errors.discription}</div>}
                             </div>
 
+                <ToastContainer />
                             <div className='Style_input_main_button'>
                                 <MainButton type="submit" className={"Style_input_button"} text={"Job Post"} />
                             </div>

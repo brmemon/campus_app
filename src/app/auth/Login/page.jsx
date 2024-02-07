@@ -78,9 +78,7 @@ const Login = () => {
             </span>
 
             <div className='MainButton_Parent'>
-                <MainButton type="submit" text="Log In"
-                // disabled={!formik.isValid}
-                />
+              <MainButton type="submit" text="Log In" />
             </div>
           </form>
 

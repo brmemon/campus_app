@@ -28,7 +28,6 @@ const campusSlice = createSlice({
     addJobPost: (state, action) => {
       state.jobData = action.payload;
       const temper = Object.values(state.jobData)
-      console.log('Job data received in Redux state:', action.payload); 
     },
 
   }

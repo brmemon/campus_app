@@ -1,4 +1,3 @@
-import { MdOutlineDashboardCustomize } from "react-icons/md";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineVerifiedUser } from "react-icons/md";
 import { AiOutlineSecurityScan } from "react-icons/ai";
@@ -79,4 +78,57 @@ export const StudentNavbarData = [
 
 export const Table = [
     "Name", "Email", "Role", "Verify", "Block"
+]
+
+///////////////////////////////////      StudentEducation        ///////////////////////////////////
+
+export const StudentEducation = [
+    {
+        value: "enter",
+        name: "Enter"
+    },
+    {
+        value: "graduation",
+        name: "Graduation"
+    },
+    {
+        value: "master",
+        name: "Master"
+    },
+]
+
+///////////////////////////////////      StudentExperience        ///////////////////////////////////
+
+export const StudentExperience = [
+    {
+        value: "0 Months To 6 Months",
+        name: "0 Months To 6 Months"
+    },
+    {
+        value: "7 Months To 1 Year",
+        name: "7 Months To 1 Year"
+    },
+    {
+        value: "1 Year To 2 Years",
+        name: "1 Year To 2 Years"
+    },
+    {
+        value: "2+ Years",
+        name: "2+ Years"
+    },
+]
+
+export const Gender = [
+    {
+        value: "male",
+        name: "Male"
+    },
+    {
+        value: "female",
+        name: "Female"
+    },
+    {
+        value: "other",
+        name: "Other"
+    },
 ]
