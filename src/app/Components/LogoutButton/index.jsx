@@ -24,18 +24,19 @@ const Logout = () => {
       <div className='logout_button'>
         <MainButton onClick={handleOpen} className={"logout_width"} text={"Log Out"} />
       </div>
-        <Modal className='logout_modal' open={open} onClose={handleClose}>
-          <Box className="logout_box">
-            <Image src={question} className='question_mark' alt='Question Mark' />
-            <p className='logout_modal_para'>
-              The action you are perform is irreversible please confirm! Are you sure you want to Log Out ?
-            </p>
-            <div className='yes_no_button'>
-              <MainButton onClick={handleClose} text={"No"} />
-              <MainButton onClick={handleYesClick} text={"Yes"} />
-            </div>
-          </Box>
-        </Modal>
+      <Modal className='logout_modal' open={open} onClose={handleClose}>
+        <Box className="logout_box">
+          <Image src={question} className='question_mark' alt='Question Mark' />
+          <p className='logout_modal_para'>
+            The action you are perform is irreversible
+            please confirm! Are you sure you want to Log Out ?
+          </p>
+          <div className='yes_no_button'>
+            <MainButton onClick={handleClose} text={"No"} />
+            <MainButton onClick={handleYesClick} text={"Yes"} />
+          </div>
+        </Box>
+      </Modal>
     </div>
   )
 }
