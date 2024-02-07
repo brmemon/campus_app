@@ -14,13 +14,6 @@ const CustomModal = ({ SideNavbarData, profilePic }) => {
   const [showModal, setShowModal] = useState(false);
   const [pathname, setPathname] = useState()
 
-  useEffect(() => {
-    if (showModal)
-    document.body.style.overflow = 'hidden';
-  else
-      document.body.style.overflow = 'unset';
-  }, [showModal]);
-
   const temper = typeof window !== undefined
   useEffect(() => {
     setPathname(window.location.pathname)
@@ -43,11 +36,12 @@ const CustomModal = ({ SideNavbarData, profilePic }) => {
             <FaRegHandshake className="campus_logo" />
             <h1 className='campus_heading'>Campus App</h1>
             <div className='avater_div'>
-              {profilePic ? (
-                <Image src={profilePic} className="navbar_avater" alt="Avatar" width={"100"} height={"100"} />
-              ) : (
-                <Image priority={true} src={avater} className='navbar_avater' alt='Avater' />
-              )}
+              <Image
+                src={profilePic ? profilePic : avater}
+                className={"navbar_avater"} alt={"Avater"}
+                width={100} height={100}
+                priority={true}
+              />
               <p className='user_name'>Bilal Raza</p>
             </div>
             <div className='data_div'>

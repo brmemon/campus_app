@@ -70,11 +70,12 @@ const Profile = () => {
               <div className="avater_and_name">
                 <Logout />
                 <label htmlFor="profilePicInput" className="avater_pencilicon">
-                  {profilePic ? (
-                    <Image src={profilePic} className="avater" alt="Avatar" width={100} height={100} />
-                  ) : (
-                    <Image priority={true} src={avater} className="avater" alt="Avatar" />
-                  )}
+                  <Image
+                    src={profilePic ? profilePic : avater}
+                    className={"navbar_avater"} alt={"Avater"}
+                    width={100} height={100}
+                    priority={true}
+                  />
                   <MdOutlinePhotoCameraFront className="pencil_icon" />
                 </label>
                 <input
@@ -84,7 +85,7 @@ const Profile = () => {
                   style={{ display: 'none' }}
                   onChange={handleProfilePicChange}
                 />
-                <p className="avater_name">Raza</p>
+                <p className="avater_name">Bilal Raza</p>
               </div>
 
               <div className="profile_input">
@@ -120,9 +121,7 @@ const Profile = () => {
                     error={formik.touched.gender && Boolean(formik.errors.gender)}
                   >
                     {Gender.map((item, index) =>
-                      <MenuItem
-                        key={index}
-                        value={item?.value}>
+                      <MenuItem key={index} value={item?.value}>
                         {item?.name}
                       </MenuItem>
                     )}
