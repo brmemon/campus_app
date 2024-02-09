@@ -6,6 +6,7 @@ const initialState = {
   verified: [],
   blocked: [],
   jobData: [],
+  setProfilePicURL: []
 
 };
 
@@ -30,8 +31,11 @@ const campusSlice = createSlice({
       const temper = Object.values(state.jobData)
     },
 
+    setProfilePicURL: (state, action) => {
+      state.downloadURL = action.payload;
+    },
   }
 });
 
-export const { addData, addJobPost } = campusSlice.actions;
+export const { addData, addJobPost, setProfilePicURL } = campusSlice.actions;
 export default campusSlice.reducer;
