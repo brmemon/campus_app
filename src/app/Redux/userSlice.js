@@ -1,3 +1,5 @@
+// campusSlice.js
+
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
@@ -6,8 +8,7 @@ const initialState = {
   verified: [],
   blocked: [],
   jobData: [],
-  setProfilePicURL: []
-
+  appliedJobs: [], // New state to store applied jobs
 };
 
 const campusSlice = createSlice({
@@ -16,26 +17,23 @@ const campusSlice = createSlice({
   reducers: {
     addData: (state, action) => {
       state.userData = action.payload;
-      const temp = Object.values(state.userData)
+      const temp = Object.values(state.userData);
 
-      // Un Verified
       state.unVerified = temp.filter(user => user.name !== 'admin' && !user.adminVerifiedUser && !user.adminBlockedUser);
-      // Verified   
       state.verified = temp.filter(user => user.name !== 'admin' && user.adminVerifiedUser && !user.adminBlockedUser);
-      // Blocked   
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
     },
 
     addJobPost: (state, action) => {
       state.jobData = action.payload;
-      const temper = Object.values(state.jobData)
     },
 
-    setProfilePicURL: (state, action) => {
-      state.downloadURL = action.payload;
+    applyJob: (state, action) => {
+      const jobId = action.payload;
+      state.appliedJobs.push(jobId);
     },
   }
 });
 
-export const { addData, addJobPost, setProfilePicURL } = campusSlice.actions;
+export const { addData, addJobPost, applyJob } = campusSlice.actions;
 export default campusSlice.reducer;

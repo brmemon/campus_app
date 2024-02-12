@@ -13,22 +13,21 @@ import { jobPostInitialValues, jobPostSchema } from '../Helper/schema'
 import { ToastContainer, toast } from 'react-toastify'
 import { push, ref, set } from 'firebase/database'
 import { db } from '../firebase'
-import { useDispatch } from 'react-redux'
-import { addJobPost } from '../Redux/userSlice'
+import { v4 as uuidv4 } from 'uuid';
 
 const JobsPost = () => {
     const [pathname, setPathname] = useState();
-    const dispatch = useDispatch();
 
     const formik = useFormik({
-
         initialValues: jobPostInitialValues,
         validationSchema: () => jobPostSchema(values),
         onSubmit: async (values) => {
             try {
                 const jobsRef = ref(db, 'jobs');
                 const newJobRef = push(jobsRef);
+                const jobId = uuidv4();
                 const jobData = {
+                    id: jobId,
                     title: values.tittle,
                     minimumQualification: values.minimumQualification,
                     category: values.category,
@@ -38,7 +37,6 @@ const JobsPost = () => {
                 };
 
                 await set(newJobRef, jobData);
-                dispatch(addJobPost(jobData));
                 toast.success('Job posted successfully!');
             } catch (error) {
                 toast.error('Error posting job. Please try again.');
@@ -136,7 +134,7 @@ const JobsPost = () => {
                                 {errors.discription && touched.discription && <div className="error">{errors.discription}</div>}
                             </div>
 
-                <ToastContainer />
+                            <ToastContainer />
                             <div className='Style_input_main_button'>
                                 <MainButton type="submit" className={"Style_input_button"} text={"Job Post"} />
                             </div>

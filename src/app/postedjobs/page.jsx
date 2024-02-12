@@ -7,9 +7,13 @@ import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
 import MapData from '../Components/MapData'
+import { useSelector } from 'react-redux'
 
 const PostedJobs = () => {
   const [pathname, setPathname] = useState()
+
+  const selectorJobData = useSelector((state) => state.campus.jobData);
+  const dataJobs = Object.values(selectorJobData);
 
   const temper = typeof window !== undefined
   useEffect(() => {
@@ -23,7 +27,7 @@ const PostedJobs = () => {
           <h1 className='top_heading'>Posted Jobs</h1>
           <CustomModal SideNavbarData={CompanyNavbarData} />
           <Logout />
-          <MapData />
+          <MapData dataJobs={dataJobs} />
         </div>
       </CustomLayout>
     </div>

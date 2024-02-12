@@ -14,23 +14,27 @@
         .job_post_third {
             box-shadow: 1px 1px 3px #42d3c3;
             background-color: rgba(49, 247, 255, 0.06);
-            border-radius: 15px;
-            height: 250px;
+            // border-radius: 15px;
+            border-bottom-left-radius: 30px;
+            border-top-right-radius: 30px;
+            // height: 250px;
             display: grid;
 
             .job_post_ite {
-                color: #42d3c3;
+                color: white;
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 font-size: 25px;
-                background-color: white;
+                background-color: #42d3c3;
                 font-family: auto;
-                border-top-left-radius: 16px;
-                border-top-right-radius: 16px;
+                // border-top-left-radius: 16px;
+                border-top-right-radius: 30px;
+                letter-spacing: 2px;
+                word-spacing: 2px;
                 font-style: italic;
                 font-weight: 600;
-                padding: 3px;
+                padding: 5px;
             }
 
             .job_post_item {
@@ -43,13 +47,28 @@
                 .job_post_para {
                     width: 50%;
                     font-size: 17px;
+                    font-weight: 700;
+                    font-style: oblique;
                 }
 
                 .tittle {
+                    font-family: "lato";
                     word-break: break-word;
                     width: 85%;
                 }
             }
+        }
+    }
+
+    .main_div_Apply_Button {
+        width: 100%;
+        display: flex;
+        justify-content: flex-end;
+        align-items: flex-end;
+
+        .Apply_Button {
+            width: 100px;
+            margin: 5px;
         }
     }
 }

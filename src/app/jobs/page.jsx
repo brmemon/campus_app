@@ -1,33 +1,27 @@
 "use client"
-import React, { useEffect, useState } from 'react'
-import CustomLayout from '../Components/Layout'
+import React from 'react';
+import { useSelector } from 'react-redux';
+import CustomLayout from '../Components/Layout';
+import { StudentNavbarData } from '../Helper/constant';
+import Logout from '../Components/LogoutButton';
+import MapData from '../Components/MapData';
 import "../../../styles/scss/Jobs.scss"
-import { StudentNavbarData, Table } from '../Helper/constant'
-import "../../../styles/scss/globals.scss"
-import Logout from '../Components/LogoutButton'
-import CustomModal from '../Components/Modal'
-import MapData from '../Components/MapData'
 
 const Jobs = () => {
-  const [pathname, setPathname] = useState()
-
-  const temper = typeof window !== undefined
-  useEffect(() => {
-    setPathname(window.location.pathname)
-  }, [temper])
+  const selectorJobData = useSelector((state) => state.campus.jobData);
+  const jobs = Object.values(selectorJobData);
 
   return (
     <div>
-      <CustomLayout SideNavbarData={StudentNavbarData} pathname={pathname}>
+      <CustomLayout SideNavbarData={StudentNavbarData}>
         <div className='all_path'>
           <h1 className='top_heading'>Jobs</h1>
-          <CustomModal SideNavbarData={StudentNavbarData} />
           <Logout />
-          <MapData />
+          <MapData dataJobs={jobs} />
         </div>
       </CustomLayout>
     </div>
-  )
+  );
 }
 
-export default Jobs
+export default Jobs;

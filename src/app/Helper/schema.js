@@ -93,6 +93,7 @@ export const profileInitialValues = {
 export const jobPostSchema = (values) => {
     return (
         Yup.object().shape({
+            id: Yup.string().min(3, 'Tittle must be at least 3 characters'),
             tittle: Yup.string()
                 .min(3, 'Tittle must be at least 3 characters')
                 .trim('The contact name cannot include leading and trailing spaces')

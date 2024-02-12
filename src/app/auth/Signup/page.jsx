@@ -31,7 +31,7 @@ const Signup = () => {
                 (values);
             if (success) {
                 toast.success(message);
-                router.push('/auth/VerifyEmail');
+                router.push('/profile');
             } else {
                 toast.error(message);
             }
@@ -50,6 +50,11 @@ const Signup = () => {
                 statusBlocked = myVal[ind]?.adminBlockedUser;
                 emailVerified = myVal[ind]?.emailVerifiedUser;
                 userEmail = myVal[ind]?.email;
+
+                // if (values.userType === 'admin') {
+                //     const adminData = myVal.filter(item => item.userType === 'admin');
+                //     console.log(adminData);
+                // }
             }
         })
     })

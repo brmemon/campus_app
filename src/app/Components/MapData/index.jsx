@@ -1,31 +1,70 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import "../../../../styles/scss/MapData.scss"
+// MapData.js
 
-const MapData = () => {
-    const selectorJobData = useSelector((state) => state.campus.jobData);
-    const dataJobs = Object.values(selectorJobData);
+import { applyJob } from '@/app/Redux/userSlice';
+import { db } from '@/app/firebase';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import "../../../../styles/scss/MapData.scss"
+import { ref, update } from 'firebase/database';
+import { Button } from '@mui/material';
+import MainButton from '../MainButton';
+
+const MapData = ({ dataJobs }) => {
+    const dispatch = useDispatch();
+
+    const handleApplyJob = async (jobId) => {
+        try {
+            dispatch(applyJob(jobId));
+
+            const jobRef = ref(db, `jobs/${jobId}`);
+            await update(jobRef, { applied: true });
+        } catch (error) {
+            console.error("Error applying for job:", error);
+        }
+    };
+
     return (
         <div className='job_post_first'>
-            {dataJobs.map((item, index) =>
-                <div
-                    key={index}
-                    className='job_post_second'
-                >
+            {dataJobs.map((item, index) => (
+                <div key={index} className='job_post_second'>
                     <div className='job_post_third'>
                         <div className='job_post_ite'>
                             <p className='tittle'>{item?.title}</p>
                         </div>
-                        <div className='job_post_item'> <p className='job_post_para'>Qualification:</p> <p className='tittle'>{item?.minimumQualification}</p></div>
-                        <div className='job_post_item'> <p className='job_post_para'>Category:     </p> <p className='tittle'>{item?.category}</p></div>
-                        <div className='job_post_item'> <p className='job_post_para'>Skills:       </p> <p className='tittle'>{item?.skills}</p></div>
-                        <div className='job_post_item'> <p className='job_post_para'>Salary:       </p> <p className='tittle'>{item?.salary}</p></div>
-                        <div className='job_post_item'> <p className='job_post_para'>Discription:  </p> <p className='tittle'>{item?.description}</p></div>
+                        <p className='tittle'>Job ID: {item?.id}</p>
+                        <div className='job_post_item'>
+                            <p className='job_post_para'>Qualification:</p>
+                            <p className='tittle'>{item?.minimumQualification}</p>
+                        </div>
+
+                        <div className='job_post_item'>
+                            <p className='job_post_para'>Category:</p>
+                            <p className='tittle'>{item?.category}</p>
+                        </div>
+                        <div className='job_post_item'>
+                            <p className='job_post_para'>Skills:</p>
+                            <p className='tittle'>{item?.skills}</p>
+                        </div>
+                        <div className='job_post_item'>
+                            <p className='job_post_para'>Salary:</p>
+                            <p className='tittle'>{item?.salary}</p>
+                        </div>
+                        <div className='job_post_item'>
+                            <p className='job_post_para'>Description:</p>
+                            <p className='tittle'>{item?.description}</p>
+                        </div>
+                        <div className='main_div_Apply_Button'>
+                            <MainButton
+                                className='Apply_Button'
+                                text={"Apply"}
+                                onClick={() => handleApplyJob(item.id)}>
+                            </MainButton>
+                        </div>
                     </div>
                 </div>
-            )}
+            ))}
         </div>
-    )
-}
+    );
+};
 
-export default MapData
+export default MapData;
