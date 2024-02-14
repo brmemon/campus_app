@@ -19,7 +19,6 @@ import { onValue, ref } from 'firebase/database';
 import { db } from '@/app/firebase';
 
 const Signup = () => {
-    let emailVerified, statusVerified, statusBlocked, userEmail;
     const router = useRouter();
 
     const formik = useFormik({
@@ -27,11 +26,11 @@ const Signup = () => {
         validationSchema: () => signupSchema(values),
 
         onSubmit: async (values) => {
-            const { success, message } = await registerUser
-                (values);
+
+            const { success, message } = await registerUser(values);
             if (success) {
                 toast.success(message);
-                router.push('/profile');
+                router.push('/auth/VerifyEmail');
             } else {
                 toast.error(message);
             }
@@ -39,26 +38,6 @@ const Signup = () => {
     });
 
     const { values, errors, touched, handleSubmit } = formik;
-
-    useEffect(() => {
-        onValue(ref(db, "/users"), async (data) => {
-            if (data.val()) {
-                let myVal = Object?.values(data.val());
-                let ind = myVal.findIndex((item) => item.email === email)
-
-                statusVerified = myVal[ind]?.adminVerifiedUser;
-                statusBlocked = myVal[ind]?.adminBlockedUser;
-                emailVerified = myVal[ind]?.emailVerifiedUser;
-                userEmail = myVal[ind]?.email;
-
-                // if (values.userType === 'admin') {
-                //     const adminData = myVal.filter(item => item.userType === 'admin');
-                //     console.log(adminData);
-                // }
-            }
-        })
-    })
-
     return (
         <div className="container">
             <ToastContainer className={'signup_toast'} />
@@ -137,7 +116,7 @@ const Signup = () => {
                                 >
                                     <MenuItem value={'student'}>Student</MenuItem>
                                     <MenuItem value={'Company'}>Company</MenuItem>
-                                    <MenuItem value={'admin'}>Admin</MenuItem>
+                                    {/* <MenuItem value={'admin'}>Admin</MenuItem> */}
                                 </Select>
                             </FormControl>
                             {errors.userType && touched.userType && <div className="error">{errors.userType}</div>}

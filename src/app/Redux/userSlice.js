@@ -8,7 +8,7 @@ const initialState = {
   verified: [],
   blocked: [],
   jobData: [],
-  appliedJobs: [], // New state to store applied jobs
+  appliedJobs: [],
 };
 
 const campusSlice = createSlice({
@@ -24,6 +24,11 @@ const campusSlice = createSlice({
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
     },
 
+    // updateVerify: (state, action) => {
+    //   console.log(action.payload)
+    //   console.log("non verified user: ", state.unVerified)
+    // },
+
     addJobPost: (state, action) => {
       state.jobData = action.payload;
     },
@@ -35,5 +40,5 @@ const campusSlice = createSlice({
   }
 });
 
-export const { addData, addJobPost, applyJob } = campusSlice.actions;
+export const { addData, updateVerify, addJobPost, applyJob } = campusSlice.actions;
 export default campusSlice.reducer;

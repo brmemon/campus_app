@@ -5,13 +5,18 @@ import Providers from "./Providers"
 import { Provider } from "react-redux"
 import store from "./Redux/Store"
 import 'react-toastify/dist/ReactToastify.css';
+import Loader from "./Components/MUILoader/Loader"
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body>
         <Provider store={store}>
-          <Providers>{children}</Providers>
+          <Providers>
+            {/* <Loader> */}
+              {children}
+            {/* </Loader> */}
+          </Providers>
           <StyledEngineProvider injectFirst>
           </StyledEngineProvider>
         </Provider>

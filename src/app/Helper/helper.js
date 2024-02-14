@@ -37,7 +37,6 @@ export const registerUser = async (data) => {
         delete tempData.confirmPassword
 
         const userRef = ref(db, `users/${newAccount.user.uid}`);
-        console.log(userRef , "hello workd")
         await set(userRef, {
             ...tempData,
             uid: newAccount.user.uid
@@ -56,10 +55,6 @@ export const registerUser = async (data) => {
         };
     }
 };
-
-
-
-
 
 ///////////////////////////////////      Verification Email Sign Up         ///////////////////////////////////
 
