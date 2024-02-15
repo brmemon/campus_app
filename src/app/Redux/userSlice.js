@@ -3,7 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  userData: [],
+  userData: null,
   unVerified: [],
   verified: [],
   blocked: [],
@@ -24,10 +24,17 @@ const campusSlice = createSlice({
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
     },
 
-    // updateVerify: (state, action) => {
-    //   console.log(action.payload)
-    //   console.log("non verified user: ", state.unVerified)
-    // },
+    updateBlockedUser: (state, action) => {
+      const { uid, blocked } = action.payload;
+      if (Array.isArray(state.userData)) {
+        const index = state.userData.findIndex(user => user.uid === uid);
+        if (index !== -1) {
+          state.userData[index].adminBlockedUser = blocked;
+        }
+      } else {
+        state.userData = { ...state.userData, adminBlockedUser: blocked };
+      }
+    },
 
     addJobPost: (state, action) => {
       state.jobData = action.payload;
@@ -40,5 +47,5 @@ const campusSlice = createSlice({
   }
 });
 
-export const { addData, updateVerify, addJobPost, applyJob } = campusSlice.actions;
+export const { addData, updateBlockedUser, addJobPost, applyJob } = campusSlice.actions;
 export default campusSlice.reducer;

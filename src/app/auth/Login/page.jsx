@@ -15,24 +15,36 @@ import { loginUser } from '@/app/Helper/helper';
 import { loginInitialValues, loginSchema } from '@/app/Helper/schema';
 import { onValue, ref } from 'firebase/database';
 import { db } from '@/app/firebase';
+import { addData } from '@/app/Redux/userSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Login = () => {
   const router = useRouter();
+  const dispatch = useDispatch()
+  const userData = useSelector(state => state.campus.userData);
+  console.log(userData, "user Data")
 
-  // let emailVerified, statusVerified, statusBlocked, userEmail;
-  // useEffect(() => {
-  //   onValue(ref(db, "/users"), async (data) => {
-  //     if (data.val()) {
-  //       let myVal = Object?.values(data.val());
-  //       let ind = myVal.findIndex((item) => item?.email === email)
+  let emailVerified, statusVerified, statusBlocked, userEmail;
+  useEffect(() => {
+    onValue(ref(db, "/users"), async (data) => {
+      if (data.val()) {
+        let myVal = Object?.values(data.val());
+        let ind = myVal.findIndex((item) => item?.email === values.email)
 
-  //       statusVerified = myVal[ind]?.adminVerifiedUser;
-  //       statusBlocked = myVal[ind]?.adminBlockedUser;
-  //       emailVerified = myVal[ind]?.emailVerifiedUser;
-  //       userEmail = myVal[ind]?.email;
-  //     }
-  //   })
-  // })
+        statusVerified = myVal[ind]?.adminVerifiedUser;
+        statusBlocked = myVal[ind]?.adminBlockedUser;
+        // emailVerified = myVal[ind]?.emailVerifiedUser;
+        userEmail = myVal[ind]?.email;
+      }
+    })
+  })
+
+  useEffect(() => {
+    if (userData && userData.statusBlocked) {
+      dispatch(addData(null));
+      router.push('/login');
+    }
+  }, [userData]);
 
   const formik = useFormik({
     initialValues: loginInitialValues,
@@ -40,41 +52,39 @@ const Login = () => {
 
 
     onSubmit: async (values) => {
-      // console.log(emailVerified)
-      // console.log(statusVerified)
-      // console.log(statusBlocked)
-      // if (email === userEmail) {
-      //   if (emailVerified) {
-      //     if (statusVerified && statusBlocked) {
-      const { success, message } = await loginUser(values.email, values.password);
+      // console.log(emailVerified, "emailVerified")
+      console.log(statusVerified, "statusVerified")
+      console.log(statusBlocked, "statusBlocked")
+      if (values.email === userEmail) {
+        // if (emailVerified) {
+        if (statusVerified || statusBlocked) {
+          const { success, message } = await loginUser(values.email, values.password);
 
-      if (success) {
-        toast.success(message);
-        router.push('/profile');
+          if (success) {
+            dispatch(addData(userData));
+            console.log()
+            toast.success(message);
+            router.push('/profile');
+          }
+        }
+        else {
+          toast.error('You are not verified by admin, please contact the admin', {
+          })
+        }
+      }
+      // else {
+      //   toast.error('verify your email, link has been already sent at your email id', {
+      //   })
+      // }
+      // }
+      else {
+        toast.error('Email not exist', {
+        })
       }
     }
-    //         else {
-    //           toast.error('You are not verified by admin, please contact the admin', {
-    //           })
-    //         }
-    //       }
-    //       else {
-    //         toast.error('verify your email, link has been already sent at your email id', {
-    //         })
-    //       }
-    //     }
-    //     else {
-    //       toast.error('Email not exist', {
-    //       })
-    //     }
-    //   }
-    // }
-    //   // } else {
-    //   //   toast.error(message);
-    //   // }
-    //   // },
   }
   )
+
 
   const { values, errors, touched, handleSubmit } = formik;
 

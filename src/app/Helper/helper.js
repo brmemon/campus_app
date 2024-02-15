@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
 import { setProfilePicURL } from "../Redux/userSlice";
 
-///////////////////////////////////      Login        ///////////////////////////////////\
+///////////////////////////////////      Login        ///////////////////////////////////
 
 export const loginUser = (email, password) => {
     try {
