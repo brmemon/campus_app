@@ -861,7 +861,7 @@ const Profile = () => {
                   text="Save Changes"
                   className="profile_button"
                   onClick={formik.handleSubmit}
-                  disabled={formik.isSubmitting || !formik.isValid}
+                  disabled={formik.isSubmitting || !formik.isValid || isButtonDisabled}
                 />
               </div>
             </div>

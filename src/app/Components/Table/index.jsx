@@ -4,8 +4,6 @@ import "../../../../styles/scss/Table.scss";
 import { db } from "@/app/firebase";
 import { ref, update } from "firebase/database";
 import MainButton from "../MainButton";
-import { useDispatch } from "react-redux";
-import { updateBlockedUser } from "@/app/Redux/userSlice";
 
 const MyTable = ({ tableData, values }) => {
     let userInfo = values;
@@ -19,24 +17,13 @@ const MyTable = ({ tableData, values }) => {
         update(ref(db, `/users/${uid}`), { adminVerifiedUser: updatedValue })
     }
 
-    // const blockUsers = (data) => {
-    //     let temper = userInfo.filter((not, index) => index === data)
-    //     temper[0].adminBlockedUser ? valueUpdated = false : valueUpdated = true;
-    //     let uid = temper[0].uid;
-
-    //     update(ref(db, `/users/${uid}`), { adminBlockedUser: valueUpdated })
-    // }
-
-    const dispatch = useDispatch();
-
     const blockUsers = (data) => {
-      let temper = userInfo.filter((not, index) => index === data);
-      temper[0].adminBlockedUser ? valueUpdated = false : valueUpdated = true;
-      let uid = temper[0].uid;
-  
-      dispatch(updateBlockedUser({ uid, blocked: valueUpdated })); 
-      update(ref(db, `/users/${uid}`), { adminBlockedUser: valueUpdated });
-    };
+        let temper = userInfo.filter((not, index) => index === data)
+        temper[0].adminBlockedUser ? valueUpdated = false : valueUpdated = true;
+        let uid = temper[0].uid;
+
+        update(ref(db, `/users/${uid}`), { adminBlockedUser: valueUpdated })
+    }
 
     return (
         <div>

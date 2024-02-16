@@ -15,14 +15,9 @@ import { loginUser } from '@/app/Helper/helper';
 import { loginInitialValues, loginSchema } from '@/app/Helper/schema';
 import { onValue, ref } from 'firebase/database';
 import { db } from '@/app/firebase';
-import { addData } from '@/app/Redux/userSlice';
-import { useDispatch, useSelector } from 'react-redux';
 
 const Login = () => {
   const router = useRouter();
-  const dispatch = useDispatch()
-  const userData = useSelector(state => state.campus.userData);
-  console.log(userData, "user Data")
 
   let emailVerified, statusVerified, statusBlocked, userEmail;
   useEffect(() => {
@@ -39,12 +34,6 @@ const Login = () => {
     })
   })
 
-  useEffect(() => {
-    if (userData && userData.statusBlocked) {
-      dispatch(addData(null));
-      router.push('/login');
-    }
-  }, [userData]);
 
   const formik = useFormik({
     initialValues: loginInitialValues,
@@ -61,7 +50,6 @@ const Login = () => {
           const { success, message } = await loginUser(values.email, values.password);
 
           if (success) {
-            dispatch(addData(userData));
             console.log()
             toast.success(message);
             router.push('/profile');

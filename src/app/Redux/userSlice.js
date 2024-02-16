@@ -24,18 +24,6 @@ const campusSlice = createSlice({
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
     },
 
-    updateBlockedUser: (state, action) => {
-      const { uid, blocked } = action.payload;
-      if (Array.isArray(state.userData)) {
-        const index = state.userData.findIndex(user => user.uid === uid);
-        if (index !== -1) {
-          state.userData[index].adminBlockedUser = blocked;
-        }
-      } else {
-        state.userData = { ...state.userData, adminBlockedUser: blocked };
-      }
-    },
-
     addJobPost: (state, action) => {
       state.jobData = action.payload;
     },
