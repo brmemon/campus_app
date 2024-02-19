@@ -122,7 +122,8 @@ const Login = () => {
             </div>
           </form>
 
-          <p className='sinUp_text'> Don't Have An Account ?
+          <p className='sinUp_text'>
+            Don't Have An Account ?
             <Link
               className='link'
               href="/auth/Signup"

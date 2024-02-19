@@ -20,7 +20,18 @@ import { db } from '@/app/firebase';
 
 const Signup = () => {
     const router = useRouter();
+    let statusBlocked, userEmail;
+    useEffect(() => {
+        onValue(ref(db, "/users"), async (data) => {
+            if (data.val()) {
+                let myVal = Object?.values(data.val());
+                let ind = myVal.findIndex((item) => item?.email === values.email)
 
+                statusBlocked = myVal[ind]?.adminBlockedUser;
+                userEmail = myVal[ind]?.email;
+            }
+        })
+    })
     const formik = useFormik({
         initialValues: signupInitialValues,
         validationSchema: () => signupSchema(values),
@@ -31,6 +42,10 @@ const Signup = () => {
             if (success) {
                 toast.success(message);
                 router.push('/auth/VerifyEmail');
+                if (statusBlocked) {
+                    toast.error('Your account is blocked, please contact the admin');
+                    router.push('/BlockedPage');
+                }
             } else {
                 toast.error(message);
             }

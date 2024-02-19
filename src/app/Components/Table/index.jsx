@@ -4,10 +4,12 @@ import "../../../../styles/scss/Table.scss";
 import { db } from "@/app/firebase";
 import { ref, update } from "firebase/database";
 import MainButton from "../MainButton";
+import { useRouter } from "next/navigation";
 
 const MyTable = ({ tableData, values }) => {
     let userInfo = values;
     let updatedValue, valueUpdated;
+    const router = useRouter();
 
     const verifyUsers = (data) => {
         let temper = userInfo.filter((not, index) => index === data)
@@ -18,11 +20,13 @@ const MyTable = ({ tableData, values }) => {
     }
 
     const blockUsers = (data) => {
-        let temper = userInfo.filter((not, index) => index === data)
-        temper[0].adminBlockedUser ? valueUpdated = false : valueUpdated = true;
+        let temper = userInfo.filter((not, index) => index === data);
         let uid = temper[0].uid;
 
-        update(ref(db, `/users/${uid}`), { adminBlockedUser: valueUpdated })
+        temper[0].adminBlockedUser ? valueUpdated = false : valueUpdated = true;
+
+        update(ref(db, `/users/${uid}`), { adminBlockedUser: valueUpdated });
+
     }
 
     return (
