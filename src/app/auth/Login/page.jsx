@@ -46,7 +46,7 @@ const Login = () => {
       console.log(statusBlocked, "statusBlocked")
       if (values.email === userEmail) {
         // if (emailVerified) {
-        if (statusVerified || statusBlocked) {
+        if (statusVerified && !statusBlocked) {
           const { success, message } = await loginUser(values.email, values.password);
 
           if (success) {
