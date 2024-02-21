@@ -106,20 +106,21 @@ const Providers = ({ children }) => {
   }, [dispatch]);
 
   useEffect(() => {
-    const unsubscribeAuth = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const userRef = ref(db, `/users/${user.uid}`);
-        const snapshot = await get(userRef);
-        const userData = snapshot.val();
-
-        if (userData && userData.adminBlockedUser) {
+    const unSubscribe = onValue(ref(db, "/users"), async (userData) => {
+      if (userData.exists()) {
+        const usersData = userData.val();
+        dispatch(addData(usersData));
+  
+        const currentUser = auth.currentUser;
+        if (currentUser && usersData[currentUser.uid]?.adminBlockedUser) {
           router.push('/BlockedPage');
         }
       }
     });
-
-    return () => unsubscribeAuth();
-  }, [router]);
+  
+    return () => unSubscribe();
+  }, [dispatch, router]);
+  
 
   return (
     <>

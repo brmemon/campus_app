@@ -15,11 +15,12 @@ import { loginUser } from '@/app/Helper/helper';
 import { loginInitialValues, loginSchema } from '@/app/Helper/schema';
 import { onValue, ref } from 'firebase/database';
 import { db } from '@/app/firebase';
+import { isAuthenticated } from '@/app/Auth';
 
 const Login = () => {
   const router = useRouter();
 
-  let emailVerified, statusVerified, statusBlocked, userEmail;
+  let statusVerified, statusBlocked, userEmail;
   useEffect(() => {
     onValue(ref(db, "/users"), async (data) => {
       if (data.val()) {
@@ -28,52 +29,35 @@ const Login = () => {
 
         statusVerified = myVal[ind]?.adminVerifiedUser;
         statusBlocked = myVal[ind]?.adminBlockedUser;
-        // emailVerified = myVal[ind]?.emailVerifiedUser;
         userEmail = myVal[ind]?.email;
       }
     })
   })
 
-
   const formik = useFormik({
     initialValues: loginInitialValues,
     validationSchema: () => loginSchema(values),
 
-
     onSubmit: async (values) => {
-      // console.log(emailVerified, "emailVerified")
-      console.log(statusVerified, "statusVerified")
-      console.log(statusBlocked, "statusBlocked")
       if (values.email === userEmail) {
-        // if (emailVerified) {
         if (statusVerified && !statusBlocked) {
           const { success, message } = await loginUser(values.email, values.password);
 
           if (success) {
-            console.log()
             toast.success(message);
             router.push('/profile');
           }
+          else {
+            toast.error('You are not verified by admin, please contact the admin')
+          }
+        } else if (statusBlocked) {
+          toast.error('You are blocked by admin');
+          router.push('/BlockedPage');
         }
-        else {
-          toast.error('You are not verified by admin, please contact the admin', {
-          })
-        }
-      }
-      // else {
-      //   toast.error('verify your email, link has been already sent at your email id', {
-      //   })
-      // }
-      // }
-      else {
-        toast.error('Email not exist', {
-        })
       }
     }
   }
   )
-
-
   const { values, errors, touched, handleSubmit } = formik;
 
   return (

@@ -8,6 +8,7 @@ import { useState } from 'react';
 import Image from 'next/image'
 import question from "../Assets/questionmark.png"
 import { useRouter } from 'next/navigation';
+import { auth } from '@/app/firebase';
 const Logout = () => {
   const router = useRouter();
 
@@ -17,7 +18,13 @@ const Logout = () => {
   const handleClose = () => setOpen(false);
 
   const handleYesClick = () => {
-    router.push('/auth/Login');
+    auth.signOut()
+      .then(() => {
+        router.push('/auth/Login');
+      })
+      .catch(error => {
+        console.error('Error LogOut:', error);
+      });
   };
 
   return (

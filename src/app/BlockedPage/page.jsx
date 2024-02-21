@@ -1,3 +1,4 @@
+"use client"
 import React from 'react'
 import "../../../styles/scss/BlockPage.scss"
 import "../../../styles/scss/LogoutButton.scss"
@@ -6,9 +7,23 @@ import AuthContainer from '../auth/SideContainers/AuthContainer'
 import { ToastContainer } from 'react-toastify'
 import { FaRegHandshake } from 'react-icons/fa6'
 import MainButton from '../Components/MainButton'
-import Link from 'next/link'
 import { MdBlock } from 'react-icons/md'
+import { useRouter } from 'next/navigation';
+import { auth } from '../firebase'
+
 const BlockPage = () => {
+  const router = useRouter();
+
+  const handleLogout = () => {
+    auth.signOut() 
+      .then(() => { 
+        router.push('/auth/Login');
+      })
+      .catch(error => {
+        console.error('Error LogOut:', error);
+      });
+  };
+
   return (
     <div className="container">
       <AuthContainer />
@@ -22,13 +37,9 @@ const BlockPage = () => {
           </div>
           <h2 className='login_welcome'>You Are Blocked By Admin</h2>
           <div className='MainButton_Parent'>
-            <Link
-              className='link'
-              href="/auth/Login">
-              <MainButton
-                type="submit"
-                text="LogOut" />
-            </Link>
+            <MainButton
+              onClick={handleLogout}
+              text="LogOut" />
           </div>
         </div>
       </div>
