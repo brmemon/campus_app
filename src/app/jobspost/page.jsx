@@ -14,6 +14,7 @@ import { ToastContainer, toast } from 'react-toastify'
 import { push, ref, set } from 'firebase/database'
 import { db } from '../firebase'
 import { v4 as uuidv4 } from 'uuid';
+import withAuth from '../Auth'
 
 const JobsPost = () => {
     const [pathname, setPathname] = useState();
@@ -147,4 +148,4 @@ const JobsPost = () => {
     )
 }
 
-export default JobsPost
+export default withAuth(JobsPost)

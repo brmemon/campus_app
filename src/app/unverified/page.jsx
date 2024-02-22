@@ -8,6 +8,7 @@ import MyTable from '../Components/Table'
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
 import { useSelector } from 'react-redux'
+import withAuth from '../Auth'
 
 const Unverified = () => {
   const [pathname, setPathname] = useState()
@@ -34,4 +35,4 @@ const Unverified = () => {
   )
 }
 
-export default Unverified
+export default withAuth(Unverified)

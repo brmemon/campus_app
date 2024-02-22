@@ -8,6 +8,7 @@ import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
 import MapData from '../Components/MapData'
 import { useSelector } from 'react-redux'
+import withAuth from '../Auth'
 
 const PostedJobs = () => {
   const [pathname, setPathname] = useState()
@@ -34,4 +35,4 @@ const PostedJobs = () => {
   )
 }
 
-export default PostedJobs
+export default withAuth(PostedJobs)

@@ -4,6 +4,7 @@ import Logout from '../Components/LogoutButton';
 import CustomModal from '../Components/Modal';
 import { CompanyNavbarData } from '../Helper/constant';
 import "../../../styles/scss/StudentApplied.scss";
+import withAuth from '../Auth';
 
 const StudentApplied = () => {
 
@@ -22,4 +23,4 @@ const StudentApplied = () => {
   );
 };
 
-export default StudentApplied;
+export default withAuth(StudentApplied);

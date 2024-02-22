@@ -4,6 +4,7 @@ import "../../../../styles/scss/VerifyEmail.scss"
 import { FaRegHandshake } from 'react-icons/fa6'
 import MainButton from '@/app/Components/MainButton'
 import { useRouter } from 'next/navigation'
+import withAuth from '@/app/Auth'
 
 const VerificationEmail = () => {
 
@@ -33,4 +34,4 @@ const VerificationEmail = () => {
     )
 }
 
-export default VerificationEmail
+export default withAuth(VerificationEmail)

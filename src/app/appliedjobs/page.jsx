@@ -6,6 +6,7 @@ import { StudentNavbarData } from '../Helper/constant';
 import Logout from '../Components/LogoutButton';
 import { useSelector } from 'react-redux';
 import "../../../styles/scss/AppliedJobs.scss"
+import withAuth from '../Auth';
 
 const AppliedJobs = () => {
   const appliedJobs = useSelector((state) => state.campus.appliedJobs);
@@ -48,4 +49,4 @@ const AppliedJobs = () => {
   );
 };
 
-export default AppliedJobs;
+export default withAuth(AppliedJobs);

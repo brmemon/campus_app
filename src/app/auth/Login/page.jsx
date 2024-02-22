@@ -15,7 +15,7 @@ import { loginUser } from '@/app/Helper/helper';
 import { loginInitialValues, loginSchema } from '@/app/Helper/schema';
 import { onValue, ref } from 'firebase/database';
 import { db } from '@/app/firebase';
-import { isAuthenticated } from '@/app/Auth';
+import withAuth from '@/app/Auth';
 
 const Login = () => {
   const router = useRouter();
@@ -122,4 +122,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default withAuth(Login);

@@ -8,6 +8,7 @@ import "../../../styles/scss/globals.scss"
 import Logout from '../Components/LogoutButton'
 import CustomModal from '../Components/Modal'
 import { useSelector } from 'react-redux'
+import withAuth from '../Auth'
 
 const Verified = () => {
   const [pathname, setPathname] = useState()
@@ -34,4 +35,4 @@ const Verified = () => {
   )
 }
 
-export default Verified
+export default withAuth(Verified)

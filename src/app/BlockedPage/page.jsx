@@ -10,6 +10,7 @@ import MainButton from '../Components/MainButton'
 import { MdBlock } from 'react-icons/md'
 import { useRouter } from 'next/navigation';
 import { auth } from '../firebase'
+import withAuth from '../Auth'
 
 const BlockPage = () => {
   const router = useRouter();
@@ -47,4 +48,4 @@ const BlockPage = () => {
   )
 }
 
-export default BlockPage
+export default withAuth(BlockPage)

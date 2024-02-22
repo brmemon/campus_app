@@ -698,6 +698,7 @@ import { onValue, ref } from 'firebase/database';
 import { getStorage } from 'firebase/storage';
 import { app, auth, db } from '../firebase';
 import Loader from '../Components/MUILoader/Loader';
+import withAuth from '../Auth';
 
 const Profile = () => {
   const [pathname, setPathname] = useState("");
@@ -782,7 +783,7 @@ const Profile = () => {
               </div>
 
               <div className="profile_input">
-                <Input label="Email" className="input_profile" name="email" id="email" disabled value={formik.values.email} />
+                <Input label="Email" className="input_profile" name="email" id="email" disable value={formik.values.email} />
               </div>
 
               <div className="profile_input">
@@ -872,4 +873,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default withAuth(Profile);

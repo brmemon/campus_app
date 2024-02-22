@@ -6,6 +6,7 @@ import { StudentNavbarData } from '../Helper/constant';
 import Logout from '../Components/LogoutButton';
 import MapData from '../Components/MapData';
 import "../../../styles/scss/Jobs.scss"
+import withAuth from '../Auth';
 
 const Jobs = () => {
   const selectorJobData = useSelector((state) => state.campus.jobData);
@@ -24,4 +25,4 @@ const Jobs = () => {
   );
 }
 
-export default Jobs;
+export default withAuth(Jobs);
