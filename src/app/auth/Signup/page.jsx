@@ -43,7 +43,7 @@ const Signup = () => {
                 toast.success(message);
                 router.push('/auth/VerifyEmail');
                 if (statusBlocked) {
-                    toast.error('Your account is blocked, please contact the admin');
+                    toast.error('Your Account Is Blocked');
                     router.push('/BlockedPage');
                 }
             } else {

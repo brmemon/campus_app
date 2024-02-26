@@ -1,30 +1,64 @@
 "use client"
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import Loader from "./Components/MUILoader/Loader";
+import { auth, db } from "./firebase";
+import { useEffect, useState } from "react";
+import { onValue, ref } from "firebase/database";
 
 export default function withAuth(Component) {
   function AuthWrapper(props) {
     const router = useRouter();
-    const [loading, setLoading] = useState(true);
-    const auth = useSelector(state => state.campus.userData);
-    console.log(auth , "New world");
-    useEffect(() => {
-      if (!auth) {
-        router.push('/auth/Login');
-      }
-      else {
-        setLoading(false)
-      }
-    }, [auth, router]);
+    const [userType, setUserType] = useState(null);
+    const authUser = useSelector(state => state.campus.userData);
+    const isLoading = useSelector(state => state.campus.isLoading);
 
-    if (loading) {
+    useEffect(() => {
+      const fetchData = async () => {
+        try {
+          const userRef = ref(db, `users/${auth.currentUser.uid}/userType`);
+          onValue(userRef, (snapshot) => {
+            const userType = snapshot.val();
+            if (userType) {
+              setUserType(userType);
+              console.log(userType, "yyyyyyyyyyyyyyyyyyyyyyyy");
+            }
+          });
+        } catch (error) {
+          console.error('Error fetching user role:', error.message);
+        }
+      };
+
+      fetchData();
+    }, []);
+
+
+    if (userType === null) {
       return <Loader />;
     }
 
-    if (!auth) {
+    // useEffect(() => {
+    //   const unsubscribe = auth.onAuthStateChanged(user => {
+    //     if (user) {
+    //       console.log("Current user:", user);
+    //       const userType = user.userType;
+    //       console.log("User Type:", userType);
+    //     } else {
+    //       console.log("No user logged in.");
+    //     }
+    //   });
+
+    //   return () => unsubscribe();
+    // }, []);
+
+
+    if (!authUser) {
       router.push('/auth/Login');
+      return null;
+    }
+
+    if (isLoading) {
+      return <Loader />;
     }
 
     return <Component {...props} />;

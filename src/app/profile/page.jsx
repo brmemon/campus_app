@@ -716,8 +716,8 @@ const Profile = () => {
         onValue(userRef, (snapshot) => {
           const userType = snapshot.val();
           if (userType) {
-            setPathname(window.location.pathname);
             setUserType(userType);
+            setPathname(window.location.pathname);
             setLoading(false);
           }
         });
@@ -741,12 +741,12 @@ const Profile = () => {
 
   const { values, errors, touched, handleSubmit } = formik;
 
-  const isButtonDisabled = () => {
-    return (
-      !formik.values.profilePic && !formik.values.name && !formik.values.gender &&
-      !formik.values.oldPassword && !formik.values.newPassword
-    );
-  };
+  // const isButtonDisabled = () => {
+  //   return (
+  //     !formik.values.profilePic && !formik.values.name && !formik.values.gender &&
+  //     !formik.values.oldPassword && !formik.values.newPassword
+  //   );
+  // };
 
   if (loading || userType === null) {
     return <Loader />;
@@ -862,7 +862,7 @@ const Profile = () => {
                   text="Save Changes"
                   className="profile_button"
                   onClick={formik.handleSubmit}
-                  disabled={formik.isSubmitting || !formik.isValid || isButtonDisabled}
+                  disabled={formik.isSubmitting || !formik.isValid}
                 />
               </div>
             </div>

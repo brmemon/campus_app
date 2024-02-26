@@ -51,7 +51,7 @@ const Login = () => {
             toast.error('You are not verified by admin, please contact the admin')
           }
         } else if (statusBlocked) {
-          toast.error('You are blocked by admin');
+          toast.error('Your Account Is Blocked');
           router.push('/BlockedPage');
         }
       }

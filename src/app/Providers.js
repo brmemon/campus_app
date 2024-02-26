@@ -77,7 +77,7 @@ import { useDispatch } from 'react-redux';
 import { addData, addJobPost } from './Redux/userSlice';
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { get, onValue, ref } from 'firebase/database';
+import { onValue, ref } from 'firebase/database';
 import { auth, db } from './firebase';
 
 const Providers = ({ children }) => {

@@ -36,7 +36,7 @@ const BlockPage = () => {
             <h1 className="login_logo"> Block </h1>
             <MdBlock className="campus_logo" />
           </div>
-          <h2 className='login_welcome'>You Are Blocked By Admin</h2>
+          <h2 className='login_welcome'>Your Account Is Blocked</h2>
           <div className='MainButton_Parent'>
             <MainButton
               onClick={handleLogout}

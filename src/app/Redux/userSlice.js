@@ -7,16 +7,13 @@ const initialState = {
   blocked: [],
   jobData: [],
   appliedJobs: [],
-  isLoadingUserData: false,
+  isLoading: true,
 };
 
 const campusSlice = createSlice({
   name: "campus",
   initialState,
   reducers: {
-    addDataStart: (state) => {
-      state.isLoadingUserData = true;
-    },
 
     addData: (state, action) => {
       state.userData = action.payload;
@@ -25,11 +22,7 @@ const campusSlice = createSlice({
       state.unVerified = temp.filter(user => user.name !== 'admin' && !user.adminVerifiedUser && !user.adminBlockedUser);
       state.verified = temp.filter(user => user.name !== 'admin' && user.adminVerifiedUser && !user.adminBlockedUser);
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
-      state.isLoadingUserData = false;
-    },
-
-    addDataFailure: (state) => {
-      state.isLoadingUserData = false;
+      if(state.userData) state.isLoading = false;
     },
 
     addJobPost: (state, action) => {
@@ -43,5 +36,5 @@ const campusSlice = createSlice({
   }
 });
 
-export const { addDataStart, addData, addDataFailure, addJobPost, applyJob } = campusSlice.actions;
+export const { addData, addJobPost, applyJob } = campusSlice.actions;
 export default campusSlice.reducer;
