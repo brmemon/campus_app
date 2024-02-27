@@ -12,7 +12,6 @@ export default function withAuth(Component) {
     const [userType, setUserType] = useState(null);
     const authUser = useSelector(state => state.campus.userData);
     const isLoading = useSelector(state => state.campus.isLoading);
-
     useEffect(() => {
       const fetchData = async () => {
         try {
@@ -21,48 +20,28 @@ export default function withAuth(Component) {
             const userType = snapshot.val();
             if (userType) {
               setUserType(userType);
-              console.log(userType, "yyyyyyyyyyyyyyyyyyyyyyyy");
+              console.log(userType);
             }
           });
-        } catch (error) {
-          console.error('Error fetching user role:', error.message);
+        } catch (log) {
+          console.log('fetching user role:');
         }
       };
-
       fetchData();
     }, []);
 
-
-    if (userType === null) {
-      return <Loader />;
-    }
-
-    // useEffect(() => {
-    //   const unsubscribe = auth.onAuthStateChanged(user => {
-    //     if (user) {
-    //       console.log("Current user:", user);
-    //       const userType = user.userType;
-    //       console.log("User Type:", userType);
-    //     } else {
-    //       console.log("No user logged in.");
-    //     }
-    //   });
-
-    //   return () => unsubscribe();
-    // }, []);
-
-
-    if (!authUser) {
-      router.push('/auth/Login');
-      return null;
-    }
+    useEffect(() => {
+      if (!authUser) {
+        return router.push('/auth/Login')
+      }
+    }, []);
 
     if (isLoading) {
       return <Loader />;
     }
 
     return <Component {...props} />;
-  }
 
+  }
   return AuthWrapper;
 }
