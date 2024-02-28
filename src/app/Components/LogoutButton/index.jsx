@@ -1,26 +1,30 @@
-"use client"
-import React from 'react'
-import MainButton from '../MainButton'
-import "../../../../styles/scss/LogoutButton.scss"
+import React from 'react';
+import MainButton from '../MainButton';
+import "../../../../styles/scss/LogoutButton.scss";
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
 import { useState } from 'react';
-import Image from 'next/image'
-import question from "../Assets/questionmark.png"
+import Image from 'next/image';
+import question from "../Assets/questionmark.png";
 import { useRouter } from 'next/navigation';
 import { auth } from '@/app/firebase';
+import { useDispatch, useSelector } from 'react-redux';
+import { addData } from '@/app/Redux/userSlice';
+
 const Logout = () => {
   const router = useRouter();
-
+  const dispatch = useDispatch();
   const [open, setOpen] = useState(false);
 
+  const currentUser = useSelector(state => state.campus.currentUserData);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleYesClick = () => {
     auth.signOut()
       .then(() => {
-        router.push('/auth/Login');
+        // dispatch(addData(''));
+        router.push('/auth/Login'); 
       })
       .catch(error => {
         console.error('Error LogOut:', error);
@@ -49,8 +53,4 @@ const Logout = () => {
   )
 }
 
-export default Logout
-
-
-
-
+export default Logout;

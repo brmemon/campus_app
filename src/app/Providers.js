@@ -4,10 +4,14 @@ import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { onValue, ref } from 'firebase/database';
 import { auth, db } from './firebase';
+import { getAuth } from 'firebase/auth';
 
 const Providers = ({ children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
+
+  const auth = getAuth();
+  // console.log("curent user is: ", auth.currentUser.uid)
 
   useEffect(() => {
     const userDataUnsubscribe = onValue(ref(db, "/users"), async (userData) => {
