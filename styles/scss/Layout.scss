@@ -14,7 +14,7 @@
         width: 25%;
         align-items: center;
         display: flex;
-        background-color: #12ec36;
+        background-color: #50c99f;
         flex-direction: column;
         text-align: center;
     }
@@ -63,8 +63,8 @@
 
         .main_mapmenu {
             background-color: aliceblue;
-            color: #12ec36;
-            border: 2px solid #12ec36;
+            color: #50c99f;
+            border: 2px solid #50c99f;
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
@@ -74,16 +74,16 @@
 
         .main_mapmenu:hover {
             background-color: white;
-            color: #12ec36;
-            border: 2px solid #12ec36;
+            color: #50c99f;
+            border: 2px solid #50c99f;
             width: 100%;
         }
 
         .map_menu {
             justify-content: flex-start;
-            background-color: #12ec36;
+            background-color: #50c99f;
             color: white;
-            border: 2px solid #12ec36;
+            border: 2px solid #50c99f;
             display: flex;
             width: 100%;
             gap: 10px;
@@ -91,9 +91,9 @@
         }
 
         .map_menu:hover {
-            border: 2px solid #12ec36;
+            border: 2px solid #50c99f;
             background-color: white;
-            color: #12ec36;
+            color: #50c99f;
             width: 100%;
         }
 
@@ -101,7 +101,7 @@
 
     .children {
         width: 75%;
-        background-color: #12ec36;
+        background-color: #50c99f;
     }
 }
 

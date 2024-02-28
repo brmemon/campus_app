@@ -1,53 +1,28 @@
 import { useRouter } from "next/navigation";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import Loader from "./Components/MUILoader/Loader";
-import { useEffect } from "react";
-// import { useEffect, useState } from "react";
-// import { auth, db } from "./firebase";
-// import { onValue, ref } from "firebase/database";
 
 export default function withAuth(Component) {
   function AuthWrapper(props) {
     const router = useRouter();
-    // const [userType, setUserType] = useState(null);
-    const currentUser = useSelector(state => state.campus.currentUserData);
-    // const isLoading = useSelector(state => state.campus.isLoading);
-    console.log("auth file currentUser ", currentUser,);
+    const userCurrentData = useSelector((state) => state.campus.userType);
+    const loader = useSelector((state) => state.campus.isLoading);
+
+    console.log(userCurrentData, "auth js ki file");
 
     // useEffect(() => {
-    //   if (!currentUser) {
+    //   if (!userCurrentData) {
     //     router.push("/auth/Login")
     //   }
     // }, [])
-    // useEffect(() => {
-    //   const fetchData = async () => {
-    //     try {
-    //       const userRef = ref(db, `users/${auth.currentUser.uid}/userType`);
-    //       onValue(userRef, (snapshot) => {
-    //         const userType = snapshot.val();
-    //         if (userType) {
-    //           setUserType(userType);
-    //           console.log(userType, " Is userType");
-    //           if (!currentUser) {
-    //             console.log(!userType, "!userType", <br />, userType, "userType ");
-    //             router.push('/auth/Login');
-    //           }
-    //         }
-    //       });
-    //     } catch (log) {
-    //       console.log('Error fetching user role:');
-    //     }
 
-    //   };
-
-    //   fetchData();
-    // }, [currentUser]);
-
-    // if (isLoading)
-    //   return <Loader />
-      
-      return <Component {...props} />;
+    if (loader) {
+      return <Loader />
     }
+
+    return <Component {...props} />;
+  }
 
   return AuthWrapper;
 }
