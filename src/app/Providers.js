@@ -13,18 +13,26 @@ const Providers = ({ children }) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userRef = ref(db, `users/${auth.currentUser.uid}/userType`);
-        onValue(userRef, (snapshot) => {
-          const userType = snapshot.val();
-          if (userType) {
-            console.log(userType, "provider userType");
-            dispatch(setCurrentUser(userType))
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            const userRef = ref(db, `users/${user.uid}`);
+            onValue(userRef, (snapshot) => {
+              const userType = snapshot.val();
+              if (userType) {
+                console.log(userType, "provider userType");
+                dispatch(setCurrentUser(userType));
+              }
+            });
+          } else {
           }
         });
+
+        return () => unsubscribe();
       } catch (error) {
         console.error('Error fetching user role:', error.message);
       }
     };
+    
     fetchData();
   }, []);
 

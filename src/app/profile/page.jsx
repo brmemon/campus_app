@@ -699,28 +699,38 @@ import { getStorage } from 'firebase/storage';
 import { app, auth, db } from '../firebase';
 import Loader from '../Components/MUILoader/Loader';
 import withAuth from '../Auth';
+import { useSelector } from 'react-redux';
 
 const Profile = () => {
   const [pathname, setPathname] = useState("");
   const [profilePicURL, setProfilePicURL] = useState(null);
   const [userType, setUserType] = useState(null);
   const [loading, setLoading] = useState(true);
-
+  const userCurrentData = useSelector((state) => state.campus.userType);
+  console.log(userCurrentData, "profile ");
   const storage = getStorage(app);
   const temper = typeof window !== undefined;
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const userRef = ref(db, `users/${auth.currentUser.uid}/userType`);
-        onValue(userRef, (snapshot) => {
-          const userType = snapshot.val();
-          if (userType) {
-            setUserType(userType);
-            setPathname(window.location.pathname);
-            setLoading(false);
+        const unsubscribe = auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            const userRef = ref(db, `users/${user.uid}/userType`);
+            onValue(userRef, (snapshot) => {
+              const userType = snapshot.val();
+              if (userType) {
+                setUserType(userType)
+                setPathname(window.location.pathname)
+                setLoading(false)
+              }
+            });
+          } else {
           }
         });
+
+        return () => unsubscribe();
       } catch (error) {
         console.error('Error fetching user role:', error.message);
       }
@@ -751,7 +761,7 @@ const Profile = () => {
   if (loading || userType === null) {
     return <Loader />;
   }
-
+console.log("formik.values",formik.values);
   return (
     <div>
       <CustomLayout SideNavbarData={userType === "admin" ? AdminNavbarData : userType === "Company" ? CompanyNavbarData : userType === "student" ? StudentNavbarData : StudentNavbarData} pathname={pathname} className={'hiden'}>
@@ -779,11 +789,18 @@ const Profile = () => {
                     onChange={handleProfilePicChange}
                   />
                 </div>
-                <p className="avater_name">Bilal Raza</p>
+                <p className="avater_name">{userCurrentData.name}</p>
               </div>
 
               <div className="profile_input">
-                <Input label="Email" className="input_profile" name="email" id="email" disable value={formik.values.email} />
+                <Input
+                  disabled
+                  id="email"
+                  name="email"
+                  label="Email"
+                  className="input_profile"
+                  placeholder={userCurrentData.email}
+                  value={formik.values.email} />
               </div>
 
               <div className="profile_input">
@@ -792,8 +809,10 @@ const Profile = () => {
                   label="Name"
                   name="name"
                   id="name"
-                  onChange={formik.handleChange}
+                  // defaultValue={userCurrentData.name}
+                  // onChange={formik.handleChange}
                   value={formik.values.name}
+                  // placeholder={userCurrentData.name}
                   error={formik.touched.name && Boolean(formik.errors.name)}
                 />
                 {formik.touched.name && formik.errors.name && (

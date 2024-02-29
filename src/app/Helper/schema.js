@@ -1,4 +1,6 @@
+import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
+// const userCurrentData = useSelector((state) => state.campus.userType);
 
 ///////////////////////////////////      Sign Up        ///////////////////////////////////
 
