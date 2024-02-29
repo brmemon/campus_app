@@ -13,8 +13,8 @@ const Input = ({ className, type, label, disabled, onChange, value, name, id, pl
         disabled={disabled}
         name={name}
         id={id}
-        placeholder={placeholder}
-        defaultValue="Something that will stay there initially only"
+        // placeholder={placeholder}
+        // defaultValue="Something that will stay there initially only"
         />
     </div>
   )

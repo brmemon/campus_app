@@ -703,45 +703,48 @@ import { useSelector } from 'react-redux';
 
 const Profile = () => {
   const [pathname, setPathname] = useState("");
-  const [profilePicURL, setProfilePicURL] = useState(null);
-  const [userType, setUserType] = useState(null);
-  const [loading, setLoading] = useState(true);
+  // const [profilePicURL, setProfilePicURL] = useState(null);
+  // const [userType, setUserType] = useState(null);
+  // const [loading, setLoading] = useState(true);
   const userCurrentData = useSelector((state) => state.campus.userType);
   console.log(userCurrentData, "profile ");
-  const storage = getStorage(app);
+  // const storage = getStorage(app);
+
   const temper = typeof window !== undefined;
-
-
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const unsubscribe = auth.onAuthStateChanged(async (user) => {
-          if (user) {
-            const userRef = ref(db, `users/${user.uid}/userType`);
-            onValue(userRef, (snapshot) => {
-              const userType = snapshot.val();
-              if (userType) {
-                setUserType(userType)
-                setPathname(window.location.pathname)
-                setLoading(false)
-              }
-            });
-          } else {
-          }
-        });
+    setPathname(window.location.pathname)
+  }, [temper])
 
-        return () => unsubscribe();
-      } catch (error) {
-        console.error('Error fetching user role:', error.message);
-      }
-    };
+  // useEffect(() => {
+  //   const fetchData = async () => {
+  //     try {
+  //       const unsubscribe = auth.onAuthStateChanged(async (user) => {
+  //         if (user) {
+  //           const userRef = ref(db, `users/${user.uid}/userType`);
+  //           onValue(userRef, (snapshot) => {
+  //             const userType = snapshot.val();
+  //             if (userType) {
+  //               setUserType(userType)
+  //               setPathname(window.location.pathname)
+  //               setLoading(false)
+  //             }
+  //           });
+  //         } else {
+  //         }
+  //       });
 
-    fetchData();
-  }, [temper]);
+  //       return () => unsubscribe();
+  //     } catch (error) {
+  //       console.error('Error fetching user role:', error.message);
+  //     }
+  //   };
+
+  //   fetchData();
+  // }, []);
 
   const formik = useFormik({
-    initialValues: profileInitialValues,
-    validationSchema: profileSchema,
+    initialValues: profileInitialValues(userCurrentData),
+    validationSchema: profileSchema(userCurrentData),
     onSubmit: async (values) => {
     },
   });
@@ -758,29 +761,40 @@ const Profile = () => {
   //   );
   // };
 
-  if (loading || userType === null) {
+  if (!userCurrentData) {
     return <Loader />;
   }
-console.log("formik.values",formik.values);
+  console.log("formik.values", formik.values);
   return (
     <div>
-      <CustomLayout SideNavbarData={userType === "admin" ? AdminNavbarData : userType === "Company" ? CompanyNavbarData : userType === "student" ? StudentNavbarData : StudentNavbarData} pathname={pathname} className={'hiden'}>
+      <CustomLayout SideNavbarData={userCurrentData.userType === "admin" ? AdminNavbarData :
+          userCurrentData.userType === "Company" ? CompanyNavbarData :
+            userCurrentData.userType === "student" ? StudentNavbarData :
+              StudentNavbarData} pathname={pathname} className={'hiden'}>
+
         <div className="modal_styles">
           <div className="all_path">
-            <CustomModal SideNavbarData={userType === "admin" ? AdminNavbarData : userType === "company" ? CompanyNavbarData : userType === "student" ? StudentNavbarData : StudentNavbarData} pathname={pathname} />
+
+            <CustomModal SideNavbarData=
+              {userCurrentData.userType === "admin" ? AdminNavbarData :
+                userCurrentData.userType === "company" ? CompanyNavbarData :
+                  userCurrentData.userType === "student" ? StudentNavbarData :
+                    StudentNavbarData} pathname={pathname} />
+
             <div className="profile">
               <div className="avater_and_name">
                 <Logout />
                 <label htmlFor="profilePicInput" className="avater_pencilicon">
                   <Image
-                    src={profilePicURL ? profilePicURL : avater}
+                    // src={profilePicURL ? profilePicURL : avater}
+                    src={avater}
                     className={"navbar_avater"} alt={"Avater"}
                     width={100} height={100}
                     priority={true}
                   />
                   <MdOutlinePhotoCameraFront className="pencil_icon" />
                 </label>
-                <div className="profile_input">
+                {/* <div className="profile_input">
                   <input
                     type="file"
                     id="profilePicInput"
@@ -788,7 +802,7 @@ console.log("formik.values",formik.values);
                     style={{ display: 'none' }}
                     onChange={handleProfilePicChange}
                   />
-                </div>
+                </div> */}
                 <p className="avater_name">{userCurrentData.name}</p>
               </div>
 
@@ -799,7 +813,7 @@ console.log("formik.values",formik.values);
                   name="email"
                   label="Email"
                   className="input_profile"
-                  placeholder={userCurrentData.email}
+                  // placeholder={userCurrentData.email}
                   value={formik.values.email} />
               </div>
 
@@ -893,3 +907,5 @@ console.log("formik.values",formik.values);
 };
 
 export default withAuth(Profile);
+
+

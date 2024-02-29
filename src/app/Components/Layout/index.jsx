@@ -6,10 +6,12 @@ import { FaRegHandshake } from 'react-icons/fa6'
 import MainButton from '../MainButton'
 import Image from 'next/image'
 import avater from "../Assets/avater.png"
+import { useSelector } from 'react-redux'
 
 const CustomLayout = ({ children, SideNavbarData, profilePic }) => {
     const router = useRouter()
     const [pathname, setPathname] = useState()
+    const userCurrentData = useSelector((state) => state.campus.userType);
     const temper = typeof window !== undefined
     useEffect(() => {
         setPathname(window.location.pathname)
@@ -27,7 +29,7 @@ const CustomLayout = ({ children, SideNavbarData, profilePic }) => {
                             width={100} height={100}
                             priority={true}
                         />
-                        <p className='user_name'>Bilal Raza</p>
+                        <p className='user_name'>{userCurrentData.name}</p>
                     </div>
                     <div className='data_div'>
                         {SideNavbarData.map((item) =>

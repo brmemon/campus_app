@@ -1,6 +1,4 @@
-import { useSelector } from 'react-redux';
 import * as Yup from 'yup';
-// const userCurrentData = useSelector((state) => state.campus.userType);
 
 ///////////////////////////////////      Sign Up        ///////////////////////////////////
 
@@ -82,12 +80,14 @@ export const profileSchema = (values) => {
     )
 }
 
-export const profileInitialValues = {
-    email: '',
-    name: '',
-    gender: '',
-    oldPassword: '',
-    newPassword: '',
+export const profileInitialValues = (userCurrentData) => {
+    return {
+        email: userCurrentData?.email,
+        name: userCurrentData?.name,
+        gender: '',
+        oldPassword: '',
+        newPassword: '',
+    }
 }
 
 ///////////////////////////////////      Job Post        ///////////////////////////////////
