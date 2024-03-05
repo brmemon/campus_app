@@ -84,7 +84,7 @@ export const profileInitialValues = (userCurrentData) => {
     return {
         email: userCurrentData?.email,
         name: userCurrentData?.name,
-        gender: '',
+        // gender: '',
         oldPassword: '',
         newPassword: '',
     }

@@ -29,7 +29,7 @@ const CustomLayout = ({ children, SideNavbarData, profilePic }) => {
                             width={100} height={100}
                             priority={true}
                         />
-                        <p className='user_name'>{userCurrentData.name}</p>
+                        <p className='user_name'>{userCurrentData?.name}</p>
                     </div>
                     <div className='data_div'>
                         {SideNavbarData.map((item) =>

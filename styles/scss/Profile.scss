@@ -1,118 +1,133 @@
 .all_path {
-    background-color: white;
-    height: 100vh;
-    width: 100%;
-    border-bottom-left-radius: 70px;
-    border-top-left-radius: 70px;
-    overflow: hidden;
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  border-bottom-left-radius: 70px;
+  border-top-left-radius: 70px;
+  overflow: hidden;
 
-    .profile {
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
+  .profile {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 
-        .avater_and_name {
-            margin-bottom: 35px;
+    .avater_and_name {
+      margin-bottom: 35px;
 
-            .avater_pencilicon {
-                position: relative;
-            }
+      .avater_pencilicon {
+        position: relative;
+      }
 
-            .avater {
-                width: 100px;
-                border-radius: 50px;
-                height: 100px;
-                font-size: 50px;
-            }
+      .avater {
+        width: 100px;
+        border-radius: 50px;
+        height: 100px;
+        font-size: 50px;
+      }
 
-            .pencil_icon {
-                background-color: whitesmoke;
-                border-radius: 9px;
-                width: 30px;
-                padding: 3px;
-                font-size: 24px;
-                right: 5px;
-                cursor: pointer;
-                bottom: 0;
-                position: absolute;
-                color: #50c99f;
-            }
+      .pencil_icon {
+        background-color: whitesmoke;
+        border-radius: 9px;
+        width: 30px;
+        padding: 3px;
+        font-size: 24px;
+        right: 5px;
+        cursor: pointer;
+        bottom: 0;
+        position: absolute;
+        color: #50c99f;
+      }
 
-            .avater_name {
-                font-size: 17px;
-                text-decoration: underline;
-                text-decoration-color: #50c99f;
-            }
-        }
-
-        .profile_input {
-            .input_profile {
-                width: 400px;
-                margin-bottom: 15px;
-                text-align: start;
-            }
-        }
-
-        .error {
-            width: 200px;
-            font-size: small;
-            color: red;
-            padding-bottom: 4px;
-        }
-
-        .error_oldPassword {
-            width: 100%;
-            font-size: small;
-            color: red;
-            padding-bottom: 4px;
-        }
-
-        .gender_radio {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .gender_class {
-            font-size: 15px;
-            text-align: justify;
-            color: #50c99f;
-        }
-
-        .profile_radio {
-            gap: 10px;
-            flex-direction: row;
-        }
-
-        .parent_profilebutton {
-            padding-top: 15px;
-            width: 100%;
-
-            .profile_button {
-                width: 300px;
-            }
-        }
+      .avater_name {
+        font-size: 17px;
+        text-decoration: underline;
+        text-decoration-color: #50c99f;
+      }
     }
+
+    .profile_input {
+      .input_profile {
+        width: 400px;
+        margin-bottom: 15px;
+        text-align: start;
+      }
+
+      .password-input-container {
+        position: relative;
+        display: grid;
+        width: 100%;
+      }
+      .eye-icon {
+        font-size: 18px;
+        margin: 7px 2px;
+        background-color: white;
+        padding: 11px 11px;
+        cursor: pointer;
+        position: absolute;
+        right: 0;
+      }
+    }
+
+    .error {
+      width: 200px;
+      font-size: small;
+      color: red;
+      padding-bottom: 4px;
+    }
+
+    .error_oldPassword {
+      width: 100%;
+      font-size: small;
+      color: red;
+      padding-bottom: 4px;
+    }
+
+    .gender_radio {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gender_class {
+      font-size: 15px;
+      text-align: justify;
+      color: #50c99f;
+    }
+
+    .profile_radio {
+      gap: 10px;
+      flex-direction: row;
+    }
+
+    .parent_profilebutton {
+      padding-top: 15px;
+      width: 100%;
+
+      .profile_button {
+        width: 300px;
+      }
+    }
+  }
 }
 
 @media only screen and (max-width: 749px) {
-    .all_path {
-        position: relative;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        padding: 0;
-        overflow: auto;
+  .all_path {
+    position: relative;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 0;
+    overflow: auto;
 
-        .profile {
-            padding-top: 100px;
+    .profile {
+      padding-top: 100px;
 
-            .profile_input {
-                .input_profile {
-                    width: 300px;
-                }
-            }
+      .profile_input {
+        .input_profile {
+          width: 300px;
         }
+      }
     }
+  }
 }

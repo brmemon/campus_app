@@ -1,809 +1,136 @@
-// "use client"
-// import { useEffect, useState } from 'react';
-// import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-// import Input from '../Components/Input';
-// import MainButton from '../Components/MainButton';
-// import Logout from '../Components/LogoutButton';
-// import CustomModal from '../Components/Modal';
-// import { MdOutlinePhotoCameraFront } from 'react-icons/md';
-// import CustomLayout from '../Components/Layout';
-// import { useFormik } from 'formik';
-// import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
-// import { updateProfile, updatePassword } from 'firebase/auth';
-// import { AdminNavbarData, Gender } from '../Helper/constant';
-// import { profileInitialValues, profileSchema } from '../Helper/schema';
-// import { app, auth } from '../firebase';
-// import avater from '../Components/Assets/avater.png';
-// import Image from 'next/image';
-// import "../../../styles/scss/Profile.scss";
-// import WithAuth from "../Auth" 
-
-// const Profile = () => {
-//   const [pathname, setPathname] = useState();
-//   const [profilePic, setProfilePic] = useState(null);
-//   const [profileUpdated, setProfileUpdated] = useState(false);
-
-//   useEffect(() => {
-//     setPathname(window.location.pathname);
-//   }, []);
-
-//   const formik = useFormik({
-//     initialValues: { ...profileInitialValues, profilePic: profilePic || null },
-//     validationSchema: profileSchema,
-//     onSubmit: async (values) => {
-//       try {
-//         await updateFirebaseProfile(values);
-//       } catch (error) {
-//         console.error('Error updating profile:', error.message);
-//       }
-//     },
-//   });
-
-//   const { values, errors, touched, handleSubmit, setFieldValue } = formik;
-
-//   const storage = getStorage(app);
-
-//   const handleProfilePicChange = async (event) => {
-//     const file = event.target.files[0];
-//     setFieldValue('profilePic', file);
-
-//     if (file) {
-//       try {
-//         const storageRef = ref(storage, `profilePictures/${auth.currentUser.uid}`);
-//         await uploadBytes(storageRef, file);
-
-//         const downloadURL = await getDownloadURL(storageRef);
-//         setProfilePic(downloadURL);
-//       } catch (error) {
-//         console.error('Error uploading profile picture:', error.message);
-//       }
-//     }
-//   };
-
-//   const isButtonDisabled = () => {
-//     return (
-//       !formik.values.profilePic && !formik.values.name && !formik.values.gender &&
-//       !formik.values.oldPassword && !formik.values.newPassword
-//     );
-//   };
-
-//   const updateFirebaseProfile = async (values) => {
-//     try {
-//       const user = auth.currentUser;
-
-//       const profileUpdates = {
-//         displayName: values.name,
-//       };
-
-//       if (values.gender) {
-//         profileUpdates.gender = values.gender;
-//       }
-
-//       if (values.newPassword) {
-//         await updatePassword(user, values.newPassword);
-//       }
-
-//       await updateProfile(user, profileUpdates);
-
-//       console.log('Profile updated successfully');
-//       setProfileUpdated(true);
-//     } catch (error) {
-//       console.error('Error updating profile:', error.message);
-//     }
-//   };
-
-//   return (
-//     <div>
-//       <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname} className={'hiden'} profilePic={profilePic}>
-//         <div className="modal_styles">
-//           <div className="all_path">
-//             <CustomModal SideNavbarData={AdminNavbarData} pathname={pathname} />
-//             <div className="profile">
-//               <div className="avater_and_name">
-//                 <Logout />
-//                 <label htmlFor="profilePicInput" className="avater_pencilicon">
-//                   <Image
-//                     src={profilePic ? profilePic : avater}
-//                     className={"navbar_avater"} alt={"Avater"}
-//                     width={100} height={100}
-//                     priority={true}
-//                   />
-//                   <MdOutlinePhotoCameraFront className="pencil_icon" />
-//                 </label>
-//                 <input
-//                   type="file"
-//                   id="profilePicInput"
-//                   accept="image/*"
-//                   style={{ display: 'none' }}
-//                   onChange={handleProfilePicChange}
-//                 />
-//                 <p className="avater_name">Bilal Raza</p>
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input label="Email" className="input_profile" name="email" id="email" disabled value={formik.values.email} />
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input
-//                   className="input_profile"
-//                   label="Name"
-//                   name="name"
-//                   id="name"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.name}
-//                   error={formik.touched.name && Boolean(formik.errors.name)}
-//                 />
-//                 {formik.touched.name && formik.errors.name && (
-//                   <div className="error">{formik.errors.name}</div>
-//                 )}
-//               </div>
-
-//               <div className="profile_input">
-//                 <FormControl fullWidth>
-//                   <InputLabel>Select Gender</InputLabel>
-//                   <Select
-//                     label="Select Gender"
-//                     labelId="demo-simple-select-label"
-//                     id="demo-simple-select-experience"
-//                     name="gender"
-//                     className="input_profile"
-//                     onChange={formik.handleChange}
-//                     value={formik.values.gender}
-//                     error={formik.touched.gender && Boolean(formik.errors.gender)}
-//                   >
-//                     {Gender.map((item, index) =>
-//                       <MenuItem key={index} value={item?.value}>
-//                         {item?.name}
-//                       </MenuItem>
-//                     )}
-//                   </Select>
-//                   {formik.touched.gender && formik.errors.gender && (
-//                     <div className="error">{formik.errors.gender}</div>
-//                   )}
-//                 </FormControl>
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input
-//                   label="Old Password"
-//                   name="oldPassword"
-//                   id="oldPassword"
-//                   type="password"
-//                   className="input_profile"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.oldPassword}
-//                   error={formik.touched.oldPassword && Boolean(formik.errors.oldPassword)}
-//                 />
-//                 {formik.touched.oldPassword && formik.errors.oldPassword && (
-//                   <div className="error_oldPassword">{formik.errors.oldPassword}</div>
-//                 )}
-
-//                 <Input
-//                   label="New Password"
-//                   name="newPassword"
-//                   id="newPassword"
-//                   type="password"
-//                   className="input_profile"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.newPassword}
-//                   error={formik.touched.newPassword && Boolean(formik.errors.newPassword)}
-//                 />
-//                 {formik.touched.newPassword && formik.errors.newPassword && (
-//                   <div className="error_oldPassword">{formik.errors.newPassword}</div>
-//                 )}
-//               </div>
-
-//               <div className="parent_profilebutton">
-//                 <MainButton
-//                   type="submit"
-//                   text="Save Changes"
-//                   className="profile_button"
-//                   onClick={handleSubmit}
-//                   disabled={isButtonDisabled()}
-//                 />
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </CustomLayout>
-//     </div>
-//   );
-// };
-
-// export default Profile;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "use client"
-// import React, { useEffect, useState } from 'react';
-// import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-// import Input from '../Components/Input';
-// import MainButton from '../Components/MainButton';
-// import { AdminNavbarData, CompanyNavbarData, StudentNavbarData, Gender } from '../Helper/constant';
-// import Image from 'next/image';
-// import avater from '../Components/Assets/avater.png';
-// import Logout from '../Components/LogoutButton';
-// import CustomModal from '../Components/Modal';
-// import { MdOutlinePhotoCameraFront } from 'react-icons/md';
-// import CustomLayout from '../Components/Layout';
-// import { useFormik } from 'formik';
-// import "../../../styles/scss/Profile.scss";
-// import { profileInitialValues, profileSchema } from '../Helper/schema';
-// import { uploadProfilePicture } from '../Helper/helper';
-// import { onValue, ref } from 'firebase/database';
-// import { getDownloadURL, getStorage, uploadBytes } from 'firebase/storage';
-// import { app, auth, db } from '../firebase';
-// import { Label } from '@mui/icons-material';
-
-// const Profile = () => {
-//   const [pathname, setPathname] = useState();
-//   const [profilePicURL, setProfilePicURL] = useState(null);
-//   const storage = getStorage(app);
-//   const temper = typeof window !== undefined;
-//   useEffect(() => {
-//     setPathname(window.location.pathname);
-//   }, [temper]);
-
-//   const formik = useFormik({
-//     initialValues: profileInitialValues,
-//     validationSchema: profileSchema,
-//     onSubmit: async (values) => {
-//     },
-//   });
-
-//   const handleProfilePicChange = async (event) => {
-//     const file = event.target.files[0];
-//     if (file) {
-//       try {
-//         const storageRef = ref(storage, `profilePictures/${auth.currentUser.uid}`);
-//         await uploadBytes(storageRef, file);
-//         const downloadURL = await getDownloadURL(storageRef);
-//         setProfilePicURL(downloadURL);
-//       } catch (error) {
-//         console.error('Error uploading profile picture:', error.message);
-//       }
-//     }
-//   };
-
-//   const { values, errors, touched, handleSubmit } = formik;
-
-//   const isButtonDisabled = () => {
-//     return (
-//       !formik.values.profilePic && !formik.values.name && !formik.values.gender &&
-//       !formik.values.oldPassword && !formik.values.newPassword
-//     );
-//   };
-
-
-//   return (
-//     <div>
-//       <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname} className={'hiden'}>
-//         <div className="modal_styles">
-//           <div className="all_path">
-//             <CustomModal SideNavbarData={AdminNavbarData} pathname={pathname} />
-//             <div className="profile">
-//               <div className="avater_and_name">
-//                 <Logout />
-//                 <label htmlFor="profilePicInput" className="avater_pencilicon">
-//                   <Image
-//                     src={profilePicURL ? profilePicURL : avater}
-//                     className={"navbar_avater"} alt={"Avater"}  
-//                     width={100} height={100}
-//                     priority={true}
-//                   />
-//                   <MdOutlinePhotoCameraFront className="pencil_icon" />
-//                 </label>
-//                 <div className="profile_input">
-//                   <input
-//                     type="file"
-//                     id="profilePicInput"
-//                     accept="image/*"
-//                     style={{ display: 'none' }}
-//                     onChange={handleProfilePicChange}
-//                   />
-//                 </div>
-//                 <p className="avater_name">Bilal Raza</p>
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input label="Email" className="input_profile" name="email" id="email" disabled value={formik.values.email} />
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input
-//                   className="input_profile"
-//                   label="Name"
-//                   name="name"
-//                   id="name"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.name}
-//                   error={formik.touched.name && Boolean(formik.errors.name)}
-//                 />
-//                 {formik.touched.name && formik.errors.name && (
-//                   <div className="error">{formik.errors.name}</div>
-//                 )}
-//               </div>
-
-//               <div className="profile_input">
-//                 <FormControl fullWidth>
-//                   <InputLabel>Select Gender</InputLabel>
-//                   <Select
-//                     label="Select Gender"
-//                     labelId="demo-simple-select-label"
-//                     id="demo-simple-select-experience"
-//                     name="gender"
-//                     className="input_profile"
-//                     onChange={formik.handleChange}
-//                     value={formik.values.gender}
-//                     error={formik.touched.gender && Boolean(formik.errors.gender)}
-//                   >
-//                     {Gender.map((item, index) =>
-//                       <MenuItem key={index} value={item?.value}>
-//                         {item?.name}
-//                       </MenuItem>
-//                     )}
-//                   </Select>
-//                   {formik.touched.gender && formik.errors.gender && (
-//                     <div className="error">{formik.errors.gender}</div>
-//                   )}
-//                 </FormControl>
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input
-//                   label="Old Password"
-//                   name="oldPassword"
-//                   id="oldPassword"
-//                   type="password"
-//                   className="input_profile"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.oldPassword}
-//                   error={formik.touched.oldPassword && Boolean(formik.errors.oldPassword)}
-//                 />
-//                 {formik.touched.oldPassword && formik.errors.oldPassword && (
-//                   <div className="error_oldPassword">{formik.errors.oldPassword}</div>
-//                 )}
-
-//                 <Input
-//                   label="New Password"
-//                   name="newPassword"
-//                   id="newPassword"
-//                   type="password"
-//                   className="input_profile"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.newPassword}
-//                   error={formik.touched.newPassword && Boolean(formik.errors.newPassword)}
-//                 />
-//                 {formik.touched.newPassword && formik.errors.newPassword && (
-//                   <div className="error_oldPassword">{formik.errors.newPassword}</div>
-//                 )}
-//               </div>
-
-//               <div className="parent_profilebutton">
-//                 <MainButton
-//                   type="submit"
-//                   text="Save Changes"
-//                   className="profile_button"
-//                   onClick={formik.handleSubmit}
-//                   disabled={formik.isSubmitting || !formik.isValid}
-//                 />
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </CustomLayout>
-//     </div>
-//   );
-// };
-
-// export default Profile;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// "use client"
-// import React, { useEffect, useState } from 'react';
-// import { CircularProgress, FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-// import Input from '../Components/Input';
-// import MainButton from '../Components/MainButton';
-// import { AdminNavbarData, CompanyNavbarData, StudentNavbarData, Gender } from '../Helper/constant';
-// import Image from 'next/image';
-// import avater from '../Components/Assets/avater.png';
-// import Logout from '../Components/LogoutButton';
-// import CustomModal from '../Components/Modal';
-// import { MdOutlinePhotoCameraFront } from 'react-icons/md';
-// import CustomLayout from '../Components/Layout';
-// import { useFormik } from 'formik';
-// import "../../../styles/scss/Profile.scss";
-// import { profileInitialValues, profileSchema } from '../Helper/schema';
-// import { uploadProfilePicture } from '../Helper/helper';
-// import { onValue, ref } from 'firebase/database';
-// import { getDownloadURL, getStorage, uploadBytes } from 'firebase/storage';
-// import { app, auth, db } from '../firebase';
-
-// const Profile = () => {
-//   const [pathname, setPathname] = useState("");
-//   const [profilePicURL, setProfilePicURL] = useState(null);
-//   const [userType, setUserType] = useState(null);
-//   const [loading, setLoading] = useState(true);
-
-//   const storage = getStorage(app);
-//   const temper = typeof window !== undefined;
-
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const userRef = ref(db, `users/${auth.currentUser.uid}/userType`);
-//         onValue(userRef, (snapshot) => {
-//           const userType = snapshot.val();
-//           if (userType) {
-//             setPathname(window.location.pathname);
-//             setUserType(userType);
-//             setTimeout(() => {
-//               setLoading(false);
-//             }, 1000);
-//           }
-//         });
-//       } catch (error) {
-//         console.error('Error fetching user role:', error.message);
-//       }
-//     };
-
-//     fetchData();
-//   }, [temper]);
-
-//   const formik = useFormik({
-//     initialValues: profileInitialValues,
-//     validationSchema: profileSchema,
-//     onSubmit: async (values) => {
-//     },
-//   });
-
-//   const handleProfilePicChange = async (event) => {
-//   };
-
-//   const { values, errors, touched, handleSubmit } = formik;
-
-//   const isButtonDisabled = () => {
-//     return (
-//       !formik.values.profilePic && !formik.values.name && !formik.values.gender &&
-//       !formik.values.oldPassword && !formik.values.newPassword
-//     );
-//   };
-
-//   if (loading) {
-//     return <CircularProgress />;
-//   }
-
-//   return (
-//     <div>
-//       <CustomLayout SideNavbarData={userType === "admin" ? AdminNavbarData : userType === "Company" ? CompanyNavbarData : userType === "student" ? StudentNavbarData : StudentNavbarData} pathname={pathname} className={'hiden'}>
-//         <div className="modal_styles">
-//           <div className="all_path">
-//             <CustomModal SideNavbarData={userType === "admin" ? AdminNavbarData : userType === "company" ? CompanyNavbarData : userType === "student" ? StudentNavbarData : StudentNavbarData} pathname={pathname} />
-//             <div className="profile">
-//               <div className="avater_and_name">
-//                 <Logout />
-//                 <label htmlFor="profilePicInput" className="avater_pencilicon">
-//                   <Image
-//                     src={profilePicURL ? profilePicURL : avater}
-//                     className={"navbar_avater"} alt={"Avater"}
-//                     width={100} height={100}
-//                     priority={true}
-//                   />
-//                   <MdOutlinePhotoCameraFront className="pencil_icon" />
-//                 </label>
-//                 <div className="profile_input">
-//                   <input
-//                     type="file"
-//                     id="profilePicInput"
-//                     accept="image/*"
-//                     style={{ display: 'none' }}
-//                     onChange={handleProfilePicChange}
-//                   />
-//                 </div>
-//                 <p className="avater_name">Bilal Raza</p>
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input label="Email" className="input_profile" name="email" id="email" disabled value={formik.values.email} />
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input
-//                   className="input_profile"
-//                   label="Name"
-//                   name="name"
-//                   id="name"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.name}
-//                   error={formik.touched.name && Boolean(formik.errors.name)}
-//                 />
-//                 {formik.touched.name && formik.errors.name && (
-//                   <div className="error">{formik.errors.name}</div>
-//                 )}
-//               </div>
-
-//               <div className="profile_input">
-//                 <FormControl fullWidth>
-//                   <InputLabel>Select Gender</InputLabel>
-//                   <Select
-//                     label="Select Gender"
-//                     labelId="demo-simple-select-label"
-//                     id="demo-simple-select-experience"
-//                     name="gender"
-//                     className="input_profile"
-//                     onChange={formik.handleChange}
-//                     value={formik.values.gender}
-//                     error={formik.touched.gender && Boolean(formik.errors.gender)}
-//                   >
-//                     {Gender.map((item, index) =>
-//                       <MenuItem key={index} value={item?.value}>
-//                         {item?.name}
-//                       </MenuItem>
-//                     )}
-//                   </Select>
-//                   {formik.touched.gender && formik.errors.gender && (
-//                     <div className="error">{formik.errors.gender}</div>
-//                   )}
-//                 </FormControl>
-//               </div>
-
-//               <div className="profile_input">
-//                 <Input
-//                   label="Old Password"
-//                   name="oldPassword"
-//                   id="oldPassword"
-//                   type="password"
-//                   className="input_profile"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.oldPassword}
-//                   error={formik.touched.oldPassword && Boolean(formik.errors.oldPassword)}
-//                 />
-//                 {formik.touched.oldPassword && formik.errors.oldPassword && (
-//                   <div className="error_oldPassword">{formik.errors.oldPassword}</div>
-//                 )}
-
-//                 <Input
-//                   label="New Password"
-//                   name="newPassword"
-//                   id="newPassword"
-//                   type="password"
-//                   className="input_profile"
-//                   onChange={formik.handleChange}
-//                   value={formik.values.newPassword}
-//                   error={formik.touched.newPassword && Boolean(formik.errors.newPassword)}
-//                 />
-//                 {formik.touched.newPassword && formik.errors.newPassword && (
-//                   <div className="error_oldPassword">{formik.errors.newPassword}</div>
-//                 )}
-//               </div>
-
-//               <div className="parent_profilebutton">
-//                 <MainButton
-//                   type="submit"
-//                   text="Save Changes"
-//                   className="profile_button"
-//                   onClick={formik.handleSubmit}
-//                   disabled={formik.isSubmitting || !formik.isValid}
-//                 />
-//               </div>
-//             </div>
-//           </div>
-//         </div>
-//       </CustomLayout>
-//     </div>
-//   );
-// };
-
-// export default Profile;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"use client"
-import React, { useEffect, useState } from 'react';
-import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
-import Input from '../Components/Input';
-import MainButton from '../Components/MainButton';
-import { AdminNavbarData, CompanyNavbarData, StudentNavbarData, Gender } from '../Helper/constant';
-import Image from 'next/image';
-import avater from '../Components/Assets/avater.png';
-import Logout from '../Components/LogoutButton';
-import CustomModal from '../Components/Modal';
-import { MdOutlinePhotoCameraFront } from 'react-icons/md';
-import CustomLayout from '../Components/Layout';
-import { useFormik } from 'formik';
+"use client";
+import {
+  EmailAuthProvider,
+  getAuth,
+  reauthenticateWithCredential,
+  updateCurrentUser,
+  updatePassword,
+  updateProfile,
+} from "firebase/auth";
+import { useFormik } from "formik";
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { MdOutlinePhotoCameraFront } from "react-icons/md";
+import { useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
 import "../../../styles/scss/Profile.scss";
-import { profileInitialValues, profileSchema } from '../Helper/schema';
-import { onValue, ref } from 'firebase/database';
-import { getStorage } from 'firebase/storage';
-import { app, auth, db } from '../firebase';
-import Loader from '../Components/MUILoader/Loader';
-import withAuth from '../Auth';
-import { useSelector } from 'react-redux';
+import withAuth from "../Auth";
+import avater from "../Components/Assets/avater.png";
+import Input from "../Components/Input";
+import CustomLayout from "../Components/Layout";
+import Logout from "../Components/LogoutButton";
+import Loader from "../Components/MUILoader/Loader";
+import MainButton from "../Components/MainButton";
+import CustomModal from "../Components/Modal";
+import {
+  AdminNavbarData,
+  CompanyNavbarData,
+  StudentNavbarData,
+} from "../Helper/constant";
+import { profileInitialValues, profileSchema } from "../Helper/schema";
+import { auth, db } from "../firebase";
+import { ref, set, update } from "firebase/database";
+import FormControlInput from "../Components/formControlInput";
 
 const Profile = () => {
   const [pathname, setPathname] = useState("");
-  // const [profilePicURL, setProfilePicURL] = useState(null);
-  // const [userType, setUserType] = useState(null);
-  // const [loading, setLoading] = useState(true);
   const userCurrentData = useSelector((state) => state.campus.userType);
   console.log(userCurrentData, "profile ");
-  // const storage = getStorage(app);
 
   const temper = typeof window !== undefined;
   useEffect(() => {
-    setPathname(window.location.pathname)
-  }, [temper])
-
-  // useEffect(() => {
-  //   const fetchData = async () => {
-  //     try {
-  //       const unsubscribe = auth.onAuthStateChanged(async (user) => {
-  //         if (user) {
-  //           const userRef = ref(db, `users/${user.uid}/userType`);
-  //           onValue(userRef, (snapshot) => {
-  //             const userType = snapshot.val();
-  //             if (userType) {
-  //               setUserType(userType)
-  //               setPathname(window.location.pathname)
-  //               setLoading(false)
-  //             }
-  //           });
-  //         } else {
-  //         }
-  //       });
-
-  //       return () => unsubscribe();
-  //     } catch (error) {
-  //       console.error('Error fetching user role:', error.message);
-  //     }
-  //   };
-
-  //   fetchData();
-  // }, []);
+    setPathname(window.location.pathname);
+  }, [temper]);
 
   const formik = useFormik({
     initialValues: profileInitialValues(userCurrentData),
     validationSchema: profileSchema(userCurrentData),
     onSubmit: async (values) => {
+      const auth = getAuth();
+      const user = auth.currentUser;
+
+      const credential = EmailAuthProvider.credential(
+        user.email,
+        values.oldPassword
+      );
+
+      try {
+        await reauthenticateWithCredential(user, credential);
+
+        await updatePassword(user, values.newPassword);
+
+        await updateProfile(user, {
+          displayName: values.name,
+        });
+
+        const userId = user.uid;
+        const userRef = ref(db, `users/${userId}`);
+        await update(userRef, {
+          name: values.name,
+        });
+
+        toast.success("Profile updated successfully!");
+      } catch (error) {
+        console.error("Error updating profile:", error.message);
+        if (error.code === "auth/wrong-password") {
+          toast.error("Old password is incorrect.");
+        } else {
+          toast.error("Failed to update profile. Please try again later.");
+        }
+      }
     },
   });
-
-  const handleProfilePicChange = async (event) => {
-  };
-
-  const { values, errors, touched, handleSubmit } = formik;
-
-  // const isButtonDisabled = () => {
-  //   return (
-  //     !formik.values.profilePic && !formik.values.name && !formik.values.gender &&
-  //     !formik.values.oldPassword && !formik.values.newPassword
-  //   );
-  // };
 
   if (!userCurrentData) {
     return <Loader />;
   }
-  console.log("formik.values", formik.values);
+  console.log(auth.currentUser, "auth.currentUser");
+
   return (
     <div>
-      <CustomLayout SideNavbarData={userCurrentData.userType === "admin" ? AdminNavbarData :
-          userCurrentData.userType === "Company" ? CompanyNavbarData :
-            userCurrentData.userType === "student" ? StudentNavbarData :
-              StudentNavbarData} pathname={pathname} className={'hiden'}>
-
+      <ToastContainer />
+      <CustomLayout
+        SideNavbarData={
+          userCurrentData?.userType === "admin"
+            ? AdminNavbarData
+            : userCurrentData?.userType === "Company"
+            ? CompanyNavbarData
+            : userCurrentData?.userType === "student"
+            ? StudentNavbarData
+            : StudentNavbarData
+        }
+        pathname={pathname}
+        className={"hiden"}>
         <div className="modal_styles">
           <div className="all_path">
-
-            <CustomModal SideNavbarData=
-              {userCurrentData.userType === "admin" ? AdminNavbarData :
-                userCurrentData.userType === "company" ? CompanyNavbarData :
-                  userCurrentData.userType === "student" ? StudentNavbarData :
-                    StudentNavbarData} pathname={pathname} />
+            <CustomModal
+              SideNavbarData={
+                userCurrentData?.userType === "admin"
+                  ? AdminNavbarData
+                  : userCurrentData?.userType === "company"
+                  ? CompanyNavbarData
+                  : userCurrentData?.userType === "student"
+                  ? StudentNavbarData
+                  : StudentNavbarData
+              }
+              pathname={pathname}
+            />
 
             <div className="profile">
               <div className="avater_and_name">
                 <Logout />
                 <label htmlFor="profilePicInput" className="avater_pencilicon">
                   <Image
-                    // src={profilePicURL ? profilePicURL : avater}
                     src={avater}
-                    className={"navbar_avater"} alt={"Avater"}
-                    width={100} height={100}
+                    className={"navbar_avater"}
+                    alt={"Avater"}
+                    width={100}
+                    height={100}
                     priority={true}
                   />
                   <MdOutlinePhotoCameraFront className="pencil_icon" />
                 </label>
-                {/* <div className="profile_input">
-                  <input
-                    type="file"
-                    id="profilePicInput"
-                    accept="image/*"
-                    style={{ display: 'none' }}
-                    onChange={handleProfilePicChange}
-                  />
-                </div> */}
-                <p className="avater_name">{userCurrentData.name}</p>
+                <p className="avater_name">{userCurrentData?.name}</p>
               </div>
 
               <div className="profile_input">
@@ -813,8 +140,14 @@ const Profile = () => {
                   name="email"
                   label="Email"
                   className="input_profile"
-                  // placeholder={userCurrentData.email}
-                  value={formik.values.email} />
+                  value={formik.values.email}
+                  //   onChange={formik.handleChange}
+                  //   error={formik.touched.name && Boolean(formik.errors.name)}
+                />
+
+                {/* {formik.touched.email && formik.errors.email && (
+                  <div className="error">{formik.errors.email}</div>
+                )} */}
               </div>
 
               <div className="profile_input">
@@ -823,70 +156,79 @@ const Profile = () => {
                   label="Name"
                   name="name"
                   id="name"
-                  // defaultValue={userCurrentData.name}
-                  // onChange={formik.handleChange}
-                  value={formik.values.name}
-                  // placeholder={userCurrentData.name}
+                  onChange={formik.handleChange}
                   error={formik.touched.name && Boolean(formik.errors.name)}
+                  value={formik.values.name}
                 />
+
                 {formik.touched.name && formik.errors.name && (
                   <div className="error">{formik.errors.name}</div>
                 )}
               </div>
+              {/* 
+                            <div className="profile_input">
+                                <FormControl fullWidth>
+                                    <InputLabel>Select Gender</InputLabel>
+                                    <Select
+                                        label="Select Gender"
+                                        labelId="demo-simple-select-label"
+                                        id="demo-simple-select-experience"
+                                        name="gender"
+                                        className="input_profile"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.gender}
+                                        error={formik.touched.gender && Boolean(formik.errors.gender)}
+                                    >
+                                        {Gender.map((item, index) =>
+                                            <MenuItem key={index} value={item?.value}>
+                                                {item?.name}
+                                            </MenuItem>
+                                        )}
+                                    </Select>
+                                    {formik.touched.gender && formik.errors.gender && (
+                                        <div className="error">{formik.errors.gender}</div>
+                                    )}
+                                </FormControl>
+                            </div> */}
 
               <div className="profile_input">
-                <FormControl fullWidth>
-                  <InputLabel>Select Gender</InputLabel>
-                  <Select
-                    label="Select Gender"
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select-experience"
-                    name="gender"
+                  <FormControlInput
+                    label="Old Password"
+                    name="oldPassword"
+                    id="oldPassword"
+                    type="password"
                     className="input_profile"
                     onChange={formik.handleChange}
-                    value={formik.values.gender}
-                    error={formik.touched.gender && Boolean(formik.errors.gender)}
-                  >
-                    {Gender.map((item, index) =>
-                      <MenuItem key={index} value={item?.value}>
-                        {item?.name}
-                      </MenuItem>
-                    )}
-                  </Select>
-                  {formik.touched.gender && formik.errors.gender && (
-                    <div className="error">{formik.errors.gender}</div>
+                    value={formik.values.oldPassword}
+                    error={
+                      formik.touched.oldPassword &&
+                      Boolean(formik.errors.oldPassword)
+                    }
+                  />
+                  {formik.touched.oldPassword && formik.errors.oldPassword && (
+                    <div className="error_oldPassword">
+                      {formik.errors.oldPassword}
+                    </div>
                   )}
-                </FormControl>
-              </div>
-
-              <div className="profile_input">
-                <Input
-                  label="Old Password"
-                  name="oldPassword"
-                  id="oldPassword"
-                  type="password"
-                  className="input_profile"
-                  onChange={formik.handleChange}
-                  value={formik.values.oldPassword}
-                  error={formik.touched.oldPassword && Boolean(formik.errors.oldPassword)}
-                />
-                {formik.touched.oldPassword && formik.errors.oldPassword && (
-                  <div className="error_oldPassword">{formik.errors.oldPassword}</div>
-                )}
-
-                <Input
-                  label="New Password"
-                  name="newPassword"
-                  id="newPassword"
-                  type="password"
-                  className="input_profile"
-                  onChange={formik.handleChange}
-                  value={formik.values.newPassword}
-                  error={formik.touched.newPassword && Boolean(formik.errors.newPassword)}
-                />
-                {formik.touched.newPassword && formik.errors.newPassword && (
-                  <div className="error_oldPassword">{formik.errors.newPassword}</div>
-                )}
+                  
+                  <FormControlInput
+                    label="New Password"
+                    name="newPassword"
+                    id="newPassword"
+                    type="password"
+                    className="input_profile"
+                    onChange={formik.handleChange}
+                    value={formik.values.newPassword}
+                    error={
+                      formik.touched.newPassword &&
+                      Boolean(formik.errors.newPassword)
+                    }
+                  />
+                  {formik.touched.newPassword && formik.errors.newPassword && (
+                    <div className="error_oldPassword">
+                      {formik.errors.newPassword}
+                    </div>
+                  )}
               </div>
 
               <div className="parent_profilebutton">
@@ -907,5 +249,3 @@ const Profile = () => {
 };
 
 export default withAuth(Profile);
-
-
