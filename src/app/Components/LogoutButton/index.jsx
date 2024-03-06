@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import MainButton from '../MainButton';
 import "../../../../styles/scss/LogoutButton.scss";

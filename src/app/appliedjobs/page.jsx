@@ -25,25 +25,6 @@ const AppliedJobs = () => {
       <div className='all_path'>
         <h1 className='top_heading'>Applied Jobs</h1>
         <Logout />
-        <div>
-          <ul>
-            {appliedJobs.map((jobId, index) => {
-              const job = getAppliedJobDetails(jobId);
-              return (
-                <li key={index}>
-                  {job ? (
-                    <>
-                      <p>Title: {job?.title}</p>
-                      <p>Category: {job?.category}</p>
-                    </>
-                  ) : (
-                    <p>Job details not found</p>
-                  )}
-                </li>
-              );
-            })}
-          </ul>
-        </div>
       </div>
     </CustomLayout>
   );

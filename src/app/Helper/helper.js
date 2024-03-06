@@ -1,9 +1,6 @@
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, sendPasswordResetEmail } from "firebase/auth";
-import { app, auth, db } from "../firebase";
+import { auth, db } from "../firebase";
 import { ref, set } from "firebase/database";
-import { useDispatch } from "react-redux";
-import { getStorage, uploadBytes, getDownloadURL } from 'firebase/storage';
-import { setProfilePicURL } from "../Redux/userSlice";
 
 ///////////////////////////////////      Login        ///////////////////////////////////
 
@@ -85,48 +82,3 @@ export const forgotPassword = (email) => {
         return { success: false, message: error.message };
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// export const uploadProfilePicture = async (file) => {
-//     const dispatch = useDispatch();
-//     if (!file) {
-//         console.error('No file provided for upload.');
-//         return;
-//     }
-
-//     try {
-//         const storageRef = ref(storage, `profilePictures/${auth.currentUser.uid}`);
-//         await uploadBytes(storageRef, file);
-//         const downloadURL = await getDownloadURL(storageRef);
-//         dispatch(setProfilePicURL(downloadURL));
-//     } catch (error) {
-//         console.error('Error uploading profile picture:', error.message);
-//     }
-// };

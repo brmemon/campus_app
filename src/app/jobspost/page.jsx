@@ -24,7 +24,7 @@ const JobsPost = () => {
         validationSchema: () => jobPostSchema(values),
         onSubmit: async (values) => {
             try {
-                const jobsRef = ref(db, 'jobs');
+                const jobsRef = ref(db, '/jobs');
                 const newJobRef = push(jobsRef);
                 const jobId = uuidv4();
                 const jobData = {

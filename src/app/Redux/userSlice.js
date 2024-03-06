@@ -28,17 +28,12 @@ const campusSlice = createSlice({
 
     setCurrentUser: (state, action) => {
       state.userType = action.payload;
-      console.log(state.userType, "state.currentUser redux");
     },
 
     addJobPost: (state, action) => {
       state.jobData = action.payload;
     },
 
-    applyJob: (state, action) => {
-      const jobId = action.payload;
-      state.appliedJobs.push(jobId);
-    },
   }
 });
 

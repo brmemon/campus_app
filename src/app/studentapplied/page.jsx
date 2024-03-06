@@ -1,3 +1,4 @@
+"use client"
 import React from 'react';
 import CustomLayout from '../Components/Layout';
 import Logout from '../Components/LogoutButton';
