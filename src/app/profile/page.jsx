@@ -255,7 +255,6 @@ import {
   EmailAuthProvider,
   getAuth,
   reauthenticateWithCredential,
-  updateCurrentUser,
   updatePassword,
   updateProfile,
 } from "firebase/auth";
@@ -281,7 +280,7 @@ import {
 } from "../Helper/constant";
 import { profileInitialValues, profileSchema } from "../Helper/schema";
 import { auth, db } from "../firebase";
-import { ref, set, update } from "firebase/database";
+import { ref, update } from "firebase/database";
 import FormControlInput from "../Components/formControlInput";
 
 const Profile = () => {
@@ -325,7 +324,7 @@ const Profile = () => {
       } catch (error) {
         console.error("Error updating profile:", error.message);
         if (error.code === "auth/wrong-password") {
-          toast.error("Old password is incorrect.");
+          toast.error("password is incorrect.");
         } else {
           toast.error("Failed to update profile. Please try again later.");
         }
@@ -414,7 +413,7 @@ const Profile = () => {
 
               <div className="profile_input">
                 <FormControlInput
-                  label="Old Password"
+                  label="Password"
                   name="oldPassword"
                   id="oldPassword"
                   type="password"

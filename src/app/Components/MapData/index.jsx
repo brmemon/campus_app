@@ -1,8 +1,8 @@
+import React from "react";
+import "../../../../styles/scss/MapData.scss";
 import { applyJob } from "@/app/Redux/userSlice";
 import { db } from "@/app/firebase";
-import React from "react";
 import { useDispatch } from "react-redux";
-import "../../../../styles/scss/MapData.scss";
 import { ref, update } from "firebase/database";
 import { Button } from "@mui/material";
 import MainButton from "../MainButton";

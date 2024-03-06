@@ -33,7 +33,6 @@ const campusSlice = createSlice({
     addJobPost: (state, action) => {
       state.jobData = action.payload;
     },
-
   }
 });
 
