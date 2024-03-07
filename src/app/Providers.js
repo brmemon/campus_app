@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { addData, addJobPost, setCurrentUser } from './Redux/userSlice';
+import { addData, addJob, addJobPost, setCurrentUser } from './Redux/userSlice';
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { onValue, ref } from 'firebase/database';
@@ -34,19 +34,7 @@ const Providers = ({ children }) => {
     };
     
     fetchData();
-  }, []);
-
-
-
-  // const fetchCurrentUser = async () => {
-  //   const users = auth.currentUser;
-  //   if (users) {
-  //     dispatch(setCurrentUser(users));
-  //   }
-  // };
-
-  // fetchCurrentUser();
-  // console.log(auth.currentUser , "currentUser provider" );
+  });
 
   useEffect(() => {
     const userDataUnsubscribe = onValue(ref(db, "/users"), async (userData) => {
@@ -62,7 +50,7 @@ const Providers = ({ children }) => {
 
     const jobPostsUnsubscribe = onValue(ref(db, "/jobs"), async (jobData) => {
       if (jobData.exists()) {
-        dispatch(addJobPost(await jobData.val()));
+        dispatch(addJob(await jobData.val()));
       }
     });
 

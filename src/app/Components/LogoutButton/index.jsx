@@ -9,7 +9,7 @@ import Image from 'next/image';
 import question from "../Assets/question.png";
 import { useRouter } from 'next/navigation';
 import { auth } from '@/app/firebase';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch,  } from 'react-redux';
 import { setCurrentUser } from '@/app/Redux/userSlice';
 
 const Logout = () => {
