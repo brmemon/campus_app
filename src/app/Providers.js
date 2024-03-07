@@ -34,19 +34,7 @@ const Providers = ({ children }) => {
     };
     
     fetchData();
-  }, []);
-
-
-
-  // const fetchCurrentUser = async () => {
-  //   const users = auth.currentUser;
-  //   if (users) {
-  //     dispatch(setCurrentUser(users));
-  //   }
-  // };
-
-  // fetchCurrentUser();
-  // console.log(auth.currentUser , "currentUser provider" );
+  }, );
 
   useEffect(() => {
     const userDataUnsubscribe = onValue(ref(db, "/users"), async (userData) => {
