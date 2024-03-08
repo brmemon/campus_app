@@ -1,10 +1,11 @@
 .job_post_first {
   //   padding: 50px 0px 100px 0px;
-  width: 100%;
+  // width: 100%;
   display: flex;
   flex-wrap: wrap;
-  height: 100%;
+  // height: 100%;
   overflow: auto;
+  padding: 24px 20px 10px 50px;
   justify-content: center;
 
   .empty_div {
@@ -29,6 +30,7 @@
       border-bottom-left-radius: 30px;
       border-top-right-radius: 30px;
       display: grid;
+      height: 100%;
 
       .job_post_ite {
         color: white;
@@ -43,13 +45,13 @@
         word-spacing: 2px;
         font-style: italic;
         font-weight: 600;
-        padding: 5px;
+        padding: 6px;
       }
 
       .job_post_item {
         width: 100%;
         display: flex;
-        padding: 6px 12px;
+        padding: 10px 8px;
         font-family: serif;
 
         .job_post_para {

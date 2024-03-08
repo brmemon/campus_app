@@ -286,7 +286,7 @@ import FormControlInput from "../Components/formControlInput";
 const Profile = () => {
   const [pathname, setPathname] = useState("");
   const userCurrentData = useSelector((state) => state.campus.userType);
-  console.log(userCurrentData, "profile ");
+  // console.log(userCurrentData, "profile ");
 
   const temper = typeof window !== undefined;
   useEffect(() => {
@@ -335,7 +335,7 @@ const Profile = () => {
   if (!userCurrentData) {
     return <Loader />;
   }
-  console.log(auth.currentUser, "auth.currentUser");
+  // console.log(auth.currentUser, "auth.currentUser");
 
   return (
     <div>
