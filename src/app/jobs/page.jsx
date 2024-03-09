@@ -9,10 +9,29 @@ import withAuth from "../Auth";
 import Image from "next/image";
 import avater from "../Components/Assets/noData.png";
 import MainButton from "../Components/MainButton";
+import { ref, set } from "firebase/database";
+import { auth, db } from "../firebase";
+import { toast } from "react-toastify";
 
 const Jobs = () => {
   const selectorJobData = useSelector((state) => state.campus.jobData);
   const jobs = Object.values(selectorJobData);
+
+  const applyJob = (job) => {
+    set(ref(db, `/users/${auth.currentUser.uid}/appliedJobs/${job}`), job)
+        .
+        then((value) => {
+            set(ref(db, `/Jobs/${job}/studentApplied/${auth.currentUser.uid}`), jobApplied)
+            toast.success('Applied Successfully', {
+                position: "top-center",
+            })
+        }
+        )
+        .
+        catch((err) => toast.error('Something went wrong', {
+            position: "top-center",
+        }))
+}
 
   return (
     <CustomLayout SideNavbarData={StudentNavbarData}>
@@ -48,7 +67,7 @@ const Jobs = () => {
                     <p className="tittle">{item?.description}</p>
                   </div>
                   <div className="main_div_Apply_Button">
-                    <MainButton className="Apply_Button" text={"Apply"} />
+                    <MainButton className="Apply_Button" text={"Apply"} onClick={() => applyJob(item.companyId)} />
                   </div>
                 </div>
               </div>

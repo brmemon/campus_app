@@ -1,6 +1,6 @@
 import { useDispatch } from 'react-redux';
 import { addData, addJobPost, setCurrentUser } from './Redux/userSlice';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { onValue, ref } from 'firebase/database';
 import { auth, db } from './firebase';
