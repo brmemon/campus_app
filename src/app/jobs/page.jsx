@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CustomLayout from "../Components/Layout";
 import { StudentNavbarData } from "../Helper/constant";
 import Logout from "../Components/LogoutButton";
@@ -11,30 +11,33 @@ import avater from "../Components/Assets/noData.png";
 import MainButton from "../Components/MainButton";
 import { ref, set } from "firebase/database";
 import { auth, db } from "../firebase";
-import { toast } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
+import { appliedJobData } from "../Redux/userSlice";
 
 const Jobs = () => {
+  const dispatch = useDispatch() 
   const selectorJobData = useSelector((state) => state.campus.jobData);
   const jobs = Object.values(selectorJobData);
+  console.log(jobs, "jobs");
 
-  const applyJob = (job) => {
+  const jobApply = (job) => {
     set(ref(db, `/users/${auth.currentUser.uid}/appliedJobs/${job}`), job)
-        .
-        then((value) => {
-            set(ref(db, `/Jobs/${job}/studentApplied/${auth.currentUser.uid}`), jobApplied)
-            toast.success('Applied Successfully', {
-                position: "top-center",
-            })
-        }
-        )
-        .
-        catch((err) => toast.error('Something went wrong', {
-            position: "top-center",
-        }))
-}
+      .then(() => {
+        set(
+          ref(db, `/Jobs/${job}/studentApplied/${auth.currentUser.uid}`),
+          );
+          toast.success("Applied Job Successfully");
+          dispatch(appliedJobData(applyJobs))
+          console.log(dispatch , "dispatch");
+      })
+      .catch((error) => toast.error(error));
+      console.log(job , "jobApply  jobs");
+  };
+
 
   return (
     <CustomLayout SideNavbarData={StudentNavbarData}>
+      <ToastContainer />
       <div className="all_path">
         <h1 className="top_heading">Jobs</h1>
         <Logout />
@@ -67,7 +70,11 @@ const Jobs = () => {
                     <p className="tittle">{item?.description}</p>
                   </div>
                   <div className="main_div_Apply_Button">
-                    <MainButton className="Apply_Button" text={"Apply"} onClick={() => applyJob(item.companyId)} />
+                    <MainButton
+                      className="Apply_Button"
+                      text={"Apply"}
+                      onClick={() => jobApply(item?.id)}
+                    />
                   </div>
                 </div>
               </div>

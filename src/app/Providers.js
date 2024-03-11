@@ -9,7 +9,6 @@ const Providers = ({ children }) => {
   const dispatch = useDispatch();
   const router = useRouter();
 
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -23,7 +22,6 @@ const Providers = ({ children }) => {
                 dispatch(setCurrentUser(userType));
               }
             });
-          } else {
           }
         });
 

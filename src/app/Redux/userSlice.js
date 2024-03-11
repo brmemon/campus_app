@@ -24,11 +24,6 @@ const campusSlice = createSlice({
       state.verified = temp.filter(user => user.name !== 'admin' && user.adminVerifiedUser && !user.adminBlockedUser);
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
       if (state.userData) state.isLoading = false;
-      // console.log(
-      //   state.unVerified, "state.unVerified", 
-      //   state.verified, "state.verified", 
-      //   state.blocked, "state.blocked"
-      // );
     },
 
     setCurrentUser: (state, action) => {
@@ -39,8 +34,14 @@ const campusSlice = createSlice({
       state.jobData = action.payload;
       // console.log(state.jobData, "state.jobData");
     },
+
+    appliedJobData: (state, action) => {
+      state.applyJobs = action.payload;
+      console.log(state.applyJobs , "appliedJobData  Redux" );
+    }
+
   }
 });
 
-export const { addData, addJobPost, applyJob, setCurrentUser } = campusSlice.actions;
+export const { addData, addJobPost, applyJob, setCurrentUser, addJob, appliedJobData } = campusSlice.actions;
 export default campusSlice.reducer;
