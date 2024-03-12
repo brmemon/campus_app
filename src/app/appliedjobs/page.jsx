@@ -1,49 +1,76 @@
-// AppliedJobs.js
-"use client";
+"use client"
 import React from "react";
 import CustomLayout from "../Components/Layout";
 import { StudentNavbarData } from "../Helper/constant";
 import Logout from "../Components/LogoutButton";
-import { useSelector } from "react-redux";
 import "../../../styles/scss/AppliedJobs.scss";
 import withAuth from "../Auth";
+import { useSelector } from "react-redux";
+import MainButton from "../Components/MainButton";
+import avater from "../Components/Assets/noData.png";
+import Image from "next/image";
 
 const AppliedJobs = () => {
-  const appliedJobs = useSelector((state) => state.campus.applyJobs);
-  console.log(appliedJobs);
-  // const jobData = useSelector((state) => state.campus.jobData);
-  // const usersData = useSelector((state) => state.campus.userData);
-  // const userUid = useSelector((state) => state.campus.userType);
-  // const id = userUid?.uid;
-  // console.log(id, "hellow world");
-
-  // let jobs = Object.values(jobData);
-
-  // let showData = usersData;
-  // let tempArr = showData && Object.values(showData);
-  // console.log(showData, "showData");
-  // console.log(tempArr, "tempArr");
-
-  // let result = [jobs, tempArr].reduce((includ, current) =>
-  //   includ?.filter((a) => current?.includes(a.jobId))
-  // );
-
-  // console.log(result, "result world");
-
-  // const getAppliedJobDetails = (jobId) => {
-  //   if (Array.isArray(jobData)) {
-  //     return jobData.filter(job => job.id === jobId);
-  //   } else {
-  //     return null;
-  //   }
-  // };
-  // console.log(jobData , "getAppliedJobDetails ");
+  const dataOfJob = useSelector((state) => state.campus.jobData);
+  const currentUserData = useSelector((state) => state.campus.userType);
+  
+  const currentUserJobIds = Object.values(currentUserData?.appliedJobs);
+  const allJobIds = Object.values(dataOfJob);
+  console.log(currentUserJobIds, "currentUserJobIds ");
+  console.log(allJobIds, "allJobIds ");
+  const matchingIds = currentUserJobIds.reduce(data => allJobIds.includes(data));
+  console.log("Matching Job ID:", matchingIds);
 
   return (
     <CustomLayout SideNavbarData={StudentNavbarData}>
       <div className="all_path">
         <h1 className="top_heading">Applied Jobs</h1>
         <Logout />
+        <div className="job_post_first">
+          {matchingIds.length > 0 ? (
+            matchingIds.map((item, index) => (
+              <div key={index} className="job_post_second">
+                <div className="job_post_third">
+                  <div className="job_post_ite">
+                    <p className="tittle">{item?.title}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Qualification:</p>
+                    <p className="tittle">{item?.minimumQualification}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Category:</p>
+                    <p className="tittle">{item?.category}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Skills:</p>
+                    <p className="tittle">{item?.skills}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Salary:</p>
+                    <p className="tittle">{item?.salary}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Description:</p>
+                    <p className="tittle">{item?.description}</p>
+                  </div>
+                  <div className="main_div_Apply_Button">
+                    <MainButton
+                      className="Apply_Button"
+                      text={"Apply"}
+                      onClick={() => jobApply(item?.id)}
+                    />
+                  </div>
+                </div>
+              </div>
+            ))
+          ) : (
+            <div className="empty_div">
+              <Image src={avater} alt="No Data" width={350} height={350} />
+              <h1 className="empty_data">No Data Found</h1>
+            </div>
+          )}
+        </div>
       </div>
     </CustomLayout>
   );

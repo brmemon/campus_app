@@ -7,7 +7,7 @@ export default function withAuth(Component) {
   function AuthWrapper(props) {
     const router = useRouter();
     const userCurrentData = useSelector((state) => state.campus.userType);
-    console.log(userCurrentData, "auth ki file ");
+    // console.log(userCurrentData, "auth ki file ");
     const loader = useSelector((state) => state.campus.isLoading);
     const [loading, setLoading] = useState(true);
   
@@ -23,7 +23,7 @@ export default function withAuth(Component) {
         if (userCurrentData.userType === "admin") {
           const adminRoutesAllowed = ["/profile", "/unverified", "/verified", "/block"];
           const currentRoute = window.location.pathname;
-          console.log(userCurrentData.userType , "userCurrentData.userType ");
+          // console.log(userCurrentData.userType , "userCurrentData.userType ");
           if (!adminRoutesAllowed.includes(currentRoute)) {
             router.push("/profile");
           }

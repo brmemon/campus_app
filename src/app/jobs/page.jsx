@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import {useSelector } from "react-redux";
 import CustomLayout from "../Components/Layout";
 import { StudentNavbarData } from "../Helper/constant";
 import Logout from "../Components/LogoutButton";
@@ -12,12 +12,10 @@ import MainButton from "../Components/MainButton";
 import { ref, set } from "firebase/database";
 import { auth, db } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
-import { appliedJobData } from "../Redux/userSlice";
 
 const Jobs = () => {
-  const dispatch = useDispatch() 
-  const selectorJobData = useSelector((state) => state.campus.jobData);
-  const jobs = Object.values(selectorJobData);
+  const dataOfJob = useSelector((state) => state.campus.jobData);
+  const jobs = Object.values(dataOfJob);
   console.log(jobs, "jobs");
 
   const jobApply = (job) => {
@@ -27,8 +25,6 @@ const Jobs = () => {
           ref(db, `/Jobs/${job}/studentApplied/${auth.currentUser.uid}`),
           );
           toast.success("Applied Job Successfully");
-          dispatch(appliedJobData(applyJobs))
-          console.log(dispatch , "dispatch");
       })
       .catch((error) => toast.error(error));
       console.log(job , "jobApply  jobs");

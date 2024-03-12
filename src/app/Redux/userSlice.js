@@ -28,20 +28,17 @@ const campusSlice = createSlice({
 
     setCurrentUser: (state, action) => {
       state.userType = action.payload;
+      // console.log(state.userType , "user current data in redux ");
     },
 
     addJobPost: (state, action) => {
       state.jobData = action.payload;
+      // const temper = Object.values(state.jobData)
       // console.log(state.jobData, "state.jobData");
     },
-
-    appliedJobData: (state, action) => {
-      state.applyJobs = action.payload;
-      console.log(state.applyJobs , "appliedJobData  Redux" );
-    }
 
   }
 });
 
-export const { addData, addJobPost, applyJob, setCurrentUser, addJob, appliedJobData } = campusSlice.actions;
+export const { addData, addJobPost, setCurrentUser } = campusSlice.actions;
 export default campusSlice.reducer;

@@ -18,7 +18,7 @@ const Providers = ({ children }) => {
             onValue(userRef, (snapshot) => {
               const userType = snapshot.val();
               if (userType) {
-                console.log(userType, "provider userType");
+                // console.log(userType, "provider userType");
                 dispatch(setCurrentUser(userType));
               }
             });
