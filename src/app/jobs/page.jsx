@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import {useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import CustomLayout from "../Components/Layout";
 import { StudentNavbarData } from "../Helper/constant";
 import Logout from "../Components/LogoutButton";
@@ -16,20 +16,15 @@ import { ToastContainer, toast } from "react-toastify";
 const Jobs = () => {
   const dataOfJob = useSelector((state) => state.campus.jobData);
   const jobs = Object.values(dataOfJob);
-  console.log(jobs, "jobs");
 
   const jobApply = (job) => {
     set(ref(db, `/users/${auth.currentUser.uid}/appliedJobs/${job}`), job)
       .then(() => {
-        set(
-          ref(db, `/Jobs/${job}/studentApplied/${auth.currentUser.uid}`),
-          );
-          toast.success("Applied Job Successfully");
+        set(ref(db, `/Jobs/${job}/studentApplied/${auth.currentUser.uid}`));
+        toast.success("Applied Job Successfully");
       })
       .catch((error) => toast.error(error));
-      console.log(job , "jobApply  jobs");
   };
-
 
   return (
     <CustomLayout SideNavbarData={StudentNavbarData}>

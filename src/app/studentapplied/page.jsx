@@ -8,7 +8,9 @@ import "../../../styles/scss/StudentApplied.scss";
 import withAuth from '../Auth';
 
 const StudentApplied = () => {
-
+  const selectorJobData = useSelector((state) => state.campus.jobData);
+  const dataJobs = Object.values(selectorJobData);
+  
   return (
     <div>
       <CustomLayout SideNavbarData={CompanyNavbarData}>

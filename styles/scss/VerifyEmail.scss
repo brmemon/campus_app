@@ -25,9 +25,15 @@
     }
 
     .email_text {
-        color: cadetblue;
-        font-size: 14px;
+        font-weight: 600;
+        color: #717f80;
+        font-size: 15px;
         margin-bottom: 13px;
+    }
+
+    .name_email {
+        padding-left: 7px;
+        color: black;
     }
 
     .text {
