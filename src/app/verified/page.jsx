@@ -24,7 +24,7 @@ const Verified = () => {
   return (
     <div className='hey'>
       <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname}>
-        <div className='all_path'>
+        <div className='all_path_diffrent'>
           <h1 className='top_heading'>Verified Users</h1>
           <CustomModal SideNavbarData={AdminNavbarData} pathname={pathname} />
           <Logout />

@@ -5,14 +5,25 @@ import { FaRegHandshake } from "react-icons/fa6";
 import MainButton from "@/app/Components/MainButton";
 import { useRouter } from "next/navigation";
 import withAuth from "@/app/Auth";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { auth } from "@/app/firebase";
+import { setCurrentUser } from "@/app/Redux/userSlice";
 
 const VerificationEmail = () => {
+  const dispatch = useDispatch()
   const userCurrentData = useSelector((state) => state.campus.userType);
+  // console.log(userCurrentData , "verify email ki file ha ya ");
   const router = useRouter();
 
   const handleLogout = () => {
-    router.push("/auth/Login");
+    auth.signOut()
+      .then(() => {
+        router.push('/auth/Login');
+        dispatch(setCurrentUser(null))
+      })
+      .catch(error => {
+        console.error('Error LogOut:', error);
+      });
   };
 
 

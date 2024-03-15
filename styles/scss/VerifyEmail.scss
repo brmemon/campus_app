@@ -11,7 +11,7 @@
 
     .verify_email {
         display: flex;
-        box-shadow: 0px 0px 3px 1px #50c99f;
+        box-shadow: 2px 2px 7px 1px #00e495;
         padding: 5px 8px;
         border-radius: 10px;
         width: 400px;
@@ -32,13 +32,14 @@
     }
 
     .name_email {
+        font-size: 18px;
         padding-left: 7px;
-        color: black;
+        color: #0f644d;
     }
 
     .text {
         font-size: 40px;
-        margin-bottom: 13px;
+        margin-bottom: 18px;
     }
 
     .campus_logo {

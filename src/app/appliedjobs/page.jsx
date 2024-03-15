@@ -18,7 +18,6 @@ const AppliedJobs = () => {
   let res = [jobs, userApplied].reduce((include, current) =>
   include?.filter((a) => current?.includes(a.id))
   );
-  
   return (
     <CustomLayout SideNavbarData={StudentNavbarData}>
       <div className="all_path">

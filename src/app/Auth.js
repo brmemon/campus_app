@@ -1,3 +1,4 @@
+"use client"
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
@@ -7,46 +8,50 @@ export default function withAuth(Component) {
   function AuthWrapper(props) {
     const router = useRouter();
     const userCurrentData = useSelector((state) => state.campus.userType);
-    // console.log(userCurrentData, "auth ki file ");
+    // console.log(userCurrentData , "userCurrentData ");
     const loader = useSelector((state) => state.campus.isLoading);
     const [loading, setLoading] = useState(true);
-  
+
     useEffect(() => {
-      if (loader) {
-        <Loader />
+      const timer = setTimeout(() => {
+        setLoading(false);
+      }, 5000);
+
+      return () => clearTimeout(timer);
+
+    }, []);
+
+    useEffect(() => {
+      if (!loading) {
+        if (!userCurrentData) {
+          router.push("/auth/Login");
+        } else {
+          if (userCurrentData.userType === "admin") {
+            const adminRoutesAllowed = ["/profile", "/unverified", "/verified", "/block"];
+            const currentRoute = window.location.pathname;
+            if (!adminRoutesAllowed.includes(currentRoute)) {
+              router.push("/profile");
+            }
+          } else if (userCurrentData === "Company") {
+            const companyRoutesAllowed = ["/profile", "/jobpost", "/postedjobs", "/appliedstudent"];
+            const currentRoute = window.location.pathname;
+            if (!companyRoutesAllowed.includes(currentRoute)) {
+              router.push("/profile");
+            }
+          } else if (userCurrentData === "Student") {
+            const studentRoutesAllowed = ["/profile", "/jobs", "/appliedjobs"];
+            const currentRoute = window.location.pathname;
+            if (!studentRoutesAllowed.includes(currentRoute)) {
+              router.push("/profile");
+            }
+          }
+        }
       }
+    }, [loading, userCurrentData, router]);
 
-      if (!userCurrentData) {
-        router.push("/auth/Login");
-
-      } else if (!loader) {
-        if (userCurrentData.userType === "admin") {
-          const adminRoutesAllowed = ["/profile", "/unverified", "/verified", "/block"];
-          const currentRoute = window.location.pathname;
-          // console.log(userCurrentData.userType , "userCurrentData.userType ");
-          if (!adminRoutesAllowed.includes(currentRoute)) {
-            router.push("/profile");
-          }
-        }
-
-        else if (userCurrentData === "Company") {
-          const companyRoutesAllowed = ["/profile", "/jobpost", "/postedjobs", "/appliedstudent"];
-          const currentRoute = window.location.pathname;
-          if (!companyRoutesAllowed.includes(currentRoute)) {
-            router.push("/profile");
-          }
-        }
-
-        else if (userCurrentData === "Student") {
-          const studentRoutesAllowed = ["/profile", "/jobs", "/appliedjobs"];
-          const currentRoute = window.location.pathname;
-          if (!studentRoutesAllowed.includes(currentRoute)) {
-            router.push("/profile");
-          }
-        }
-      }
-    }, [userCurrentData, router, loader]);
-
+    if (loading) {
+      return <Loader />;
+    }
 
     return <Component {...props} />;
   }

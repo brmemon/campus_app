@@ -10,13 +10,18 @@ td {
 }
 
 .tablecontainer_class {
-    padding: 0 60px;
-    height: 85vh;
-    box-shadow: 1px 1px 10px #e7e4e4;
+    display: flex;
+    width: 100%;
+    height: 75vh;
     border-radius: 7px;
-    margin-top: 25px;
+    margin-top: 115px;
     z-index: 1200;
     position: relative;
+    justify-content: center;
+
+    .child_table{
+        width: 90%;
+    }
 
     .table_class {
         min-width: 650px;

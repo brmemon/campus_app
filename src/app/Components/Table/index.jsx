@@ -30,8 +30,8 @@ const MyTable = ({ tableData, values }) => {
     }
 
     return (
-        <div>
             <TableContainer className="tablecontainer_class">
+                <div className="child_table">
                 <Table className="table_class">
                     <TableHead>
                         <TableRow className="table_head_class">
@@ -72,8 +72,8 @@ const MyTable = ({ tableData, values }) => {
                         )}
                     </TableBody>
                 </Table>
+                </div>
             </TableContainer>
-        </div >
     );
 };
 export default MyTable;

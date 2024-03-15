@@ -1,4 +1,4 @@
-.all_path {
+.all_path_diffrent {
     background-color: white;
     height: 100vh;
     width: 100%;
@@ -8,7 +8,7 @@
 }
 
 @media only screen and (max-width: 749px) {
-    .all_path {
+    .all_path_diffrent {
         z-index: 1200;
         position: relative;
         border-top-left-radius: 0;
