@@ -5,29 +5,30 @@ import Logout from "../Components/LogoutButton";
 import CustomModal from "../Components/Modal";
 import { CompanyNavbarData } from "../Helper/constant";
 import "../../../styles/scss/StudentApplied.scss";
+import "../../../styles/scss/Jobs.scss";
 import withAuth from "../Auth";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import avater from "../Components/Assets/noData.png";
 
 const StudentApplied = () => {
+  const userCurrentData = useSelector((state) => state.campus.userType);
   const allUsers = useSelector((state) => state.campus.userData);
   const dataOfJob = useSelector((state) => state.campus.jobData);
   let jobs = Object.values(dataOfJob);
-  console.log(jobs, "jobs ha bhai ya ");
 
-  const val = Object.values(allUsers)?.flatMap(
-    (item) => !!item?.appliedJobs && item?.appliedJobs
+  const val = Object.values(allUsers)
+    ?.flatMap((item) => !!item?.appliedJobs && Object.values(item.appliedJobs))
+    .filter((item) => item !== false);
+
+  let res = [jobs, val].reduce((include, current) =>
+    include?.filter((a) => current?.includes(a.id))
   );
-  const appliedData = val.filter((item) => item);
 
-  const main = appliedData.flat((hello) => jobs.includes(hello))
-  // let res = [appliedData, jobs].reduce((include, current) =>
-  // include?.filter((a) => current?.includes(a))
-  // );
-  console.log(main, "main");
-  console.log(appliedData, "appliedData ");
-  // console.log(res, "res");
+  const filteredJobs = res.filter(
+    (item) => item?.companyId === userCurrentData?.uid
+  );
+  console.log(filteredJobs, "filteredJobs");
 
   return (
     <div>
@@ -37,10 +38,10 @@ const StudentApplied = () => {
           <div className="applied-jobs-container"></div>
           <CustomModal SideNavbarData={CompanyNavbarData} />
           <Logout />
-          {/* 
+
           <div className="job_post_first">
-            {res?.length > 0 ? (
-              res.map((item, index) => (
+            {filteredJobs?.length > 0 ? (
+              filteredJobs.map((item, index) => (
                 <div key={index} className="job_post_second">
                   <div className="job_post_third">
                     <div className="job_post_ite">
@@ -75,7 +76,7 @@ const StudentApplied = () => {
                 <h1 className="empty_data">No Data Found</h1>
               </div>
             )}
-          </div> */}
+          </div>
         </div>
       </CustomLayout>
     </div>
