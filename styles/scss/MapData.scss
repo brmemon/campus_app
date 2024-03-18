@@ -1,9 +1,6 @@
 .job_post_first {
-  //   padding: 50px 0px 100px 0px;
-  // width: 100%;
   display: flex;
   flex-wrap: wrap;
-  // height: 100%;
   overflow: auto;
   padding: 100px 20px 19px 50px;
   justify-content: center;
@@ -79,6 +76,18 @@
     .Apply_Button {
       width: 100px;
       margin: 5px;
+    }
+  }
+
+  .main_div_Apply_Button_studentapplied {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .Apply_Button_studentapplied {
+      width: 80%;
+      margin: 5px
     }
   }
 }

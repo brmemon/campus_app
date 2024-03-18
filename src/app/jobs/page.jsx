@@ -20,7 +20,7 @@ const Jobs = () => {
   const jobApply = (job) => {
     set(ref(db, `/users/${auth.currentUser.uid}/appliedJobs/${job}`), job)
       .then(() => {
-        set(ref(db, `/Jobs/${job}/studentApplied/${auth.currentUser.uid}`));
+        set(ref(db, `/jobs/${job}/studentApplied/${auth.currentUser.uid}`), job);
         toast.success("Applied Job Successfully");
       })
       .catch((error) => toast.error(error));

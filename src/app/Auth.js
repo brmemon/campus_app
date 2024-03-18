@@ -8,7 +8,6 @@ export default function withAuth(Component) {
   function AuthWrapper(props) {
     const router = useRouter();
     const userCurrentData = useSelector((state) => state.campus.userType);
-    // console.log(userCurrentData , "userCurrentData ");
     const loader = useSelector((state) => state.campus.isLoading);
     const [loading, setLoading] = useState(true);
 

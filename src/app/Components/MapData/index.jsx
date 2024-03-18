@@ -15,7 +15,7 @@ const MapData = ({ dataJobs }) => {
             <div key={index} className="job_post_second">
               <div className="job_post_third">
                 <div className="job_post_ite">
-                  <p className="tittle">{userCurrentData?.name}</p>
+                  <p className="tittle">{item?.title}</p>
                 </div>
                 <div className="job_post_item">
                   <p className="job_post_para">Qualification:</p>

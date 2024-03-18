@@ -58,7 +58,7 @@ export const registerUser = async (data) => {
 const sendVerificationEmail = async (user) => {
     try {
         await sendEmailVerification(user);
-        return { success: true, message: "Check Your Email And Verify " };
+        return { success: true, message: "" };
     } catch (error) {
         return { success: false, message: error.message };
     }

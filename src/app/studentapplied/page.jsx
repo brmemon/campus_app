@@ -1,17 +1,26 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import CustomLayout from "../Components/Layout";
 import Logout from "../Components/LogoutButton";
 import CustomModal from "../Components/Modal";
-import { CompanyNavbarData } from "../Helper/constant";
+import { CompanyNavbarData, Table } from "../Helper/constant";
 import "../../../styles/scss/StudentApplied.scss";
 import "../../../styles/scss/Jobs.scss";
 import withAuth from "../Auth";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import avater from "../Components/Assets/noData.png";
+import MainButton from "../Components/MainButton";
+import { Box, Modal } from "@mui/material";
+import MyTable from "../Components/Table";
+import StudentDetails from "../Components/StudentAppliedTable";
 
 const StudentApplied = () => {
+  const [open, setOpen] = useState(false);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
+
   const userCurrentData = useSelector((state) => state.campus.userType);
   const allUsers = useSelector((state) => state.campus.userData);
   const dataOfJob = useSelector((state) => state.campus.jobData);
@@ -28,7 +37,12 @@ const StudentApplied = () => {
   const filteredJobs = res.filter(
     (item) => item?.companyId === userCurrentData?.uid
   );
-  console.log(filteredJobs, "filteredJobs");
+  // console.log(filteredJobs, "filteredJobs");
+
+  // const value = Object.values(allUsers)?.flatMap(
+  //   (item) => !!item?.uid && Object.values(item.uid)
+  // );
+  // console.log(value, "allUsers?.appliedJobs");
 
   return (
     <div>
@@ -67,6 +81,21 @@ const StudentApplied = () => {
                       <p className="job_post_para">Description:</p>
                       <p className="tittle">{item?.description}</p>
                     </div>
+                    <div className="main_div_Apply_Button_studentapplied">
+                      <MainButton
+                        className="Apply_Button_studentapplied"
+                        onClick={handleOpen}
+                        text={"Student Details"}
+                      />
+                    </div>
+                    <Modal
+                      className="logout_modal"
+                      open={open}
+                      onClose={handleClose}>
+                      <Box className="box_class">
+                        <StudentDetails />
+                      </Box>
+                    </Modal>
                   </div>
                 </div>
               ))

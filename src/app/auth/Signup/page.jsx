@@ -17,7 +17,6 @@ import '../../../../styles/scss/signup.scss';
 import { signupInitialValues, signupSchema } from '@/app/Helper/schema';
 import { onValue, ref } from 'firebase/database';
 import { db } from '@/app/firebase';
-import withAuth from '@/app/Auth';
 
 const Signup = () => {
     const router = useRouter();
