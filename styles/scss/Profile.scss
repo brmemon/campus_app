@@ -14,6 +14,26 @@
     align-items: center;
     text-align: center;
 
+    .user_name {
+      display: flex;
+      padding: 10px 10px;
+      gap: 15px;
+      align-items: baseline;
+      margin-bottom: 25px;
+
+      .hi_message {
+        font-size: 20px;
+        color: #8b8b8b;
+        font-weight: 600;
+      }
+
+      .avater_name {
+        color: #50c99f;
+        font-size: 23px;
+        font-weight: 800;
+      }
+    }
+
     .avater_and_name {
       margin-bottom: 35px;
 
@@ -41,11 +61,6 @@
         color: #50c99f;
       }
 
-      .avater_name {
-        font-size: 17px;
-        text-decoration: underline;
-        text-decoration-color: #50c99f;
-      }
     }
 
     .profile_input {
@@ -60,6 +75,7 @@
         display: grid;
         width: 100%;
       }
+
       .eye-icon {
         font-size: 18px;
         margin: 7px 2px;
@@ -117,11 +133,11 @@
     position: relative;
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
-    padding: 0;
+    padding: 55px 30px 0px 30px;
     overflow: auto;
 
     .profile {
-      padding-top: 100px;
+      // padding-top: 100px;
 
       .profile_input {
         .input_profile {

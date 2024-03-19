@@ -37,6 +37,7 @@ const StudentApplied = () => {
   const filteredJobs = res.filter(
     (item) => item?.companyId === userCurrentData?.uid
   );
+  console.log(filteredJobs , "adnaklsd");
   // console.log(filteredJobs, "filteredJobs");
 
   // const value = Object.values(allUsers)?.flatMap(

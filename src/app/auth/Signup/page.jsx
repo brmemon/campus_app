@@ -36,7 +36,7 @@ const Signup = () => {
         initialValues: signupInitialValues,
         validationSchema: () => signupSchema(values),
 
-        onSubmit: async (values) => {
+        onSubmit: async (values , {resetForm}) => {
 
             const { success, message } = await registerUser(values);
             if (success) {
@@ -49,6 +49,7 @@ const Signup = () => {
             } else {
                 toast.error(message);
             }
+            resetForm()
         },
     });
 

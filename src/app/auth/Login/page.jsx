@@ -38,7 +38,7 @@ const Login = () => {
     initialValues: loginInitialValues,
     validationSchema: () => loginSchema(values),
 
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       if (values.email === userEmail) {
         if (statusVerified && !statusBlocked) {
           const { success, message } = await loginUser(
@@ -59,6 +59,7 @@ const Login = () => {
           router.push("/BlockedPage");
         }
       }
+      resetForm();
     },
   });
   const { values, errors, touched, handleSubmit } = formik;

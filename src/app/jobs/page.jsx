@@ -15,15 +15,18 @@ import { ToastContainer, toast } from "react-toastify";
 
 const Jobs = () => {
   const dataOfJob = useSelector((state) => state.campus.jobData);
-  const jobs = Object.values(dataOfJob);
+  const jobs = Object.entries(dataOfJob);
+  const currentUser = useSelector((state) => state.campus.userType);
 
-  const jobApply = (job) => {
+  const jobApply = (item , key) => {
+    const job = item?.id
     set(ref(db, `/users/${auth.currentUser.uid}/appliedJobs/${job}`), job)
       .then(() => {
-        set(ref(db, `/jobs/${job}/studentApplied/${auth.currentUser.uid}`), job);
+        set(ref(db, `/jobs/${key}/studentApplied/${auth.currentUser.uid}`), currentUser);
         toast.success("Applied Job Successfully");
       })
       .catch((error) => toast.error(error));
+      // console.log(item , "hellow wrld");
   };
 
   return (
@@ -34,8 +37,8 @@ const Jobs = () => {
         <Logout />
         <div className="job_post_first">
           {jobs.length > 0 ? (
-            jobs.map((item, index) => (
-              <div key={index} className="job_post_second">
+            jobs.map(([key, item]) => (
+              <div key={key} className="job_post_second">
                 <div className="job_post_third">
                   <div className="job_post_ite">
                     <p className="tittle">{item?.title}</p>
@@ -64,7 +67,8 @@ const Jobs = () => {
                     <MainButton
                       className="Apply_Button"
                       text={"Apply"}
-                      onClick={() => jobApply(item?.id)}
+                      onClick={() => jobApply(item,key)}
+
                     />
                   </div>
                 </div>

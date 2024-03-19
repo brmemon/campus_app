@@ -25,7 +25,7 @@
         .campus_heading {
             font-size: 32px;
             color: white;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
         }
 
         .campus_logo {
@@ -42,7 +42,7 @@
         flex-direction: column;
         color: white;
         align-items: center;
-        margin-bottom: 15px;
+        padding-top: 27px;
 
         .navbar_avater {
             width: 100px;
@@ -52,7 +52,23 @@
         }
 
         .user_name {
-            font-size: 20px;
+            display: flex;
+            padding: 10px 10px;
+            gap: 15px;
+            align-items: baseline;
+            margin-bottom: 25px;
+
+            .hi_message {
+                font-size: 20px;
+                color: #8b8b8b;
+                font-weight: 600;
+            }
+
+            .avater_name {
+                color: white;
+                font-size: 23px;
+                font-weight: 800;
+            }
         }
     }
 
@@ -60,6 +76,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        // margin-top: 30px;
 
         .main_mapmenu {
             background-color: aliceblue;

@@ -24,7 +24,7 @@ const JobsPost = () => {
   const formik = useFormik({
     initialValues: jobPostInitialValues,
     validationSchema: () => jobPostSchema(values),
-    onSubmit: async (values) => {
+    onSubmit: async (values, {resetForm}) => {
       try {
         const jobsRef = ref(db, "jobs");
         const newJobRef = push(jobsRef);
@@ -45,6 +45,7 @@ const JobsPost = () => {
       } catch (error) {
         toast.error("Error posting job. Please try again.");
       }
+      resetForm();
     },
   });
 

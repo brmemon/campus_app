@@ -92,3 +92,10 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #50c99f;
 }
+
+
+@media only screen and (max-width: 749px) {
+  .top_heading{
+    width: 93%;
+  }
+}
