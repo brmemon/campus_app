@@ -95,7 +95,13 @@ body {
 
 
 @media only screen and (max-width: 749px) {
-  .top_heading{
+  .top_heading {
     width: 93%;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .top_heading {
+    padding: 15px 10px;
   }
 }

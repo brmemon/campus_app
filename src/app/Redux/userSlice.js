@@ -7,8 +7,8 @@ const initialState = {
   blocked: [],
   jobData: [],
   appliedJobs: [],
-  isLoading: true,
-  userType: null
+  userType: null,
+  isLoading: true
 };
 
 const campusSlice = createSlice({
@@ -19,22 +19,19 @@ const campusSlice = createSlice({
     addData: (state, action) => {
       state.userData = action.payload;
       const temp = Object.values(state.userData);
-
+      
       state.unVerified = temp.filter(user => user.name !== 'admin' && !user.adminVerifiedUser && !user.adminBlockedUser);
       state.verified = temp.filter(user => user.name !== 'admin' && user.adminVerifiedUser && !user.adminBlockedUser);
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
-      if (state.userData) state.isLoading = false;
+      state.isLoading = false;
     },
 
     setCurrentUser: (state, action) => {
       state.userType = action.payload;
-      // console.log(state.userType , "user current data in redux ");
     },
 
     addJobPost: (state, action) => {
       state.jobData = action.payload;
-      // const temper = Object.values(state.jobData)
-      // console.log(state.jobData, "state.jobData");
     },
 
   }

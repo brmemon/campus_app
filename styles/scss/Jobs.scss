@@ -131,3 +131,33 @@
     overflow: auto;
   }
 }
+
+@media only screen and (max-width: 499px) {
+  .job_post_first {
+    padding: 100px 0 19px 0;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .job_post_first {
+    .job_post_second {
+      padding: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .job_post_first {
+    .job_post_second {
+      .job_post_third {
+        .job_post_item {
+          padding: 10px 3px;
+
+          .job_post_para {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
+}

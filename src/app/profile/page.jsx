@@ -107,7 +107,7 @@ const Profile = () => {
               SideNavbarData={
                 userCurrentData?.userType === "admin"
                   ? AdminNavbarData
-                  : userCurrentData?.userType === "company"
+                  : userCurrentData?.userType === "Company"
                   ? CompanyNavbarData
                   : userCurrentData?.userType === "student"
                   ? StudentNavbarData

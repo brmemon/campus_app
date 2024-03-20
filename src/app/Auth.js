@@ -8,47 +8,62 @@ export default function withAuth(Component) {
   function AuthWrapper(props) {
     const router = useRouter();
     const userCurrentData = useSelector((state) => state.campus.userType);
-    const loader = useSelector((state) => state.campus.isLoading);
-    const [loading, setLoading] = useState(true);
+    const isLoading = useSelector((state) => state.campus.isLoading);
+    // const [loading, setLoading] = useState(true);
+
+    // useEffect(() => {
+    //   const timer = setTimeout(() => {
+    //     setLoading(false);
+    //   }, 5000);
+
+    //   return () => clearTimeout(timer);
+
+    // }, []);
+
+
 
     useEffect(() => {
-      const timer = setTimeout(() => {
-        setLoading(false);
-      }, 5000);
+      if (isLoading) {
+        <Loader />
+      }
+      // if (isLoading)
+      //   setLoading(true)
 
-      return () => clearTimeout(timer);
-
-    }, []);
-
-    useEffect(() => {
-      if (!loading) {
+      if (!isLoading) {
         if (!userCurrentData) {
           router.push("/auth/Login");
         } else {
+          console.log(userCurrentData, "hellow world")
           if (userCurrentData.userType === "admin") {
             const adminRoutesAllowed = ["/profile", "/unverified", "/verified", "/block"];
             const currentRoute = window.location.pathname;
+            // setLoading(false)
             if (!adminRoutesAllowed.includes(currentRoute)) {
-              router.push("/profile");
+              router.back();
+              // setLoading(false)
             }
-          } else if (userCurrentData === "Company") {
+          } else if (userCurrentData.userType === "company") {
             const companyRoutesAllowed = ["/profile", "/jobpost", "/postedjobs", "/appliedstudent"];
             const currentRoute = window.location.pathname;
+            // setLoading(false)
             if (!companyRoutesAllowed.includes(currentRoute)) {
-              router.push("/profile");
+              router.back();
+              // setLoading(false)
             }
-          } else if (userCurrentData === "Student") {
+          } else if (userCurrentData.userType === "Student") {
             const studentRoutesAllowed = ["/profile", "/jobs", "/appliedjobs"];
             const currentRoute = window.location.pathname;
+            // setLoading(false)
             if (!studentRoutesAllowed.includes(currentRoute)) {
-              router.push("/profile");
+              router.back();
+              // setLoading(false)
             }
           }
         }
       }
-    }, [loading, userCurrentData, router]);
+    }, [isLoading, userCurrentData, router]);
 
-    if (loading) {
+    if (isLoading) {
       return <Loader />;
     }
 
