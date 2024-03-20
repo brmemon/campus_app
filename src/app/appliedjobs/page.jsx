@@ -1,91 +1,64 @@
-// AppliedJobs.js
 "use client";
 import React from "react";
 import CustomLayout from "../Components/Layout";
 import { StudentNavbarData } from "../Helper/constant";
 import Logout from "../Components/LogoutButton";
-import { useSelector } from "react-redux";
 import "../../../styles/scss/AppliedJobs.scss";
 import withAuth from "../Auth";
-import { getAuth } from "firebase/auth";
-import MainButton from "../Components/MainButton";
+import { useSelector } from "react-redux";
+import avater from "../Components/Assets/noData.png";
+import Image from "next/image";
 
 const AppliedJobs = () => {
-  const auth = getAuth();
+  const dataOfJob = useSelector((state) => state.campus.jobData);
+  const currentUserData = useSelector((state) => state.campus.userType);
 
-  const jobsData = useSelector((state) => state.campus.allJobsData);
-  const allUsers = useSelector((state) => state.campus.data);
-  const userUid = useSelector((state) => state.campus.userUid);
-  
-  
-  let jobs = Object.values(jobsData);
-  
-  let showData = allUsers[userUid]?.appliedJobs;
-  let tempArr = showData && Object.values(showData);
-  
-  let result = [jobs, tempArr].reduce((includ, current) =>
-  includ?.filter((a) => current?.includes(a.jobId))
+  let jobs = Object.values(dataOfJob);
+  let userApplied = Object.values(currentUserData?.appliedJobs);
+
+  let res = [jobs, userApplied].reduce((include, current) =>
+    include?.filter((a) => current?.includes(a.id))
   );
-  console.log(jobs , "jobs" , <br/> , tempArr , "tempArr");
-
   return (
     <CustomLayout SideNavbarData={StudentNavbarData}>
       <div className="all_path">
         <h1 className="top_heading">Applied Jobs</h1>
         <Logout />
-
-        <div style={{backgroundColor: "black"}} className="postedJobs">
-          <p>hellow</p>
-          {result ? (
-            result.map((item) => (
-              <div key={Object.keys(item)[0]} class="flip-card">
-                <div class="flip-card-inner">
-                  <div class="flip-card-front">
-                    <h2>{item.title}</h2>
-                    <h4>Salary: {item.salary}</h4>
+        <div className="job_post_first">
+          {res?.length > 0 ? (
+            res.map((item, index) => (
+              <div key={index} className="job_post_second">
+                <div className="job_post_third">
+                  <div className="job_post_ite">
+                    <p className="tittle">{item?.title}</p>
                   </div>
-                  <div class="flip-card-back">
-                    <div className="rowJob">
-                      <div className="jobCol1">Field: </div>
-                      <div className="jobCol2">{item.category}</div>
-                    </div>
-                    <div className="rowJob">
-                      <div className="jobCol1">Min Education: </div>
-                      <div className="jobCol2">{item.qualification}</div>
-                    </div>
-                    <div className="rowJob">
-                      <div className="jobCol1">Skills: </div>
-                      <div className="jobCol2">{item.skills}</div>
-                    </div>
-                    <div className="rowJob">
-                      <div className="jobCol1">Comments: </div>
-                      <div className="jobCol2">{item.desc}</div>
-                    </div>
-                    <div className="rowJob">
-                      <div className="jobCol1">Gender: </div>
-                      <div className="jobCol2">{item.gender}</div>
-                    </div>
-                    <div className="rowJob">
-                      <div className="jobCol1">Timing: </div>
-                      <div className="jobCol2">{item.timings}</div>
-                    </div>
-
-                    <div className="applyJobBtn">
-                      <MainButton
-                        text="Applied"
-                        className="applyJobDisable"
-                        vairant="outlined"
-                        disable={true}
-                        click={() => applyJob(item.jobId)}
-                      />
-                    </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Qualification:</p>
+                    <p className="tittle">{item?.minimumQualification}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Category:</p>
+                    <p className="tittle">{item?.category}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Skills:</p>
+                    <p className="tittle">{item?.skills}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Salary:</p>
+                    <p className="tittle">{item?.salary}</p>
+                  </div>
+                  <div className="job_post_item">
+                    <p className="job_post_para">Description:</p>
+                    <p className="tittle">{item?.description}</p>
                   </div>
                 </div>
               </div>
             ))
           ) : (
-            <div className="emptyText">
-              <p>Not Applied On Any Job</p>
+            <div className="empty_div">
+              <Image src={avater} alt="No Data" width={350} height={350} />
+              <h1 className="empty_data">No Data Found</h1>
             </div>
           )}
         </div>

@@ -1,18 +1,163 @@
 .all_path {
-    background-color: white;
-    height: 100vh;
-    width: 100%;
-    border-bottom-left-radius: 70px;
-    border-top-left-radius: 70px;
-    overflow: hidden;
+  background-color: white;
+  height: 100vh;
+  width: 100%;
+  border-bottom-left-radius: 70px;
+  border-top-left-radius: 70px;
+  overflow: auto;
 }
 
-@media only screen and (max-width: 749px) {
-    .all_path {
-        position: relative;
-        border-top-left-radius: 0;
-        border-bottom-left-radius: 0;
-        padding: 55px 30px 0px 30px;
-        overflow: auto;
+.job_post_first {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: auto;
+  padding: 100px 20px 19px 50px;
+  justify-content: center;
+
+  .empty_div {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+
+    .empty_data {
+      font-size: 40px;
+      color: #939393;
+      font-style: normal;
     }
+  }
+
+  .job_post_second {
+    width: 40%;
+    padding: 10px;
+
+    .job_post_third {
+      box-shadow: 1px 1px 3px #50c99f;
+      background-color: rgba(49, 247, 255, 0.06);
+      border-bottom-left-radius: 30px;
+      border-top-right-radius: 30px;
+      display: grid;
+      height: 100%;
+
+      .job_post_ite {
+        color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        background-color: #50c99f;
+        font-family: auto;
+        border-top-right-radius: 30px;
+        letter-spacing: 2px;
+        word-spacing: 2px;
+        font-style: italic;
+        font-weight: 600;
+        padding: 6px;
+      }
+
+      .job_post_item {
+        width: 100%;
+        display: flex;
+        padding: 10px 8px;
+        font-family: serif;
+
+        .job_post_para {
+          width: 50%;
+          font-size: 17px;
+          font-weight: 700;
+          font-style: oblique;
+        }
+
+        .tittle {
+          font-family: "lato";
+          word-break: break-word;
+          width: 85%;
+        }
+      }
+    }
+  }
+
+  .main_div_Apply_Button {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+
+    .Apply_Button {
+      width: 100px;
+      margin: 5px;
+    }
+  }
+
+  .main_div_Apply_Button_studentapplied {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    .Apply_Button_studentapplied {
+      width: 80%;
+      margin: 5px
+    }
+  }
+}
+
+@media only screen and (max-width: 1249px) {
+  .all_path {
+    .job_post_first {
+      .job_post_second {
+        width: 50%;
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .all_path {
+    .job_post_first {
+      .job_post_second {
+        width: 100%;
+      }
+    }
+  }
+}
+
+
+@media only screen and (max-width: 749px) {
+  .all_path {
+    position: relative;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    padding: 55px 30px 0px 30px;
+    overflow: auto;
+  }
+}
+
+@media only screen and (max-width: 499px) {
+  .job_post_first {
+    padding: 100px 0 19px 0;
+  }
+}
+
+@media only screen and (max-width: 399px) {
+  .job_post_first {
+    .job_post_second {
+      padding: 0;
+    }
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .job_post_first {
+    .job_post_second {
+      .job_post_third {
+        .job_post_item {
+          padding: 10px 3px;
+
+          .job_post_para {
+            font-size: 16px;
+          }
+        }
+      }
+    }
+  }
 }

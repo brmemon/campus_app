@@ -80,6 +80,13 @@ export const Table = [
     "Name", "Email", "Role", "Verify", "Block"
 ]
 
+
+///////////////////////////////////      AppliedTableData        ///////////////////////////////////
+
+export const AppliedTableData = [
+    "Name", "Email", "Education", "Experience"
+]
+
 ///////////////////////////////////      StudentEducation        ///////////////////////////////////
 
 export const StudentEducation = [

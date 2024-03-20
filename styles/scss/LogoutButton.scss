@@ -2,6 +2,7 @@
     top: 15px;
     width: 100px;
     position: absolute;
+    z-index: 1100;
     right: 25px;
 
     .logout_width {
@@ -24,6 +25,16 @@
     transform: translate(-50%, -50%);
     background-color: #fff0;
 
+    .box_class {
+        width: 75%;
+        height: 75vh;
+        background-color: white ;
+        display: flex;
+        align-items: center;
+        text-align: center;
+        justify-content: center;
+    }
+
     .logout_box {
         transition: 5s ease;
         box-shadow: 0px 1px 15px 0px #50c99f;
@@ -32,6 +43,7 @@
         width: 320px;
         height: 260px;
         background-color: white;
+
 
         .logout_modal_para {
             font-size: 15px;

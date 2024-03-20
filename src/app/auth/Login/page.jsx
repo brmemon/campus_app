@@ -1,21 +1,21 @@
-"use client"
-import React, { useEffect } from 'react';
-import '../../../../styles/scss/LoginAndAuthContainer.scss';
-import Input from '@/app/Components/Input';
-import Link from 'next/link';
-import MainButton from '@/app/Components/MainButton';
-import FormControlInput from '@/app/Components/formControlInput';
-import AuthContainer from '../SideContainers/AuthContainer';
-import { FaRegHandshake } from 'react-icons/fa6';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useRouter } from 'next/navigation';
-import { useFormik } from 'formik';
-import { loginUser } from '@/app/Helper/helper';
-import { loginInitialValues, loginSchema } from '@/app/Helper/schema';
-import { onValue, ref } from 'firebase/database';
-import { db } from '@/app/firebase';
-import withAuth from '@/app/Auth';
+"use client";
+import React, { useEffect } from "react";
+import "../../../../styles/scss/LoginAndAuthContainer.scss";
+import Input from "@/app/Components/Input";
+import Link from "next/link";
+import MainButton from "@/app/Components/MainButton";
+import FormControlInput from "@/app/Components/formControlInput";
+import AuthContainer from "../SideContainers/AuthContainer";
+import { FaRegHandshake } from "react-icons/fa6";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useRouter } from "next/navigation";
+import { useFormik } from "formik";
+import { loginUser } from "@/app/Helper/helper";
+import { loginInitialValues, loginSchema } from "@/app/Helper/schema";
+import { onValue, ref } from "firebase/database";
+import { db } from "@/app/firebase";
+import withAuth from "@/app/Auth";
 
 const Login = () => {
   const router = useRouter();
@@ -25,50 +25,57 @@ const Login = () => {
     onValue(ref(db, "/users"), async (data) => {
       if (data.val()) {
         let myVal = Object?.values(data.val());
-        let ind = myVal.findIndex((item) => item?.email === values.email)
+        let ind = myVal.findIndex((item) => item?.email === values.email);
 
         statusVerified = myVal[ind]?.adminVerifiedUser;
         statusBlocked = myVal[ind]?.adminBlockedUser;
         userEmail = myVal[ind]?.email;
       }
-    })
-  })
+    });
+  });
 
   const formik = useFormik({
     initialValues: loginInitialValues,
     validationSchema: () => loginSchema(values),
 
-    onSubmit: async (values) => {
+    onSubmit: async (values, { resetForm }) => {
       if (values.email === userEmail) {
         if (statusVerified && !statusBlocked) {
-          const { success, message } = await loginUser(values.email, values.password);
+          const { success, message } = await loginUser(
+            values.email,
+            values.password
+          );
 
           if (success) {
             toast.success(message);
-            router.push('/profile');
+            router.push("/profile");
+          } else {
+            toast.error("Invalid Email/Password");
           }
-          else {
-            toast.error('You are not verified by admin, please contact the admin')
-          }
+        } else if (values.email === userEmail && !statusVerified) {
+          toast.error("You Are Not Verify By Admin");
         } else if (statusBlocked) {
-          toast.error('Your Account Is Blocked');
-          router.push('/BlockedPage');
+          toast.error("Your Account Is Blocked");
+          router.push("/BlockedPage");
         }
       }
-    }
-  }
-  )
+      resetForm();
+    },
+  });
   const { values, errors, touched, handleSubmit } = formik;
 
   return (
     <div className="container">
       <AuthContainer />
       <ToastContainer />
-      <div className='main_container'>
+      <div className="main_container">
         <div className="sub_container_two">
           <FaRegHandshake className="media_logo" />
           <h1 className="login_logo"> Login </h1>
-          <h2 className='login_welcome'> Welcome Back! Login To Your Account </h2>
+          <h2 className="login_welcome">
+            {" "}
+            Welcome Back! Login To Your Account{" "}
+          </h2>
           <form onSubmit={handleSubmit}>
             <div className="login_input">
               <Input
@@ -76,11 +83,13 @@ const Login = () => {
                 type={"email"}
                 onChange={formik.handleChange}
                 value={values.email}
-                className={'input'}
+                className={"input"}
                 name="email"
                 id="email"
               />
-              {errors.email && touched.email && <div className="error">{errors.email}</div>}
+              {errors.email && touched.email && (
+                <div className="error">{errors.email}</div>
+              )}
 
               <FormControlInput
                 label={"Password"}
@@ -90,32 +99,28 @@ const Login = () => {
                 name="password"
                 id="password"
               />
-              {errors.password && touched.password && <div className="error">{errors.password}</div>}
+              {errors.password && touched.password && (
+                <div className="error">{errors.password}</div>
+              )}
             </div>
 
             <span className="forget">
-              <Link
-                href="/auth/ForgetPassword"
-                className="forget_button">
+              <Link href="/auth/ForgetPassword" className="forget_button">
                 Forgot Password?
               </Link>
             </span>
 
-            <div className='MainButton_Parent'>
+            <div className="MainButton_Parent">
               <MainButton type="submit" text="Log In" />
             </div>
           </form>
 
-          <p className='sinUp_text'>
+          <p className="sinUp_text">
             Don't Have An Account ?
-            <Link
-              className='link'
-              href="/auth/Signup"
-            >
+            <Link className="link" href="/auth/Signup">
               Sign Up
             </Link>
           </p>
-
         </div>
       </div>
     </div>

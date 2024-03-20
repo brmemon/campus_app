@@ -19,24 +19,33 @@ import { useSelector } from "react-redux";
 
 const JobsPost = () => {
   const [pathname, setPathname] = useState();
-
-  const userUid = useSelector((state) => state.campus.userUid);
+  const userCurrentData = useSelector((state) => state.campus.userType);
 
   const formik = useFormik({
     initialValues: jobPostInitialValues,
     validationSchema: () => jobPostSchema(values),
-    onSubmit: async (values) => {
-      const unique_id = uuidv4();
-      let job_id = unique_id;
+    onSubmit: async (values, {resetForm}) => {
+      try {
+        const jobsRef = ref(db, "jobs");
+        const newJobRef = push(jobsRef);
+        const jobId = uuidv4();
+        const jobData = {
+          id: jobId,
+          companyId: userCurrentData?.uid,
+          title: values.tittle,
+          minimumQualification: values.minimumQualification,
+          category: values.category,
+          skills: values.skills,
+          salary: values.salary,
+          description: values.discription,
+        };
 
-      const prop1 = "jobId";
-      values[prop1] = job_id;
-      const prop2 = "companyId";
-      values[prop2] = userUid;
-
-      await set(ref(db, `/Jobs/${job_id}/`), values)
-        .then((value) => toast.success("Job Posted Successfully", {}))
-        .catch((err) => toast.error("Job Not Posted, Try Again", {}));
+        await set(newJobRef, jobData);
+        toast.success("Job posted successfully!");
+      } catch (error) {
+        toast.error("Error posting job. Please try again.");
+      }
+      resetForm();
     },
   });
 

@@ -17,7 +17,6 @@ import '../../../../styles/scss/signup.scss';
 import { signupInitialValues, signupSchema } from '@/app/Helper/schema';
 import { onValue, ref } from 'firebase/database';
 import { db } from '@/app/firebase';
-import withAuth from '@/app/Auth';
 
 const Signup = () => {
     const router = useRouter();
@@ -37,7 +36,7 @@ const Signup = () => {
         initialValues: signupInitialValues,
         validationSchema: () => signupSchema(values),
 
-        onSubmit: async (values) => {
+        onSubmit: async (values , {resetForm}) => {
 
             const { success, message } = await registerUser(values);
             if (success) {
@@ -50,6 +49,7 @@ const Signup = () => {
             } else {
                 toast.error(message);
             }
+            resetForm()
         },
     });
 

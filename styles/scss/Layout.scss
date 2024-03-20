@@ -25,7 +25,7 @@
         .campus_heading {
             font-size: 32px;
             color: white;
-            margin-bottom: 10px;
+            margin-bottom: 40px;
         }
 
         .campus_logo {
@@ -42,7 +42,7 @@
         flex-direction: column;
         color: white;
         align-items: center;
-        margin-bottom: 15px;
+        padding-top: 27px;
 
         .navbar_avater {
             width: 100px;
@@ -52,7 +52,23 @@
         }
 
         .user_name {
-            font-size: 20px;
+            display: flex;
+            padding: 10px 10px;
+            gap: 15px;
+            align-items: baseline;
+            margin-bottom: 25px;
+
+            .hi_message {
+                font-size: 20px;
+                color: #8b8b8b;
+                font-weight: 600;
+            }
+
+            .avater_name {
+                color: white;
+                font-size: 23px;
+                font-weight: 800;
+            }
         }
     }
 
@@ -60,11 +76,12 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        // margin-top: 30px;
 
         .main_mapmenu {
             background-color: aliceblue;
-            color: #2f3247;
-            border: 2px solid #2f3247;
+            color: #50c99f;
+            border: 2px solid #50c99f;
             display: flex;
             gap: 10px;
             margin-bottom: 20px;
@@ -75,13 +92,13 @@
         .main_mapmenu:hover {
             background-color: white;
             color: 2f3247;
-            border: 2px solid #2f3247;
+            border: 2px solid #50c99f;
             width: 100%;
         }
 
         .map_menu {
             justify-content: flex-start;
-            background-color: #2f3247;
+            background-color: #50c99f;
             color: white;
             border: 2px solid #50c99f;
             display: flex;
@@ -91,9 +108,9 @@
         }
 
         .map_menu:hover {
-            border: 2px solid #2f3247;
+            border: 2px solid #50c99f;
             background-color: white;
-            color: #2f3247;
+            color: #50c99f;
             width: 100%;
         }
 

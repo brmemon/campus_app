@@ -24,7 +24,7 @@ const Block = () => {
   return (
     <div>
       <CustomLayout SideNavbarData={AdminNavbarData} pathname={pathname}>
-        <div className='all_path'>
+        <div className='all_path_diffrent'>
           <h1 className='top_heading'>Block</h1>
           <CustomModal SideNavbarData={AdminNavbarData} />
           <Logout />
