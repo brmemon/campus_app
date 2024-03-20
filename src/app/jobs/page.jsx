@@ -26,7 +26,6 @@ const Jobs = () => {
         toast.success("Applied Job Successfully");
       })
       .catch((error) => toast.error(error));
-      // console.log(item , "hellow wrld");
   };
 
   return (

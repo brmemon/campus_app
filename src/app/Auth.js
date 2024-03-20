@@ -19,7 +19,6 @@ export default function withAuth(Component) {
         if (!userCurrentData) {
           router.push("/auth/Login");
         } else {
-          console.log(userCurrentData, "hellow world")
           if (userCurrentData.userType === "admin") {
             const adminRoutesAllowed = ["/profile", "/unverified", "/verified", "/block"];
             const currentRoute = window.location.pathname;

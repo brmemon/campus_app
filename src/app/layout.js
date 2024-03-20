@@ -13,9 +13,7 @@ export default function RootLayout({ children }) {
       <body>
         <Provider store={store}>
           <Providers>
-            {/* <Loader> */}
               {children}
-            {/* </Loader> */}
           </Providers>
           <StyledEngineProvider injectFirst>
           </StyledEngineProvider>

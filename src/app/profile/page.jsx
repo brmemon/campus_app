@@ -9,7 +9,6 @@ import {
 import { useFormik } from "formik";
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import { MdOutlinePhotoCameraFront } from "react-icons/md";
 import { useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify";
 import "../../../styles/scss/Profile.scss";
@@ -27,14 +26,13 @@ import {
   StudentNavbarData,
 } from "../Helper/constant";
 import { profileInitialValues, profileSchema } from "../Helper/schema";
-import { auth, db } from "../firebase";
+import { db } from "../firebase";
 import { ref, update } from "firebase/database";
 import FormControlInput from "../Components/formControlInput";
 
 const Profile = () => {
   const [pathname, setPathname] = useState("");
   const userCurrentData = useSelector((state) => state.campus.userType);
-  // console.log(userCurrentData, "profile ");
 
   const temper = typeof window !== undefined;
   useEffect(() => {

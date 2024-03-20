@@ -12,7 +12,6 @@ import Image from "next/image";
 import avater from "../Components/Assets/noData.png";
 import MainButton from "../Components/MainButton";
 import { Box, Modal } from "@mui/material";
-import MyTable from "../Components/Table";
 import StudentDetails from "../Components/StudentAppliedTable";
 
 const StudentApplied = () => {
@@ -37,13 +36,6 @@ const StudentApplied = () => {
   const filteredJobs = res.filter(
     (item) => item?.companyId === userCurrentData?.uid
   );
-  console.log(filteredJobs , "adnaklsd");
-  // console.log(filteredJobs, "filteredJobs");
-
-  // const value = Object.values(allUsers)?.flatMap(
-  //   (item) => !!item?.uid && Object.values(item.uid)
-  // );
-  // console.log(value, "allUsers?.appliedJobs");
 
   return (
     <div>

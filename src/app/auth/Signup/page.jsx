@@ -132,7 +132,6 @@ const Signup = () => {
                                 >
                                     <MenuItem value={'student'}>Student</MenuItem>
                                     <MenuItem value={'Company'}>Company</MenuItem>
-                                    {/* <MenuItem value={'admin'}>Admin</MenuItem> */}
                                 </Select>
                             </FormControl>
                             {errors.userType && touched.userType && <div className="error">{errors.userType}</div>}

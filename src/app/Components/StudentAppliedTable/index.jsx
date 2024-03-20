@@ -7,7 +7,6 @@ import {
   TableHead,
   TableRow,
 } from "@mui/material";
-import MainButton from "../MainButton";
 import "../../../../styles/scss/Table.scss";
 import { AppliedTableData } from "@/app/Helper/constant";
 import "../../../../styles/scss/StudentAppliedTable.scss";
@@ -34,7 +33,6 @@ const StudentDetails = () => {
   const hello = filteredJobs?.flatMap(
     (item) => !!item?.studentApplied && Object.values(item.studentApplied)
   );
-  // console.log(hello, "filteredJobs?.studentApplied ");
   return (
     <TableContainer className="">
       <div className="my_class">

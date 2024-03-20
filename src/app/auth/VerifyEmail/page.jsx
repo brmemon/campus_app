@@ -12,7 +12,6 @@ import { setCurrentUser } from "@/app/Redux/userSlice";
 const VerificationEmail = () => {
   const dispatch = useDispatch()
   const userCurrentData = useSelector((state) => state.campus.userType);
-  // console.log(userCurrentData , "verify email ki file ha ya ");
   const router = useRouter();
 
   const handleLogout = () => {
