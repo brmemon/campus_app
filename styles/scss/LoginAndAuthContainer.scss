@@ -25,10 +25,8 @@
         }
 
         .campus_logo {
-            font-size: 75px;
-            width: 100%;
-            margin-bottom: 25px;
-            color: white;
+            width: 35%;
+            height: 14%;
         }
 
         .campus_text {
@@ -191,10 +189,15 @@
             background-color: white;
 
             .sub_container_two {
+                align-items: center;
+                overflow: auto;
                 border-top-right-radius: 0px;
                 border-bottom-right-radius: 0px;
                 border-bottom-left-radius: 0px;
                 border-bottom-left-radius: 0px;
+                justify-content: center;
+                display: flex;
+                height: 100vh;
 
                 .sinUp_text {
                     margin-bottom: 15px;
@@ -202,9 +205,7 @@
 
                 .media_logo {
                     display: block;
-                    font-size: 75px;
-                    width: 100%;
-                    color: #50c99f;
+                    margin-top: 99px;
                 }
             }
         }

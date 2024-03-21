@@ -16,6 +16,8 @@ import { loginInitialValues, loginSchema } from "@/app/Helper/schema";
 import { onValue, ref } from "firebase/database";
 import { db } from "@/app/firebase";
 import withAuth from "@/app/Auth";
+import logo from "../../Components/Assets/logo.png";
+import Image from "next/image";
 
 const Login = () => {
   const router = useRouter();
@@ -70,12 +72,10 @@ const Login = () => {
       <ToastContainer />
       <div className="main_container">
         <div className="sub_container_two">
-          <FaRegHandshake className="media_logo" />
+          {/* <FaRegHandshake className="media_logo" /> */}
+          <Image src={logo} alt="App Logo" width={"180"} height={"110"} className="media_logo" />
           <h1 className="login_logo"> Login </h1>
-          <h2 className="login_welcome">
-            {" "}
-            Welcome Back! Login To Your Account{" "}
-          </h2>
+          <h2 className="login_welcome">Welcome Back! Login To Your Account</h2>
           <form onSubmit={handleSubmit}>
             <div className="login_input">
               <Input

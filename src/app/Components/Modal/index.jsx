@@ -9,6 +9,7 @@ import avater from "../Assets/avater.png";
 import { RxCross2 } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import { useSelector } from "react-redux";
+import logo from "../../Components/Assets/logo.png";
 
 const CustomModal = ({ SideNavbarData, profilePic }) => {
   const userCurrentData = useSelector((state) => state.campus.userType);
@@ -42,7 +43,7 @@ const CustomModal = ({ SideNavbarData, profilePic }) => {
             <RxCross2 />
           </div>
           <div className="logo_heading">
-            <FaRegHandshake className="campus_logo" />
+            <Image src={logo} alt="App Logo" className="campus_logo" />
             <h1 className="campus_heading">Campus App</h1>
             <div className="avater_div">
               <div className="avater_div">

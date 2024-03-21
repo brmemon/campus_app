@@ -7,6 +7,7 @@ import MainButton from "../MainButton";
 import Image from "next/image";
 import avater from "../Assets/avater.png";
 import { useSelector } from "react-redux";
+import logo from "../../Components/Assets/logo.png";
 
 const CustomLayout = ({ children, SideNavbarData, profilePic }) => {
   const router = useRouter();
@@ -20,7 +21,7 @@ const CustomLayout = ({ children, SideNavbarData, profilePic }) => {
     <div className="Main_sideNavbar">
       <div className="Side_Navbar">
         <div className="logo_heading">
-          <FaRegHandshake className="campus_logo" />
+          <Image src={logo} alt="App Logo" className="campus_logo" />
           <h1 className="campus_heading">Campus App</h1>
           <div className="avater_div">
             {/* <Image
