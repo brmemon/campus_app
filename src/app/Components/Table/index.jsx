@@ -12,6 +12,7 @@ import { db } from "@/app/firebase";
 import { ref, update } from "firebase/database";
 import MainButton from "../MainButton";
 import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
 
 const MyTable = ({ tableData, values }) => {
   let userInfo = values;
@@ -37,6 +38,17 @@ const MyTable = ({ tableData, values }) => {
     update(ref(db, `/users/${uid}`), { adminBlockedUser: valueUpdated });
   };
 
+  // const allUsers = useSelector((state) => state.campus.userData);
+  // const obj = Object.values(allUsers);
+
+  // const name = obj.forEach((item) => item?.userType);
+  // console.log(name);
+
+  // if (typeof allUsers === "object" && allUsers !== null) {
+  //   const userTypes = Object.values(allUsers).map((user) => user.userType);
+  //   console.log(userTypes);
+  // }
+
   return (
     <TableContainer className="tablecontainer_class">
       <div className="child_table">
@@ -52,38 +64,42 @@ const MyTable = ({ tableData, values }) => {
           </TableHead>
           <TableBody>
             {values.map((items, index) => {
-              return (
-                <TableRow key={index}>
-                  <TableCell className="tablecell_class">
-                    {items?.name}
-                  </TableCell>
-                  <TableCell className="tablecell_class">
-                    {items?.email}
-                  </TableCell>
-                  <TableCell className="tablecell_class">
-                    {items?.userType}
-                  </TableCell>
-                  <TableCell className="tablecell_btn">
-                    <MainButton
-                      className="tablecell_btn"
-                      text={items.adminVerifiedUser ? "Verified" : "Verify"}
-                      onClick={() => verifyUsers(index)}
-                      disabled={
-                        items.adminVerifiedUser || items.adminBlockedUser
-                          ? true
-                          : false
-                      }
-                    />
-                  </TableCell>
-                  <TableCell className="tablecell_btn">
-                    <MainButton
-                      className="tablecell_btn"
-                      text={items.adminBlockedUser ? "UnBlock" : "Block"}
-                      onClick={() => blockUsers(index)}
-                    />
-                  </TableCell>
-                </TableRow>
-              );
+              if (items?.userType !== "admin") {
+                return (
+                  <TableRow key={index}>
+                    <TableCell className="tablecell_class">
+                      {items?.name}
+                    </TableCell>
+                    <TableCell className="tablecell_class">
+                      {items?.email}
+                    </TableCell>
+                    <TableCell className="tablecell_class">
+                      {items?.userType}
+                    </TableCell>
+                    <TableCell className="tablecell_btn">
+                      <MainButton
+                        className="tablecell_btn"
+                        text={items.adminVerifiedUser ? "Verified" : "Verify"}
+                        onClick={() => verifyUsers(index)}
+                        disabled={
+                          items.adminVerifiedUser || items.adminBlockedUser
+                            ? true
+                            : false
+                        }
+                      />
+                    </TableCell>
+                    <TableCell className="tablecell_btn">
+                      <MainButton
+                        className="tablecell_btn"
+                        text={items.adminBlockedUser ? "UnBlock" : "Block"}
+                        onClick={() => blockUsers(index)}
+                      />
+                    </TableCell>
+                  </TableRow>
+                );
+              } else {
+                return null;
+              }
             })}
           </TableBody>
         </Table>

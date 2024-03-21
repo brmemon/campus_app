@@ -82,7 +82,6 @@ const Profile = () => {
   if (!userCurrentData) {
     return <Loader />;
   }
-  // console.log(auth.currentUser, "auth.currentUser");
 
   return (
     <div>
