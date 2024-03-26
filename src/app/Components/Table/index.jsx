@@ -12,7 +12,6 @@ import { db } from "@/app/firebase";
 import { ref, update } from "firebase/database";
 import MainButton from "../MainButton";
 import { useRouter } from "next/navigation";
-import { useSelector } from "react-redux";
 
 const MyTable = ({ tableData, values }) => {
   let userInfo = values;
@@ -37,18 +36,6 @@ const MyTable = ({ tableData, values }) => {
 
     update(ref(db, `/users/${uid}`), { adminBlockedUser: valueUpdated });
   };
-
-  // const allUsers = useSelector((state) => state.campus.userData);
-  // const obj = Object.values(allUsers);
-
-  // const name = obj.forEach((item) => item?.userType);
-  // console.log(name);
-
-  // if (typeof allUsers === "object" && allUsers !== null) {
-  //   const userTypes = Object.values(allUsers).map((user) => user.userType);
-  //   console.log(userTypes);
-  // }
-
   return (
     <TableContainer className="tablecontainer_class">
       <div className="child_table">

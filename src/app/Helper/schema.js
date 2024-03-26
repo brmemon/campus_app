@@ -63,11 +63,12 @@ export const loginInitialValues = {
 
 ///////////////////////////////////      Profile        ///////////////////////////////////
 
-export const profileSchema = (values) => {
+export const profileSchema = () => {
     return (
         Yup.object().shape({
             name: Yup.string().min(3, 'Name must be at least 3 characters')
-                .trim('The contact name cannot include leading and trailing spaces'),
+                .trim('The contact name cannot include leading and trailing spaces')
+                .max(15 , "Max 15 Caracters" ),
             oldPassword: Yup.string().when('newPassword', (newPassword, schema) =>
                 newPassword && newPassword.length > 2
                     ? schema.required('Old Password is required when updating New Password')

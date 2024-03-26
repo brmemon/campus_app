@@ -29,9 +29,9 @@ const Providers = ({ children }) => {
         console.error('Error fetching user role:', error.message);
       }
     };
-    
+
     fetchData();
-  }, );
+  },);
 
   useEffect(() => {
     const userDataUnsubscribe = onValue(ref(db, "/users"), async (userData) => {
@@ -39,8 +39,11 @@ const Providers = ({ children }) => {
         const usersData = userData.val();
         dispatch(addData(usersData));
         const currentUser = auth.currentUser;
-        if (currentUser && usersData[currentUser.uid]?.adminBlockedUser) {
-          router.push('/BlockedPage');
+        if (currentUser) {
+          const isAdminBlocked = usersData[currentUser.uid]?.adminBlockedUser;
+          if (isAdminBlocked) {
+            router.push('/BlockedPage');
+          }
         }
       }
     });

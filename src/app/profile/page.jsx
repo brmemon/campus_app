@@ -41,7 +41,7 @@ const Profile = () => {
 
   const formik = useFormik({
     initialValues: profileInitialValues(userCurrentData),
-    validationSchema: profileSchema(userCurrentData),
+    validationSchema: profileSchema(),
     onSubmit: async (values, { resetForm }) => {
       const auth = getAuth();
       const user = auth.currentUser;
@@ -68,7 +68,7 @@ const Profile = () => {
 
         toast.success("Profile updated successfully!");
       } catch (error) {
-        console.error("Error updating profile:", error.message);
+        console.error("failed updating profile:", error.message);
         if (error.code === "auth/wrong-password") {
           toast.error("password is incorrect.");
         } else {
