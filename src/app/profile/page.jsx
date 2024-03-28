@@ -26,7 +26,7 @@ import {
   StudentNavbarData,
 } from "../Helper/constant";
 import { profileInitialValues, profileSchema } from "../Helper/schema";
-import { db } from "../firebase";
+import { auth, db } from "../firebase";
 import { ref, update } from "firebase/database";
 import FormControlInput from "../Components/formControlInput";
 
@@ -38,42 +38,20 @@ const Profile = () => {
   useEffect(() => {
     setPathname(window.location.pathname);
   }, [temper]);
-
   const formik = useFormik({
     initialValues: profileInitialValues(userCurrentData),
     validationSchema: profileSchema(),
     onSubmit: async (values, { resetForm }) => {
-      const auth = getAuth();
-      const user = auth.currentUser;
-
-      const credential = EmailAuthProvider.credential(
-        user.email,
-        values.oldPassword
-      );
-
       try {
-        await reauthenticateWithCredential(user, credential);
-
-        await updatePassword(user, values.newPassword);
-
-        await updateProfile(user, {
-          displayName: values.name,
-        });
-
-        const userId = user.uid;
+        const displayName = values.name;
+        const userId = userCurrentData?.uid;
         const userRef = ref(db, `users/${userId}`);
-        await update(userRef, {
-          name: values.name,
-        });
+        await update(userRef, { name: displayName });
 
         toast.success("Profile updated successfully!");
       } catch (error) {
-        console.error("failed updating profile:", error.message);
-        if (error.code === "auth/wrong-password") {
-          toast.error("password is incorrect.");
-        } else {
-          toast.error("Failed to update profile. Please try again later.");
-        }
+        console.error("Failed updating profile:", error.message);
+        toast.error("Failed to update profile. Please try again later.");
       }
       resetForm();
     },
