@@ -1,66 +1,93 @@
 "use client";
+import React, { useState, useEffect } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import Loader from "../Components/MUILoader/Loader";
 import {
-  EmailAuthProvider,
-  getAuth,
+  updateProfile,
   reauthenticateWithCredential,
   updatePassword,
-  updateProfile,
 } from "firebase/auth";
-import { useFormik } from "formik";
-import Image from "next/image";
-import { useEffect, useState } from "react";
+import { ref, update } from "firebase/database";
+import { getAuth } from "firebase/auth";
 import { useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify";
-import "../../../styles/scss/Profile.scss";
-import withAuth from "../Auth";
-import avater from "../Components/Assets/avater.png";
-import Input from "../Components/Input";
+import { useFormik } from "formik";
+import { profileInitialValues, profileSchema } from "../Helper/schema";
+import { db } from "../firebase";
 import CustomLayout from "../Components/Layout";
-import Logout from "../Components/LogoutButton";
-import Loader from "../Components/MUILoader/Loader";
-import MainButton from "../Components/MainButton";
-import CustomModal from "../Components/Modal";
 import {
   AdminNavbarData,
   CompanyNavbarData,
   StudentNavbarData,
 } from "../Helper/constant";
-import { profileInitialValues, profileSchema } from "../Helper/schema";
-import { auth, db } from "../firebase";
-import { ref, update } from "firebase/database";
+import withAuth from "../Auth";
+import Logout from "../Components/LogoutButton";
+import CustomModal from "../Components/Modal";
+import MainButton from "../Components/MainButton";
+import Input from "../Components/Input";
 import FormControlInput from "../Components/formControlInput";
 
 const Profile = () => {
   const [pathname, setPathname] = useState("");
+  const [isEdited, setIsEdited] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const userCurrentData = useSelector((state) => state.campus.userType);
+  const authUser = getAuth().currentUser;
 
   const temper = typeof window !== undefined;
   useEffect(() => {
     setPathname(window.location.pathname);
   }, [temper]);
+
   const formik = useFormik({
     initialValues: profileInitialValues(userCurrentData),
     validationSchema: profileSchema(),
     onSubmit: async (values, { resetForm }) => {
       try {
-        const displayName = values.name;
-        const userId = userCurrentData?.uid;
-        const userRef = ref(db, `users/${userId}`);
-        await update(userRef, { name: displayName });
+        setIsLoading(true);
+
+        await updateProfile(authUser, {
+          displayName: values.name,
+        });
+
+        if (values.newPassword) {
+          const credential = EmailAuthProvider.credential(
+            authUser.email,
+            values.oldPassword
+          );
+          await reauthenticateWithCredential(authUser, credential);
+
+          await updatePassword(authUser, values.newPassword);
+        }
+
+        const userRef = ref(db, `users/${authUser.uid}`);
+        update(userRef, {
+          name: values.name,
+        });
 
         toast.success("Profile updated successfully!");
       } catch (error) {
-        console.error("Failed updating profile:", error.message);
-        toast.error("Failed to update profile. Please try again later.");
+        console.error("Error updating profile:", error);
+        toast.error("Failed to update profile. Please try again.");
+      } finally {
+        setIsLoading(false);
+        resetForm();
+        setIsEdited(false);
       }
-      resetForm();
     },
   });
 
-  if (!userCurrentData) {
+  useEffect(() => {
+    const isFormEdited = Object.keys(formik.touched).some(
+      (key) => formik.touched[key]
+    );
+    setIsEdited(isFormEdited);
+  }, [formik.touched]);
+
+  if (!userCurrentData || isLoading) {
     return <Loader />;
   }
 
+  // {isLoading && <Loader />}
   return (
     <div>
       <ToastContainer />
@@ -93,25 +120,11 @@ const Profile = () => {
             <h1 className="top_heading">Profile</h1>
 
             <div className="profile">
-              {/* <div className="avater_and_name"> */}
               <Logout />
-              {/* <label htmlFor="profilePicInput" className="avater_pencilicon">
-                  <Image
-                    src={avater}
-                    className={"navbar_avater"}
-                    alt={"Avater"}
-                    width={100}
-                    height={100}
-                    priority={true}
-                  />
-                  <MdOutlinePhotoCameraFront className="pencil_icon" />
-                </label> */}
               <div className="user_name">
                 <p className="hi_message">Hi!</p>
                 <p className="avater_name">{userCurrentData?.name}</p>
               </div>
-              {/* </div> */}
-
               <div className="profile_input">
                 <Input
                   disabled
@@ -129,7 +142,10 @@ const Profile = () => {
                   label="Name"
                   name="name"
                   id="name"
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    setIsEdited(true);
+                  }}
                   error={formik.touched.name && Boolean(formik.errors.name)}
                   value={formik.values.name}
                 />
@@ -146,7 +162,10 @@ const Profile = () => {
                   id="oldPassword"
                   type="password"
                   className="input_profile"
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    // setIsEdited(true);
+                  }}
                   value={formik.values.oldPassword}
                   error={
                     formik.touched.oldPassword &&
@@ -165,7 +184,10 @@ const Profile = () => {
                   id="newPassword"
                   type="password"
                   className="input_profile"
-                  onChange={formik.handleChange}
+                  onChange={(e) => {
+                    formik.handleChange(e);
+                    setIsEdited(true);
+                  }}
                   value={formik.values.newPassword}
                   error={
                     formik.touched.newPassword &&
@@ -185,7 +207,7 @@ const Profile = () => {
                   text="Save Changes"
                   className="profile_button"
                   onClick={formik.handleSubmit}
-                  disabled={formik.isSubmitting || !formik.isValid}
+                  disabled={formik.isSubmitting || !formik.isValid || !isEdited}
                 />
               </div>
             </div>
