@@ -1,5 +1,5 @@
-"use client";
-import React from "react";
+"use client"
+import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CustomLayout from "../Components/Layout";
 import { StudentNavbarData } from "../Helper/constant";
@@ -9,21 +9,39 @@ import withAuth from "../Auth";
 import Image from "next/image";
 import avater from "../Components/Assets/noData.png";
 import MainButton from "../Components/MainButton";
-import { ref, set } from "firebase/database";
+import { ref, set, get } from "firebase/database"; 
 import { auth, db } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
+import CustomModal from "../Components/Modal";
 
 const Jobs = () => {
   const dataOfJob = useSelector((state) => state.campus.jobData);
   const jobs = Object.entries(dataOfJob);
   const currentUser = useSelector((state) => state.campus.userType);
+  const [appliedJobs, setAppliedJobs] = useState([]); 
+  useEffect(() => {
+    const userRef = ref(db, `/users/${auth.currentUser.uid}/appliedJobs`);
+    get(userRef)
+      .then((snapshot) => {
+        if (snapshot.exists()) {
+          const appliedJobsData = snapshot.val();
+          const appliedJobsList = Object.values(appliedJobsData);
+          setAppliedJobs(appliedJobsList);
+        }
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
-  const jobApply = (item , key) => {
-    const job = item?.id
+  const jobApply = (item, key) => {
+    const job = item?.id;
     set(ref(db, `/users/${auth.currentUser.uid}/appliedJobs/${job}`), job)
       .then(() => {
-        set(ref(db, `/jobs/${key}/studentApplied/${auth.currentUser.uid}`), currentUser);
+        set(
+          ref(db, `/jobs/${key}/studentApplied/${auth.currentUser.uid}`),
+          currentUser
+        );
         toast.success("Applied Job Successfully");
+        setAppliedJobs([...appliedJobs, job])
       })
       .catch((error) => toast.error(error));
   };
@@ -34,6 +52,7 @@ const Jobs = () => {
       <div className="all_path">
         <h1 className="top_heading">Jobs</h1>
         <Logout />
+        <CustomModal SideNavbarData={StudentNavbarData} />
         <div className="job_post_first">
           {jobs.length > 0 ? (
             jobs.map(([key, item]) => (
@@ -65,9 +84,9 @@ const Jobs = () => {
                   <div className="main_div_Apply_Button">
                     <MainButton
                       className="Apply_Button"
-                      text={"Apply"}
-                      onClick={() => jobApply(item,key)}
-
+                      text={appliedJobs.includes(item?.id) ? "Applied" : "Apply"} 
+                      disabled={appliedJobs.includes(item?.id)} 
+                      onClick={() => jobApply(item, key)}
                     />
                   </div>
                 </div>

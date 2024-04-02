@@ -25,7 +25,7 @@ import CustomModal from "../Components/Modal";
 import MainButton from "../Components/MainButton";
 import Input from "../Components/Input";
 import FormControlInput from "../Components/formControlInput";
-
+import "../../../styles/scss/Profile.scss"
 const Profile = () => {
   const [pathname, setPathname] = useState("");
   const [isEdited, setIsEdited] = useState(false);

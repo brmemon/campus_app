@@ -35,12 +35,20 @@ const Login = () => {
       }
     });
   });
+  console.log(
+    statusBlocked,
+    "statusBlocked",
+    statusVerified,
+    "statusVerified",
+    userEmail,
+    "userEmail"
+  );
 
   const formik = useFormik({
     initialValues: loginInitialValues,
     validationSchema: () => loginSchema(values),
 
-    onSubmit: async (values, { resetForm }) => {
+    onSubmit: async (values) => {
       if (values.email === userEmail) {
         if (statusVerified && !statusBlocked) {
           const { success, message } = await loginUser(
@@ -61,7 +69,6 @@ const Login = () => {
           router.push("/BlockedPage");
         }
       }
-      resetForm();
     },
   });
   const { values, errors, touched, handleSubmit } = formik;
@@ -73,7 +80,13 @@ const Login = () => {
       <div className="main_container">
         <div className="sub_container_two">
           {/* <FaRegHandshake className="media_logo" /> */}
-          <Image src={logo} alt="App Logo" width={"180"} height={"110"} className="media_logo" />
+          <Image
+            src={logo}
+            alt="App Logo"
+            width={"180"}
+            height={"110"}
+            className="media_logo"
+          />
           <h1 className="login_logo"> Login </h1>
           <h2 className="login_welcome">Welcome Back! Login To Your Account</h2>
           <form onSubmit={handleSubmit}>

@@ -8,6 +8,7 @@ import withAuth from "../Auth";
 import { useSelector } from "react-redux";
 import avater from "../Components/Assets/noData.png";
 import Image from "next/image";
+import CustomModal from "../Components/Modal";
 
 const AppliedJobs = () => {
   const dataOfJob = useSelector((state) => state.campus.jobData);
@@ -23,6 +24,7 @@ const AppliedJobs = () => {
     <CustomLayout SideNavbarData={StudentNavbarData}>
       <div className="all_path">
         <h1 className="top_heading">Applied Jobs</h1>
+        <CustomModal SideNavbarData={StudentNavbarData} />
         <Logout />
         <div className="job_post_first">
           {res?.length > 0 ? (

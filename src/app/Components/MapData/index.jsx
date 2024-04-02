@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import "../../../../styles/scss/MapData.scss";
 import Image from "next/image";
 import avater from "../Assets/noData.png";
+import "../../../../styles/scss/Jobs.scss";
 const MapData = ({ dataJobs }) => {
   const userCurrentData = useSelector((state) => state.campus.userType);
   const filteredJobs = dataJobs.filter((item) => item?.companyId === userCurrentData?.uid);

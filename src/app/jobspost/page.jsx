@@ -4,6 +4,7 @@ import CustomLayout from "../Components/Layout";
 import "../../../styles/scss/JobsPost.scss";
 import { CompanyNavbarData } from "../Helper/constant";
 import "../../../styles/scss/globals.scss";
+import "../../../styles/scss/Jobs.scss";
 import Logout from "../Components/LogoutButton";
 import CustomModal from "../Components/Modal";
 import StyleInput from "../Components/styleInput";

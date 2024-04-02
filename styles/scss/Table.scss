@@ -12,26 +12,31 @@ td {
 .tablecontainer_class {
     display: flex;
     width: 100%;
-    height: 75vh;
+    height: 70vh;
     border-radius: 7px;
     margin-top: 115px;
     z-index: 1200;
     position: relative;
     justify-content: center;
 
-    .child_table{
-        width: 90%;
+    .child_table {
+        width: 100%;
+        // display: flex;
+        // flex-direction: column;
+        // align-items: center;
+        // text-align: center;
     }
 
     .table_class {
         min-width: 650px;
-        border-color: rgb(0, 140, 255);
+        display: ruby-text;
 
         .table_head_class {
             background-color: #50c99f;
             border-radius: 10px;
         }
-        .tablecell_btn{
+
+        .tablecell_btn {
             width: 100px;
             height: 30px;
             margin: 0;

@@ -1,7 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import CustomLayout from "../Components/Layout";
-import "../../../styles/scss/PostedJobs.scss";
+// import "../../../styles/scss/PostedJobs.scss";
+import "../../../styles/scss/Jobs.scss";
 import { CompanyNavbarData, Table } from "../Helper/constant";
 import "../../../styles/scss/globals.scss";
 import Logout from "../Components/LogoutButton";
