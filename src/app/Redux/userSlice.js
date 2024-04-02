@@ -24,6 +24,7 @@ const campusSlice = createSlice({
       state.verified = temp.filter(user => user.name !== 'admin' && user.adminVerifiedUser && !user.adminBlockedUser);
       state.blocked = temp.filter(user => user.name !== 'admin' && user.adminBlockedUser);
       state.isLoading = false;
+      console.log(state.blocked , "redux user block");
     },
 
     setCurrentUser: (state, action) => {

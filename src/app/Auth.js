@@ -20,7 +20,7 @@ export default function withAuth(Component) {
           router.push("/auth/Login");
         } else {
           if (userCurrentData.userType === "admin") {
-            const adminRoutesAllowed = ["/profile", "/unverified", "/verified", "/block"];
+            const adminRoutesAllowed = ["/profile", "/unverified", "/verified", "/block", "/BlockedPage"];
             const currentRoute = window.location.pathname;
             if (!adminRoutesAllowed.includes(currentRoute)) {
               router.back();
@@ -29,7 +29,7 @@ export default function withAuth(Component) {
               }
             }
           } else if (userCurrentData.userType === "company") {
-            const companyRoutesAllowed = ["/profile", "/jobpost", "/postedjobs", "/appliedstudent"];
+            const companyRoutesAllowed = ["/profile", "/jobpost", "/postedjobs", "/appliedstudent", "/BlockedPage"];
             const currentRoute = window.location.pathname;
             if (!companyRoutesAllowed.includes(currentRoute)) {
               router.back();
@@ -38,7 +38,7 @@ export default function withAuth(Component) {
               }
             }
           } else if (userCurrentData.userType === "Student") {
-            const studentRoutesAllowed = ["/profile", "/jobs", "/appliedjobs"];
+            const studentRoutesAllowed = ["/profile", "/jobs", "/appliedjobs", "/BlockedPage"];
             const currentRoute = window.location.pathname;
             if (!studentRoutesAllowed.includes(currentRoute)) {
               router.back();
