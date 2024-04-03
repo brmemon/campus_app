@@ -19,6 +19,9 @@ const Providers = ({ children }) => {
               const userType = snapshot.val();
               if (userType) {
                 dispatch(setCurrentUser(userType));
+                if (!userType.adminBlockedUser) {
+                  router.push('/profile');
+                }
               }
             });
           }
@@ -31,7 +34,7 @@ const Providers = ({ children }) => {
     };
 
     fetchData();
-  },);
+  }, [router, dispatch]);
 
   useEffect(() => {
     const userDataUnsubscribe = onValue(ref(db, "/users"), async (userData) => {
@@ -58,7 +61,7 @@ const Providers = ({ children }) => {
       userDataUnsubscribe();
       jobPostsUnsubscribe();
     };
-  }, [dispatch, router]);
+  });
 
   return (
     <>

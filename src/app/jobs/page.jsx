@@ -20,7 +20,7 @@ const Jobs = () => {
   const currentUser = useSelector((state) => state.campus.userType);
   const [appliedJobs, setAppliedJobs] = useState([]); 
   useEffect(() => {
-    const userRef = ref(db, `/users/${auth.currentUser.uid}/appliedJobs`);
+    const userRef = ref(db, `/users/${auth.currentUser?.uid}/appliedJobs`);
     get(userRef)
       .then((snapshot) => {
         if (snapshot.exists()) {
@@ -34,10 +34,10 @@ const Jobs = () => {
 
   const jobApply = (item, key) => {
     const job = item?.id;
-    set(ref(db, `/users/${auth.currentUser.uid}/appliedJobs/${job}`), job)
+    set(ref(db, `/users/${auth.currentUser?.uid}/appliedJobs/${job}`), job)
       .then(() => {
         set(
-          ref(db, `/jobs/${key}/studentApplied/${auth.currentUser.uid}`),
+          ref(db, `/jobs/${key}/studentApplied/${auth.currentUser?.uid}`),
           currentUser
         );
         toast.success("Applied Job Successfully");

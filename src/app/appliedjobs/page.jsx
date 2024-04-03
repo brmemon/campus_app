@@ -15,7 +15,7 @@ const AppliedJobs = () => {
   const currentUserData = useSelector((state) => state.campus.userType);
 
   let jobs = Object.values(dataOfJob);
-  let userApplied = Object.values(currentUserData?.appliedJobs);
+  let userApplied = Object?.values(currentUserData?.appliedJobs);
 
   let res = [jobs, userApplied].reduce((include, current) =>
     include?.filter((a) => current?.includes(a.id))

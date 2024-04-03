@@ -25,7 +25,7 @@ import CustomModal from "../Components/Modal";
 import MainButton from "../Components/MainButton";
 import Input from "../Components/Input";
 import FormControlInput from "../Components/formControlInput";
-import "../../../styles/scss/Profile.scss"
+import "../../../styles/scss/Profile.scss";
 const Profile = () => {
   const [pathname, setPathname] = useState("");
   const [isEdited, setIsEdited] = useState(false);
@@ -87,7 +87,6 @@ const Profile = () => {
     return <Loader />;
   }
 
-  // {isLoading && <Loader />}
   return (
     <div>
       <ToastContainer />
@@ -164,7 +163,6 @@ const Profile = () => {
                   className="input_profile"
                   onChange={(e) => {
                     formik.handleChange(e);
-                    // setIsEdited(true);
                   }}
                   value={formik.values.oldPassword}
                   error={

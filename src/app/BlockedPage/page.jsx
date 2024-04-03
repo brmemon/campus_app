@@ -11,14 +11,19 @@ import { MdBlock } from "react-icons/md";
 import { useRouter } from "next/navigation";
 import { auth } from "../firebase";
 import withAuth from "../Auth";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurrentUser } from "../Redux/userSlice";
 
 const BlockPage = () => {
+  const userCurrentData = useSelector((state) => state.campus.userType);
   const router = useRouter();
+  const dispatch = useDispatch();
 
   const handleLogout = () => {
     auth
       .signOut()
       .then(() => {
+        dispatch(setCurrentUser(null))
         router.push("/auth/Login");
       })
       .catch((error) => {

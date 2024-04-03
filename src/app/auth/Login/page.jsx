@@ -32,14 +32,6 @@ const Login = () => {
         statusVerified = myVal[ind]?.adminVerifiedUser;
         statusBlocked = myVal[ind]?.adminBlockedUser;
         userEmail = myVal[ind]?.email;
-        // console.log(
-        //   statusBlocked,
-        //   "statusBlocked",
-        //   statusVerified,
-        //   "statusVerified",
-        //   userEmail,
-        //   "userEmail"
-        // );
       }
     });
   });
