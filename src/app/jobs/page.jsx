@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import CustomLayout from "../Components/Layout";
@@ -9,7 +9,7 @@ import withAuth from "../Auth";
 import Image from "next/image";
 import avater from "../Components/Assets/noData.png";
 import MainButton from "../Components/MainButton";
-import { ref, set, get } from "firebase/database"; 
+import { ref, set, get } from "firebase/database";
 import { auth, db } from "../firebase";
 import { ToastContainer, toast } from "react-toastify";
 import CustomModal from "../Components/Modal";
@@ -18,7 +18,7 @@ const Jobs = () => {
   const dataOfJob = useSelector((state) => state.campus.jobData);
   const jobs = Object.entries(dataOfJob);
   const currentUser = useSelector((state) => state.campus.userType);
-  const [appliedJobs, setAppliedJobs] = useState([]); 
+  const [appliedJobs, setAppliedJobs] = useState([]);
   useEffect(() => {
     const userRef = ref(db, `/users/${auth.currentUser?.uid}/appliedJobs`);
     get(userRef)
@@ -41,7 +41,7 @@ const Jobs = () => {
           currentUser
         );
         toast.success("Applied Job Successfully");
-        setAppliedJobs([...appliedJobs, job])
+        setAppliedJobs([...appliedJobs, job]);
       })
       .catch((error) => toast.error(error));
   };
@@ -84,8 +84,10 @@ const Jobs = () => {
                   <div className="main_div_Apply_Button">
                     <MainButton
                       className="Apply_Button"
-                      text={appliedJobs.includes(item?.id) ? "Applied" : "Apply"} 
-                      disabled={appliedJobs.includes(item?.id)} 
+                      text={
+                        appliedJobs.includes(item?.id) ? "Applied" : "Apply"
+                      }
+                      disabled={appliedJobs.includes(item?.id)}
                       onClick={() => jobApply(item, key)}
                     />
                   </div>
@@ -94,7 +96,13 @@ const Jobs = () => {
             ))
           ) : (
             <div className="empty_div">
-              <Image src={avater} alt="No Data" width={350} height={350} />
+              <Image
+                src={avater}
+                alt="No Data"
+                width={350}
+                height={350}
+                priority={true}
+              />
               <h1 className="empty_data">No Data Found</h1>
             </div>
           )}

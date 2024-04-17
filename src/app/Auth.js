@@ -10,7 +10,6 @@ export default function withAuth(Component) {
     const isLoading = useSelector((state) => state.campus.isLoading);
     
     useEffect(() => {
-      console.log(!userCurrentData);
       if (!isLoading) {
         if (!userCurrentData) {
           router.push("/auth/Login");

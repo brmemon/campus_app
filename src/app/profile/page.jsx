@@ -1,7 +1,6 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import { ToastContainer, toast } from "react-toastify";
-import Loader from "../Components/MUILoader/Loader";
 import {
   updateProfile,
   reauthenticateWithCredential,
@@ -30,8 +29,6 @@ import "../../../styles/scss/Profile.scss";
 const Profile = () => {
   const [pathname, setPathname] = useState("");
   const [isEdited, setIsEdited] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
-  const [initialProfileValues, setInitialProfileValues] = useState({});
   const userCurrentData = useSelector((state) => state.campus.userType);
   const authUser = getAuth().currentUser;
 
@@ -40,20 +37,11 @@ const Profile = () => {
     setPathname(window.location.pathname);
   }, [temper]);
 
-  useEffect(() => {
-    if (userCurrentData) {
-      setInitialProfileValues(profileInitialValues(userCurrentData));
-      // console.log(setInitialProfileValues(profileInitialValues(userCurrentData)));
-    }
-  }, [userCurrentData]);
-
   const formik = useFormik({
-    initialValues: initialProfileValues,
+    initialValues: profileInitialValues(userCurrentData),
     validationSchema: profileSchema(),
     onSubmit: async (values, { resetForm }) => {
       try {
-        setIsLoading(true);
-
         await updateProfile(authUser, {
           displayName: values.name,
         });
@@ -72,15 +60,11 @@ const Profile = () => {
         update(userRef, {
           name: values.name,
         });
-        setInitialProfileValues(values);
         toast.success("Profile updated successfully!");
-
-        // console.log(setInitialProfileValues(values) , "setInitialProfileValues(values)");
       } catch (error) {
         console.error("Error updating profile:", error);
         toast.error("Failed to update profile. Please try again.");
       } finally {
-        setIsLoading(false);
         resetForm();
         setIsEdited(false);
       }
@@ -93,10 +77,6 @@ const Profile = () => {
     );
     setIsEdited(isFormEdited);
   }, [formik.touched]);
-
-  // if (!userCurrentData || isLoading) {
-  //   return <Loader />;
-  // }
 
   return (
     <div>

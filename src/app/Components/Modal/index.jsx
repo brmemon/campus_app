@@ -43,7 +43,12 @@ const CustomModal = ({ SideNavbarData, profilePic }) => {
             <RxCross2 />
           </div>
           <div className="logo_heading">
-            <Image src={logo} alt="App Logo" className="campus_logo" />
+            <Image
+              src={logo}
+              alt="App Logo"
+              className="campus_logo"
+              priority={true}
+            />
             <h1 className="campus_heading">Campus App</h1>
             <div className="avater_div">
               <div className="avater_div">

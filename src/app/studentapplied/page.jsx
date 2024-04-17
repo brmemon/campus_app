@@ -94,7 +94,13 @@ const StudentApplied = () => {
               ))
             ) : (
               <div className="empty_div">
-                <Image src={avater} alt="No Data" width={350} height={350} />
+                <Image
+                  src={avater}
+                  alt="No Data"
+                  width={350}
+                  height={350}
+                  priority={true}
+                />
                 <h1 className="empty_data">No Data Found</h1>
               </div>
             )}

@@ -6,7 +6,9 @@ import avater from "../Assets/noData.png";
 import "../../../../styles/scss/Jobs.scss";
 const MapData = ({ dataJobs }) => {
   const userCurrentData = useSelector((state) => state.campus.userType);
-  const filteredJobs = dataJobs.filter((item) => item?.companyId === userCurrentData?.uid);
+  const filteredJobs = dataJobs.filter(
+    (item) => item?.companyId === userCurrentData?.uid
+  );
 
   return (
     <>
@@ -38,14 +40,19 @@ const MapData = ({ dataJobs }) => {
                   <p className="job_post_para">Description:</p>
                   <p className="tittle">{item?.description}</p>
                 </div>
-                <div className="main_div_Apply_Button">
-                </div>
+                <div className="main_div_Apply_Button"></div>
               </div>
             </div>
           ))
         ) : (
           <div className="empty_div">
-            <Image src={avater} alt="No Data" width={350} height={350} />
+            <Image
+              src={avater}
+              alt="No Data"
+              width={350}
+              height={350}
+              priority={true}
+            />
             <h1 className="empty_data">No Data Found</h1>
           </div>
         )}

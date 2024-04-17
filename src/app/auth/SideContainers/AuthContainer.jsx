@@ -7,7 +7,12 @@ const AuthContainer = () => {
   return (
     <div className="sub_container_one">
       <span className="campus_logo_text">
-        <Image src={logo} alt="App Logo" className="campus_logo" />
+        <Image
+          src={logo}
+          alt="App Logo"
+          className="campus_logo"
+          priority={true}
+        />
         {/* <FaRegHandshake className="campus_logo" /> */}
         <h1 className="campus_text">Campus App</h1>
         <p className="campus_para">

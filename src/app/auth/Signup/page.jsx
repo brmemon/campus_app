@@ -67,6 +67,7 @@ const Signup = () => {
             width={"180"}
             height={"110"}
             className="media_logo"
+            priority={true}
           />
           <h1 className="login_logo">Sign Up</h1>
           <h2 className="login_welcome">Welcome! Create Your Account Now</h2>

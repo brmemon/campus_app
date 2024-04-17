@@ -78,6 +78,7 @@ const Login = () => {
             width={"180"}
             height={"110"}
             className="media_logo"
+            priority={true}
           />
           <h1 className="login_logo"> Login </h1>
           <h2 className="login_welcome">Welcome Back! Login To Your Account</h2>

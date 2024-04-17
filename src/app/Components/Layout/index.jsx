@@ -21,7 +21,12 @@ const CustomLayout = ({ children, SideNavbarData, profilePic }) => {
     <div className="Main_sideNavbar">
       <div className="Side_Navbar">
         <div className="logo_heading">
-          <Image src={logo} alt="App Logo" className="campus_logo" />
+          <Image
+            src={logo}
+            alt="App Logo"
+            className="campus_logo"
+            priority={true}
+          />
           <h1 className="campus_heading">Campus App</h1>
           <div className="avater_div">
             {/* <Image

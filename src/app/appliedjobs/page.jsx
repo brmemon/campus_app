@@ -15,10 +15,12 @@ const AppliedJobs = () => {
   const currentUserData = useSelector((state) => state.campus.userType);
 
   let jobs = !!dataOfJob && Object.values(dataOfJob);
-  let userApplied = !!currentUserData?.appliedJobs && Object?.values(currentUserData?.appliedJobs);
+  let userApplied =
+    !!currentUserData?.appliedJobs &&
+    Object?.values(currentUserData?.appliedJobs);
 
   let res = [jobs, userApplied].reduce((include, current) =>
-    include?.filter((a) =>!!current && current?.includes(a.id))
+    include?.filter((a) => !!current && current?.includes(a.id))
   );
   return (
     <CustomLayout SideNavbarData={StudentNavbarData}>
@@ -59,7 +61,13 @@ const AppliedJobs = () => {
             ))
           ) : (
             <div className="empty_div">
-              <Image src={avater} alt="No Data" width={350} height={350} />
+              <Image
+                src={avater}
+                alt="No Data"
+                width={350}
+                height={350}
+                priority={true}
+              />
               <h1 className="empty_data">No Data Found</h1>
             </div>
           )}
