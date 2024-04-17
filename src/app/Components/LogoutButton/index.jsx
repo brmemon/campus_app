@@ -23,8 +23,8 @@ const Logout = () => {
   const handleYesClick = () => {
     auth.signOut()
       .then(() => {
-        router.push('/auth/Login');
         dispatch(setCurrentUser(null))
+        router.push('/auth/Login');
       })
       .catch(error => {
         console.error('Error LogOut:', error);

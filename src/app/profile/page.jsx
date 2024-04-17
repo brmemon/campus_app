@@ -26,10 +26,12 @@ import MainButton from "../Components/MainButton";
 import Input from "../Components/Input";
 import FormControlInput from "../Components/formControlInput";
 import "../../../styles/scss/Profile.scss";
+
 const Profile = () => {
   const [pathname, setPathname] = useState("");
   const [isEdited, setIsEdited] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [initialProfileValues, setInitialProfileValues] = useState({});
   const userCurrentData = useSelector((state) => state.campus.userType);
   const authUser = getAuth().currentUser;
 
@@ -38,8 +40,15 @@ const Profile = () => {
     setPathname(window.location.pathname);
   }, [temper]);
 
+  useEffect(() => {
+    if (userCurrentData) {
+      setInitialProfileValues(profileInitialValues(userCurrentData));
+      // console.log(setInitialProfileValues(profileInitialValues(userCurrentData)));
+    }
+  }, [userCurrentData]);
+
   const formik = useFormik({
-    initialValues: profileInitialValues(userCurrentData),
+    initialValues: initialProfileValues,
     validationSchema: profileSchema(),
     onSubmit: async (values, { resetForm }) => {
       try {
@@ -63,8 +72,10 @@ const Profile = () => {
         update(userRef, {
           name: values.name,
         });
-
+        setInitialProfileValues(values);
         toast.success("Profile updated successfully!");
+
+        // console.log(setInitialProfileValues(values) , "setInitialProfileValues(values)");
       } catch (error) {
         console.error("Error updating profile:", error);
         toast.error("Failed to update profile. Please try again.");
@@ -83,9 +94,9 @@ const Profile = () => {
     setIsEdited(isFormEdited);
   }, [formik.touched]);
 
-  if (!userCurrentData || isLoading) {
-    return <Loader />;
-  }
+  // if (!userCurrentData || isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
     <div>

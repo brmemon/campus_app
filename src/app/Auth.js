@@ -10,10 +10,11 @@ export default function withAuth(Component) {
     const isLoading = useSelector((state) => state.campus.isLoading);
     
     useEffect(() => {
-      if (!isLoading && userCurrentData) {
+      console.log(!userCurrentData);
+      if (!isLoading) {
         if (!userCurrentData) {
           router.push("/auth/Login");
-        } else if (userCurrentData.adminBlockedUser) {
+        } else if (userCurrentData?.adminBlockedUser) {
           router.push("/BlockedPage");
         } else {
           if (userCurrentData.userType === "admin") {

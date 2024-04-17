@@ -14,11 +14,11 @@ const AppliedJobs = () => {
   const dataOfJob = useSelector((state) => state.campus.jobData);
   const currentUserData = useSelector((state) => state.campus.userType);
 
-  let jobs = Object.values(dataOfJob);
-  let userApplied = Object?.values(currentUserData?.appliedJobs);
+  let jobs = !!dataOfJob && Object.values(dataOfJob);
+  let userApplied = !!currentUserData?.appliedJobs && Object?.values(currentUserData?.appliedJobs);
 
   let res = [jobs, userApplied].reduce((include, current) =>
-    include?.filter((a) => current?.includes(a.id))
+    include?.filter((a) =>!!current && current?.includes(a.id))
   );
   return (
     <CustomLayout SideNavbarData={StudentNavbarData}>
